@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ÉLUME — AI Hair Style Consultant</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1410'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='18' fill='%23c9a96e'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════════════════════════ */
+:root {
+  --gold:        #c9a96e;
+  --gold-light:  #e8d5a3;
+  --gold-dark:   #8a6a3a;
+  --gold-dim:    rgba(201,169,110,0.18);
+  --cream:       #faf6f0;
+  --cream-dark:  #f0e8db;
+  --ink:         #1a1410;
+  --ink-mid:     #3d2e1e;
+  --ink-light:   #7a6555;
+  --surface:     #ffffff;
+  --border:      rgba(201,169,110,0.22);
+  --shadow:      0 8px 40px rgba(26,20,16,0.10);
+  --shadow-lg:   0 24px 80px rgba(26,20,16,0.18);
+  --transition:  all 0.32s cubic-bezier(0.4,0,0.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* grain overlay */
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.35;
+}
+
+/* ── HEADER ── */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(250,246,240,0.88); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem; font-weight: 300; letter-spacing: 0.28em;
+  color: var(--ink); text-decoration: none;
+}
+.logo span { color: var(--gold); }
+.header-tag {
+  font-size: 0.6rem; font-weight: 300;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 120px 24px 80px;
+  text-align: center; position: relative;
+}
+.hero-eyebrow {
+  font-size: 0.62rem; font-weight: 400;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 24px;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 7vw, 5.8rem);
+  font-weight: 300; line-height: 1.05;
+  color: var(--ink); margin-bottom: 22px;
+}
+.hero-title em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-size: 0.88rem; font-weight: 300;
+  letter-spacing: 0.07em; color: var(--ink-light);
+  max-width: 460px; line-height: 1.75; margin-bottom: 52px;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 15px 40px;
+  background: var(--ink); color: var(--cream);
+  font-family: 'Jost', sans-serif; font-size: 0.72rem;
+  font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase;
+  border: none; cursor: pointer; transition: var(--transition);
+  text-decoration: none;
+}
+.hero-cta:hover { background: var(--gold); color: var(--ink); }
+.hero-cta svg { width: 13px; height: 13px; }
+
+.hero-decor {
+  position: absolute; bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: float 3s ease-in-out infinite;
+}
+.hero-decor span { font-size: 0.58rem; letter-spacing: 0.22em; color: var(--ink-light); text-transform: uppercase; }
+.hero-decor-line { width: 1px; height: 38px; background: var(--gold); }
+@keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+/* ── SCANNER SECTION ── */
+#scanner-section {
+  display: none;
+  min-height: 100vh; padding: 120px 24px 80px;
+  flex-direction: column; align-items: center;
+}
+.section-label {
+  font-size: 0.62rem; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 16px; text-align: center;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 300;
+  color: var(--ink); line-height: 1.1;
+  text-align: center; margin-bottom: 48px;
+}
+
+/* iframe wrapper */
+.scanner-frame-wrap {
+  width: 100%; max-width: 820px;
+  border: 1px solid var(--border);
+  background: var(--ink);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+.scanner-frame-wrap iframe {
+  width: 100%; height: 680px;
+  border: none; display: block;
+}
+
+.scanner-hint {
+  display: flex; gap: 32px; justify-content: center;
+  flex-wrap: wrap; margin-top: 28px;
+}
+.hint-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.68rem; letter-spacing: 0.1em;
+  color: var(--ink-light); text-transform: uppercase;
+}
+.hint-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+/* "Use these results" button area shown after scanner completes */
+#scanner-result-bar {
+  display: none;
+  width: 100%; max-width: 820px;
+  background: var(--ink); padding: 24px 32px;
+  border: 1px solid rgba(201,169,110,0.25);
+  border-top: none;
+  align-items: center; justify-content: space-between; gap: 24px;
+  flex-wrap: wrap;
+}
+.result-bar-info { display: flex; flex-direction: column; gap: 4px; }
+.result-bar-shape {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 400; color: var(--cream);
+}
+.result-bar-sub {
+  font-size: 0.62rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(201,169,110,0.6);
+}
+.use-results-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 32px;
+  background: var(--gold); color: var(--ink);
+  font-family: 'Jost', sans-serif; font-size: 0.72rem;
+  font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  border: none; cursor: pointer; transition: var(--transition); white-space: nowrap;
+}
+.use-results-btn:hover { background: var(--cream); }
+.use-results-btn svg { width: 12px; height: 12px; }
+
+/* ── GENDER SELECT (shown between scanner and results) ── */
+#gender-section {
+  display: none; padding: 80px 24px;
+  flex-direction: column; align-items: center; gap: 32px;
+}
+.gender-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 300;
+  text-align: center;
+}
+.gender-cards {
+  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+}
+.gender-card {
+  width: 160px; padding: 28px 20px;
+  border: 1px solid var(--border); text-align: center;
+  cursor: pointer; transition: var(--transition); background: transparent;
+  font-family: 'Jost', sans-serif;
+}
+.gender-card:hover { border-color: var(--gold-dark); }
+.gender-card.selected { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+.gender-card-icon { font-size: 2rem; margin-bottom: 10px; }
+.gender-card-label {
+  font-size: 0.68rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: inherit;
+}
+.gender-confirm-btn {
+  padding: 14px 40px;
+  background: var(--gold); color: var(--ink);
+  font-family: 'Jost', sans-serif; font-size: 0.72rem;
+  font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  border: none; cursor: pointer; transition: var(--transition);
+  opacity: 0.35; pointer-events: none;
+}
+.gender-confirm-btn.ready { opacity: 1; pointer-events: auto; }
+.gender-confirm-btn:hover { background: var(--ink); color: var(--cream); }
+
+/* ── RESULTS SECTION ── */
+#results-section {
+  display: none; padding: 80px 0 80px;
+}
+.results-header {
+  text-align: center; padding: 0 24px 56px;
+}
+.results-face-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 7px 20px; background: var(--ink);
+  font-size: 0.6rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--cream); margin-bottom: 22px;
+}
+.results-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 300;
+  color: var(--ink); line-height: 1.1;
+}
+.results-title em { color: var(--gold); font-style: italic; }
+
+/* track section */
+.track-section { max-width: 1180px; margin: 0 auto 48px; padding: 0 24px; }
+.track-header {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+}
+.track-label {
+  font-size: 0.58rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--gold); white-space: nowrap;
+}
+.track-desc { font-size: 0.68rem; color: var(--ink-light); letter-spacing: 0.05em; }
+.track-line { flex: 1; height: 1px; background: var(--border); }
+
+/* style cards grid */
+.style-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 3px;
+}
+.style-card {
+  position: relative; overflow: hidden; cursor: pointer;
+  transition: var(--transition); background: var(--ink);
+  border: 2px solid transparent; aspect-ratio: 3/4;
+}
+.style-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.style-card.selected { border-color: var(--gold); }
+.style-card-badge {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  padding: 4px 10px; font-size: 0.52rem;
+  letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
+}
+.style-card-badge.best { background: var(--gold); color: var(--ink); }
+.style-card-badge.match { background: var(--ink-mid); color: var(--gold-light); }
+
+.style-card-img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s ease; background: #2a2015;
+}
+.style-card:hover .style-card-img { transform: scale(1.04); }
+
+/* placeholder for missing images */
+.style-card-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  background: linear-gradient(135deg, #1a1410 0%, #2d1f15 50%, #1a1410 100%);
+  color: rgba(201,169,110,0.35);
+}
+.style-card-placeholder svg { width: 40px; height: 40px; }
+.style-card-placeholder span {
+  font-size: 0.6rem; letter-spacing: 0.18em;
+  text-transform: uppercase; text-align: center; padding: 0 16px;
+}
+
+.style-card-info {
+  padding: 20px; position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(26,20,16,0.96));
+}
+.style-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 400; color: var(--cream); margin-bottom: 6px;
+}
+.style-card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.style-tag {
+  font-size: 0.52rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold-light);
+  padding: 2px 7px; border: 1px solid rgba(201,169,110,0.28);
+}
+
+/* try-on button on card */
+.card-try-btn {
+  position: absolute; bottom: 64px; right: 12px; z-index: 3;
+  padding: 7px 14px;
+  background: rgba(201,169,110,0.12);
+  border: 1px solid rgba(201,169,110,0.55);
+  color: var(--gold-light);
+  font-family: 'Jost', sans-serif; font-size: 0.58rem;
+  font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+  cursor: pointer; backdrop-filter: blur(8px);
+  transition: var(--transition);
+  display: flex; align-items: center; gap: 6px;
+  opacity: 0; transform: translateY(4px);
+}
+.style-card:hover .card-try-btn { opacity: 1; transform: translateY(0); }
+.card-try-btn:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.card-try-btn svg { width: 10px; height: 10px; }
+@media (hover: none) { .card-try-btn { opacity: 1; transform: translateY(0); } }
+
+/* select indicator */
+.card-select-dot {
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.35); background: transparent;
+  transition: var(--transition); display: flex; align-items: center; justify-content: center;
+}
+.style-card.selected .card-select-dot { background: var(--gold); border-color: var(--gold); }
+.card-select-dot svg { width: 9px; height: 9px; color: white; opacity: 0; transition: opacity 0.2s; }
+.style-card.selected .card-select-dot svg { opacity: 1; }
+
+/* restart bar */
+.restart-bar {
+  text-align: center; padding: 48px 24px;
+  border-top: 1px solid var(--border); margin-top: 32px;
+}
+.restart-btn {
+  padding: 12px 32px; border: 1px solid var(--border);
+  background: transparent; font-family: 'Jost', sans-serif;
+  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-light); cursor: pointer; transition: var(--transition);
+}
+.restart-btn:hover { border-color: var(--ink); color: var(--ink); }
+
+/* ── TRY-ON MODAL ── */
+.tryon-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(15,12,9,0.97);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1);
+  padding: 0;
+}
+.tryon-overlay.open { opacity: 1; pointer-events: auto; }
+
+.tryon-modal {
+  width: 100%; max-width: 980px;
+  background: var(--ink);
+  border: 1px solid rgba(201,169,110,0.18);
+  display: grid; grid-template-columns: 1fr 300px;
+  height: 92vh; max-height: 740px; overflow: hidden;
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 48px 120px rgba(0,0,0,0.8);
+  margin: 16px; border-radius: 2px;
+}
+.tryon-overlay.open .tryon-modal { transform: translateY(0) scale(1); }
+
+@media (max-width: 700px) {
+  .tryon-overlay { align-items: stretch; }
+  .tryon-modal {
+    grid-template-columns: 1fr; grid-template-rows: 1fr auto;
+    height: 100dvh; max-height: none; margin: 0; border: none; border-radius: 0;
+  }
+}
+
+/* camera/preview pane */
+.tryon-cam-pane {
+  position: relative; background: #080604; overflow: hidden;
+}
+#tryon-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; transform: scaleX(-1);
+}
+#tryon-preview-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: none;
+}
+/* canvas layers — all mirror video */
+#tryon-base-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 1; transform: scaleX(-1);
+}
+#tryon-hair-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 2;
+}
+#tryon-hair-static {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 2; display: none;
+}
+
+/* loading overlay for canvas */
+.tryon-loading-overlay {
+  position: absolute; inset: 0; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  background: rgba(8,6,4,0.75); backdrop-filter: blur(4px);
+  transition: opacity 0.4s;
+}
+.tryon-loading-overlay.hidden { opacity: 0; pointer-events: none; }
+.spinner-ring {
+  width: 42px; height: 42px;
+  border: 2px solid rgba(201,169,110,0.18);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.tryon-loading-text {
+  font-size: 0.6rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(201,169,110,0.6);
+}
+
+/* status bar in cam pane */
+.tryon-status {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 5;
+  padding: 10px 16px;
+  background: linear-gradient(transparent, rgba(8,6,4,0.85));
+  display: flex; align-items: center; justify-content: space-between;
+}
+.tryon-status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #ff4444; transition: background 0.3s;
+}
+.tryon-status-dot.live { background: #44cc88; animation: pulse-dot 1.6s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.45} }
+.tryon-status-text {
+  font-size: 0.58rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(255,255,255,0.6); margin-left: 8px; flex: 1;
+}
+
+/* corner brackets */
+.tryon-bracket {
+  position: absolute; width: 18px; height: 18px;
+  border-color: rgba(201,169,110,0.45); border-style: solid; border-width: 0; z-index: 4;
+}
+.tryon-bracket.tl { top: 10px; left: 10px; border-top-width: 1.5px; border-left-width: 1.5px; }
+.tryon-bracket.tr { top: 10px; right: 10px; border-top-width: 1.5px; border-right-width: 1.5px; }
+.tryon-bracket.bl { bottom: 38px; left: 10px; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+.tryon-bracket.br { bottom: 38px; right: 10px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+
+/* side panel */
+.tryon-side {
+  display: flex; flex-direction: column; padding: 24px 22px;
+  border-left: 1px solid rgba(201,169,110,0.1);
+  overflow-y: auto; gap: 18px; background: rgba(20,16,12,0.95);
+}
+@media (max-width: 700px) {
+  .tryon-side {
+    flex-direction: row; overflow-x: auto; overflow-y: hidden;
+    border-left: none; border-top: 1px solid rgba(201,169,110,0.1);
+    padding: 14px 16px; gap: 12px; flex-shrink: 0;
+  }
+}
+.tryon-side-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 300; color: var(--cream);
+  line-height: 1.2;
+}
+.tryon-style-name {
+  font-size: 0.6rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(201,169,110,0.55);
+  margin-top: 4px;
+}
+.tryon-divider { height: 1px; background: rgba(201,169,110,0.1); }
+
+/* mode toggle */
+.tryon-mode-wrap { display: flex; gap: 0; border: 1px solid rgba(201,169,110,0.18); overflow: hidden; }
+.tryon-mode-btn {
+  flex: 1; padding: 10px 12px; text-align: center;
+  font-family: 'Jost', sans-serif; font-size: 0.58rem;
+  font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
+  border: none; cursor: pointer; transition: var(--transition);
+  background: transparent; color: rgba(201,169,110,0.45);
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+}
+.tryon-mode-btn.active { background: rgba(201,169,110,0.14); color: var(--gold); }
+.tryon-mode-btn svg { width: 11px; height: 11px; }
+
+/* upload zone in side panel */
+.tryon-upload-zone {
+  border: 1px dashed rgba(201,169,110,0.25);
+  padding: 20px; text-align: center; cursor: pointer;
+  transition: var(--transition); border-radius: 1px;
+}
+.tryon-upload-zone:hover { border-color: var(--gold); background: rgba(201,169,110,0.05); }
+.tryon-upload-zone p { font-size: 0.62rem; letter-spacing: 0.1em; color: rgba(201,169,110,0.5); margin-top: 6px; }
+.tryon-upload-zone .upload-icon-sm { color: var(--gold); font-size: 1.4rem; }
+#tryon-file-input { display: none; }
+
+/* hair opacity control */
+.tryon-control-label {
+  font-size: 0.58rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(201,169,110,0.5);
+  margin-bottom: 8px;
+}
+input[type=range] {
+  width: 100%; accent-color: var(--gold);
+  background: transparent; cursor: pointer;
+}
+
+/* capture button */
+.tryon-capture-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px; width: 100%;
+  background: rgba(201,169,110,0.12);
+  border: 1px solid rgba(201,169,110,0.3);
+  color: var(--gold); font-family: 'Jost', sans-serif;
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  cursor: pointer; transition: var(--transition);
+}
+.tryon-capture-btn:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.tryon-capture-btn svg { width: 13px; height: 13px; }
+
+/* download button */
+.tryon-download-btn {
+  display: none; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px; width: 100%;
+  background: transparent;
+  border: 1px solid rgba(201,169,110,0.25);
+  color: rgba(201,169,110,0.6); font-family: 'Jost', sans-serif;
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  cursor: pointer; transition: var(--transition);
+}
+.tryon-download-btn.show { display: flex; }
+.tryon-download-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* close button */
+.tryon-close-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px; width: 100%;
+  background: transparent; border: 1px solid rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.3); font-family: 'Jost', sans-serif;
+  font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase;
+  cursor: pointer; transition: var(--transition); margin-top: auto;
+}
+.tryon-close-btn:hover { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center; padding: 40px 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-light);
+}
+
+/* ── UTILS ── */
+.hidden { display: none !important; }
+.fade-in { animation: fadeIn 0.55s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 540px) {
+  .site-header { padding: 14px 20px; }
+  .scanner-frame-wrap iframe { height: 580px; }
+  .style-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="#" class="logo">ÉL<span>U</span>ME</a>
+  <span class="header-tag">AI Hair Consultant</span>
+</header>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero" id="hero-section">
+  <div class="hero-eyebrow">Precision · Style · Intelligence</div>
+  <h1 class="hero-title">Discover Your<br><em>Perfect Style</em></h1>
+  <p class="hero-sub">Our AI scans your head shape from multiple angles to recommend hairstyles built precisely for your geometry.</p>
+  <button class="hero-cta" onclick="startFlow()">
+    Begin Head Scan
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M2 7h10M7 2l5 5-5 5"/>
+    </svg>
+  </button>
+  <div class="hero-decor">
+    <span>Scroll</span>
+    <div class="hero-decor-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════════ SCANNER SECTION ══════════════════ -->
+<section id="scanner-section">
+  <div class="section-label">Step 1 of 3 — Head Scan</div>
+  <h2 class="section-title">Scan Your Head Shape</h2>
+
+  <div class="scanner-frame-wrap">
+    <iframe
+      id="head-scanner-frame"
+      src="https://acedynamicstrading.github.io/Head-scanner/"
+      allow="camera"
+      title="Head Scanner"
+    ></iframe>
+  </div>
+
+  <!-- result bar appears after scan -->
+  <div id="scanner-result-bar">
+    <div class="result-bar-info">
+      <div class="result-bar-shape" id="result-shape-label">—</div>
+      <div class="result-bar-sub">Face shape detected · Ready to recommend</div>
+    </div>
+    <button class="use-results-btn" onclick="proceedToGender()">
+      See My Styles
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M1 6h10M6 1l5 5-5 5"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="scanner-hint">
+    <div class="hint-item"><span class="hint-dot"></span>Look straight into the camera</div>
+    <div class="hint-item"><span class="hint-dot"></span>Turn right, left, then tilt down</div>
+    <div class="hint-item"><span class="hint-dot"></span>Good lighting improves accuracy</div>
+  </div>
+</section>
+
+<!-- ══════════════════ GENDER SECTION ══════════════════ -->
+<section id="gender-section">
+  <div class="section-label">Step 2 of 3 — Preferences</div>
+  <h2 class="gender-title">Which styles should<br>we curate for you?</h2>
+  <div class="gender-cards">
+    <div class="gender-card" id="gender-female" onclick="selectGender('F')">
+      <div class="gender-card-icon">♀</div>
+      <div class="gender-card-label">Women's Styles</div>
+    </div>
+    <div class="gender-card" id="gender-male" onclick="selectGender('M')">
+      <div class="gender-card-icon">♂</div>
+      <div class="gender-card-label">Men's Styles</div>
+    </div>
+    <div class="gender-card" id="gender-all" onclick="selectGender('A')">
+      <div class="gender-card-icon">✦</div>
+      <div class="gender-card-label">All Styles</div>
+    </div>
+  </div>
+  <button class="gender-confirm-btn" id="gender-confirm-btn" onclick="showRecommendations()">
+    See Recommendations →
+  </button>
+</section>
+
+<!-- ══════════════════ RESULTS SECTION ══════════════════ -->
+<section id="results-section">
+  <div class="results-header">
+    <div class="results-face-badge" id="face-shape-badge">— Face Shape</div>
+    <h2 class="results-title" id="results-title">Your Recommended <em>Styles</em></h2>
+  </div>
+
+  <!-- primary recommendations -->
+  <div class="track-section" id="track-primary">
+    <div class="track-header">
+      <span class="track-label" id="track-primary-label">Top Matches</span>
+      <span class="track-desc" id="track-primary-desc"></span>
+      <div class="track-line"></div>
+    </div>
+    <div class="style-grid" id="grid-primary"></div>
+  </div>
+
+  <!-- secondary / complementary -->
+  <div class="track-section" id="track-secondary" style="display:none">
+    <div class="track-header">
+      <span class="track-label" id="track-secondary-label">Also Flattering</span>
+      <span class="track-desc" id="track-secondary-desc"></span>
+      <div class="track-line"></div>
+    </div>
+    <div class="style-grid" id="grid-secondary"></div>
+  </div>
+
+  <div class="restart-bar">
+    <button class="restart-btn" onclick="restartFlow()">
+      ← Start Over / Rescan
+    </button>
+  </div>
+</section>
+
+<!-- ══════════════════ TRY-ON MODAL ══════════════════ -->
+<div class="tryon-overlay" id="tryon-overlay">
+  <div class="tryon-modal">
+
+    <!-- Camera / preview pane -->
+    <div class="tryon-cam-pane">
+      <video id="tryon-video" playsinline autoplay muted></video>
+      <img id="tryon-preview-img" alt="Preview">
+      <canvas id="tryon-base-canvas"></canvas>
+      <canvas id="tryon-hair-canvas"></canvas>
+      <canvas id="tryon-hair-static"></canvas>
+
+      <!-- loading overlay -->
+      <div class="tryon-loading-overlay" id="tryon-loading">
+        <div class="spinner-ring"></div>
+        <div class="tryon-loading-text">Initialising camera…</div>
+      </div>
+
+      <!-- status bar -->
+      <div class="tryon-status">
+        <div class="tryon-status-dot" id="tryon-dot"></div>
+        <div class="tryon-status-text" id="tryon-status-text">Starting…</div>
+      </div>
+
+      <!-- corner brackets -->
+      <div class="tryon-bracket tl"></div>
+      <div class="tryon-bracket tr"></div>
+      <div class="tryon-bracket bl"></div>
+      <div class="tryon-bracket br"></div>
+    </div>
+
+    <!-- Side panel -->
+    <div class="tryon-side">
+      <div>
+        <div class="tryon-side-title">Hair Try-On</div>
+        <div class="tryon-style-name" id="tryon-style-name">—</div>
+      </div>
+
+      <div class="tryon-divider"></div>
+
+      <!-- Mode toggle: Live | Photo -->
+      <div>
+        <div class="tryon-control-label">Mode</div>
+        <div class="tryon-mode-wrap">
+          <button class="tryon-mode-btn active" id="mode-live-btn" onclick="setTryOnMode('live')">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="4"/><circle cx="6" cy="6" r="1.5" fill="currentColor" stroke="none"/></svg>
+            Live
+          </button>
+          <button class="tryon-mode-btn" id="mode-photo-btn" onclick="setTryOnMode('photo')">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="2" width="10" height="8" rx="1"/><circle cx="6" cy="6" r="2"/></svg>
+            Photo
+          </button>
+        </div>
+      </div>
+
+      <!-- Photo upload zone (shown in photo mode) -->
+      <div class="tryon-upload-zone" id="tryon-upload-zone" onclick="document.getElementById('tryon-file-input').click()" style="display:none">
+        <div class="upload-icon-sm">📷</div>
+        <p>Tap to upload a photo</p>
+        <input type="file" id="tryon-file-input" accept="image/*" onchange="handleTryOnUpload(event)">
+      </div>
+
+      <div class="tryon-divider"></div>
+
+      <!-- Hair opacity -->
+      <div>
+        <div class="tryon-control-label">Hair Opacity</div>
+        <input type="range" id="hair-opacity" min="20" max="100" value="82" oninput="updateHairOpacity(this.value)">
+      </div>
+
+      <!-- Hair vertical offset -->
+      <div>
+        <div class="tryon-control-label">Position (↑↓)</div>
+        <input type="range" id="hair-offset" min="-80" max="80" value="0" oninput="updateHairOffset(this.value)">
+      </div>
+
+      <!-- Hair scale -->
+      <div>
+        <div class="tryon-control-label">Scale</div>
+        <input type="range" id="hair-scale" min="60" max="150" value="100" oninput="updateHairScale(this.value)">
+      </div>
+
+      <div class="tryon-divider"></div>
+
+      <!-- Capture -->
+      <button class="tryon-capture-btn" id="tryon-capture-btn" onclick="captureFrame()">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><circle cx="7" cy="7" r="2" fill="currentColor" stroke="none"/></svg>
+        Capture Photo
+      </button>
+
+      <!-- Download captured -->
+      <button class="tryon-download-btn" id="tryon-download-btn" onclick="downloadCapture()">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1v8M4 6l3 3 3-3M2 11h10"/></svg>
+        Download
+      </button>
+
+      <!-- Close -->
+      <button class="tryon-close-btn" onclick="closeTryOn()">
+        ✕ Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© ÉLUME — AI Hair Style Consultant</span>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+// ─────────────────────────────────────────────────────────────
+//  CONFIGURATION
+//  Set this to your GitHub Pages raw base URL once images are
+//  uploaded to the repo. e.g.:
+//  "https://raw.githubusercontent.com/acedynamicstrading/elume/main"
+//  Folder structure expected:
+//    /images/recommend/{shape}/{gender}/{filename}.jpg
+//    /images/tryon/{style-id}.png  (transparent PNG, hair only)
+// ─────────────────────────────────────────────────────────────
+const GITHUB_BASE = 'https://raw.githubusercontent.com/acedynamicstrading/Elume-main/main';
+
+// ─────────────────────────────────────────────────────────────
+//  STYLE DATABASE
+//  imageFile: path relative to GITHUB_BASE/images/recommend/
+//  tryonFile: path relative to GITHUB_BASE/images/tryon/
+//
+//  PLACEHOLDER — replace with real filenames matching your
+//  Google Drive images once uploaded to GitHub.
+// ─────────────────────────────────────────────────────────────
+const STYLE_DB = [
+  // ── FEMALE STYLES ──────────────────────────────────────────
+  { id:'f-01', name:'Soft Beach Waves',       gender:['F','A'], shapes:['Oval','Heart','Diamond'], tags:['waves','long','effortless'],   imageFile:'female/soft-beach-waves.jpg',      tryonFile:'female/soft-beach-waves.png' },
+  { id:'f-02', name:'Long Layers',            gender:['F','A'], shapes:['Oval','Square','Round'],  tags:['layered','long','versatile'],  imageFile:'female/long-layers.jpg',           tryonFile:'female/long-layers.png' },
+  { id:'f-03', name:'Classic Bob',            gender:['F','A'], shapes:['Oval','Square','Pear'],   tags:['bob','structured','polished'], imageFile:'female/classic-bob.jpg',           tryonFile:'female/classic-bob.png' },
+  { id:'f-04', name:'Curtain Bangs',          gender:['F','A'], shapes:['Oval','Heart','Square'],  tags:['bangs','framing','modern'],   imageFile:'female/curtain-bangs.jpg',         tryonFile:'female/curtain-bangs.png' },
+  { id:'f-05', name:'Lob',                    gender:['F','A'], shapes:['Oval','Round','Oblong'],  tags:['medium','clean','everyday'],  imageFile:'female/lob.jpg',                   tryonFile:'female/lob.png' },
+  { id:'f-06', name:'Shag Cut',               gender:['F','A'], shapes:['Square','Oblong','Pear'], tags:['textured','layers','cool'],   imageFile:'female/shag-cut.jpg',              tryonFile:'female/shag-cut.png' },
+  { id:'f-07', name:'Wolf Cut',               gender:['F','A'], shapes:['Round','Pear','Square'],  tags:['edgy','layered','volume'],    imageFile:'female/wolf-cut.jpg',              tryonFile:'female/wolf-cut.png' },
+  { id:'f-08', name:'Side-Swept Bangs',       gender:['F','A'], shapes:['Round','Diamond','Oblong'],tags:['bangs','soft','flattering'], imageFile:'female/side-swept-bangs.jpg',      tryonFile:'female/side-swept-bangs.png' },
+  { id:'f-09', name:'Pixie Cut',              gender:['F','A'], shapes:['Oval','Heart','Diamond'],  tags:['short','bold','low-maintenance'], imageFile:'female/pixie-cut.jpg',        tryonFile:'female/pixie-cut.png' },
+  { id:'f-10', name:'Natural Curls',          gender:['F','A'], shapes:['Oblong','Pear','Square'],  tags:['curly','volume','natural'],   imageFile:'female/natural-curls.jpg',         tryonFile:'female/natural-curls.png' },
+  { id:'f-11', name:'Blunt Bob',              gender:['F','A'], shapes:['Diamond','Oval','Oblong'], tags:['sharp','structured','bold'],  imageFile:'female/blunt-bob.jpg',             tryonFile:'female/blunt-bob.png' },
+  { id:'f-12', name:'Voluminous Lob',         gender:['F','A'], shapes:['Round','Diamond','Heart'], tags:['volume','medium','modern'],   imageFile:'female/voluminous-lob.jpg',        tryonFile:'female/voluminous-lob.png' },
+
+  // ── MALE STYLES ────────────────────────────────────────────
+  { id:'m-01', name:'Classic Taper Fade',     gender:['M','A'], shapes:['Oval','Diamond','Oblong'], tags:['clean','fade','classic'],    imageFile:'male/classic-taper-fade.jpg',      tryonFile:'male/classic-taper-fade.png' },
+  { id:'m-02', name:'Textured Crop',          gender:['M','A'], shapes:['Oval','Square','Round'],   tags:['crop','textured','modern'],   imageFile:'male/textured-crop.jpg',           tryonFile:'male/textured-crop.png' },
+  { id:'m-03', name:'Side Part',              gender:['M','A'], shapes:['Oval','Oblong','Pear'],    tags:['classic','polished','smart'], imageFile:'male/side-part.jpg',               tryonFile:'male/side-part.png' },
+  { id:'m-04', name:'Curtain Fringe',         gender:['M','A'], shapes:['Oval','Heart','Diamond'],  tags:['fringe','retro','relaxed'],   imageFile:'male/curtain-fringe.jpg',          tryonFile:'male/curtain-fringe.png' },
+  { id:'m-05', name:'Slick Back Pompadour',   gender:['M','A'], shapes:['Oval','Square','Oblong'],  tags:['pompadour','volume','bold'],  imageFile:'male/slick-back-pompadour.jpg',    tryonFile:'male/slick-back-pompadour.png' },
+  { id:'m-06', name:'High Skin Fade',         gender:['M','A'], shapes:['Round','Square','Pear'],   tags:['fade','sharp','urban'],       imageFile:'male/high-skin-fade.jpg',          tryonFile:'male/high-skin-fade.png' },
+  { id:'m-07', name:'Undercut',               gender:['M','A'], shapes:['Round','Square','Pear'],   tags:['undercut','edgy','contrast'], imageFile:'male/undercut.jpg',                tryonFile:'male/undercut.png' },
+  { id:'m-08', name:'Textured Quiff',         gender:['M','A'], shapes:['Round','Heart','Diamond'], tags:['quiff','height','textured'],  imageFile:'male/textured-quiff.jpg',          tryonFile:'male/textured-quiff.png' },
+  { id:'m-09', name:'French Crop',            gender:['M','A'], shapes:['Heart','Square','Diamond'],tags:['crop','fringe','minimal'],    imageFile:'male/french-crop.jpg',             tryonFile:'male/french-crop.png' },
+  { id:'m-10', name:'Buzz Cut',               gender:['M','A'], shapes:['Oval','Round','Oblong'],   tags:['minimal','clean','sharp'],    imageFile:'male/buzz-cut.jpg',                tryonFile:'male/buzz-cut.png' },
+  { id:'m-11', name:'Low Taper Fade',         gender:['M','A'], shapes:['Square','Oval','Pear'],    tags:['fade','subtle','versatile'],  imageFile:'male/low-taper-fade.jpg',          tryonFile:'male/low-taper-fade.png' },
+  { id:'m-12', name:'Volume Crown Fade',      gender:['M','A'], shapes:['Pear','Round','Square'],   tags:['volume','crown','balanced'],  imageFile:'male/volume-crown-fade.jpg',       tryonFile:'male/volume-crown-fade.png' },
+];
+
+// ─────────────────────────────────────────────────────────────
+//  FACE SHAPE FROM SKULL DESCRIPTOR
+//  The head scanner returns: rx, ry, rz_front, rz_back,
+//  ear_l_x, ear_r_x, jaw_depth, crown_y, nape_y
+//  We derive face shape from the geometric ratios.
+// ─────────────────────────────────────────────────────────────
+function classifyFromDescriptor(d) {
+  // rx = half-width, ry = half-height (both normalised 0-1)
+  const width  = d.rx * 2;
+  const height = d.ry * 2;
+  const hRatio = height / (width || 0.0001);   // aspect ratio
+  const jawDepth = d.jaw_depth || 0.22;
+
+  // Estimate jaw width from ear positions
+  const earSpan = Math.abs((d.ear_r_x || 0.45) - (d.ear_l_x || -0.45));
+  // jaw is roughly 70-80% of ear span
+  const jawEst  = earSpan * 0.74;
+  const jawRatio = jawEst / (width || 0.0001);
+
+  const s = { Oval:5, Round:0, Square:0, Heart:0, Diamond:0, Oblong:0, Pear:0 };
+
+  // Oblong: tall
+  if (hRatio > 1.55) { s.Oblong += 40; }
+  if (hRatio > 1.70) { s.Oblong += 20; }
+
+  // Round: wide & short
+  if (hRatio < 1.20 && jawRatio > 0.78) { s.Round += 45; }
+  if (hRatio < 1.10) { s.Round += 20; }
+  if (jawRatio > 0.85) { s.Round += 15; }
+
+  // Square: wide jaw, moderate height
+  if (jawRatio > 0.82 && hRatio >= 1.10 && hRatio <= 1.48) { s.Square += 40; }
+  if (jawRatio > 0.90) { s.Square += 20; }
+
+  // Heart / narrow jaw with width at top
+  if (jawRatio < 0.72 && hRatio > 1.15) { s.Heart += 35; }
+  if (jawRatio < 0.65) { s.Heart += 25; }
+
+  // Diamond: very wide cheeks relative to jaw
+  if (jawRatio < 0.78 && hRatio > 1.20 && hRatio < 1.55) { s.Diamond += 30; }
+  if (earSpan > width * 1.05) { s.Diamond += 25; }
+
+  // Oval: balanced
+  if (hRatio >= 1.28 && hRatio <= 1.52 && jawRatio >= 0.68 && jawRatio <= 0.84) { s.Oval += 40; }
+
+  // Pear: wide jaw vs narrow top
+  if (jawRatio > 0.88 && hRatio > 1.15) { s.Pear += 30; }
+
+  const ranked = Object.entries(s).sort((a,b) => b[1]-a[1]);
+  const shape  = ranked[0][0];
+  const second = ranked[1][0];
+  const top    = ranked[0][1], sec = ranked[1][1];
+  const ambiguous = top > 0 && (top - sec) / top < 0.25;
+
+  return { shape, secondShape: second, ambiguous };
+}
+
+// ─────────────────────────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────────────────────────
+let faceData       = null;   // { shape, secondShape, ambiguous, descriptor }
+let selectedGender = null;
+let tryOnStyleId   = null;
+let tryOnMode      = 'live'; // 'live' | 'photo'
+let tryOnStream    = null;
+let hairImg        = null;   // Image object for hair overlay
+let hairOpacity    = 0.82;
+let hairOffsetY    = 0;      // px offset
+let hairScale      = 1.0;
+let capturedDataURL = null;
+let animFrameId    = null;
+
+// ─────────────────────────────────────────────────────────────
+//  FLOW NAVIGATION
+// ─────────────────────────────────────────────────────────────
+function showOnly(sectionId) {
+  ['hero-section','scanner-section','gender-section','results-section']
+    .forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.display = (id === sectionId) ? (sectionId === 'scanner-section' ? 'flex' : 'block') : 'none';
+      if (id === sectionId) {
+        el.classList.add('fade-in');
+        setTimeout(() => el.classList.remove('fade-in'), 700);
+      }
+    });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function startFlow() {
+  showOnly('scanner-section');
+}
+
+function proceedToGender() {
+  showOnly('gender-section');
+}
+
+function restartFlow() {
+  faceData = null; selectedGender = null;
+  document.getElementById('scanner-result-bar').style.display = 'none';
+  // reset gender cards
+  ['gender-female','gender-male','gender-all'].forEach(id => {
+    document.getElementById(id).classList.remove('selected');
+  });
+  document.getElementById('gender-confirm-btn').classList.remove('ready');
+  showOnly('scanner-section');
+}
+
+// ─────────────────────────────────────────────────────────────
+//  LISTEN TO HEAD SCANNER via postMessage
+//  The head scanner page should call:
+//    window.parent.postMessage({ type: 'ELUME_SCAN_DONE', descriptor: d }, '*');
+//  We also listen for URL params if loaded in same origin.
+// ─────────────────────────────────────────────────────────────
+window.addEventListener('message', (e) => {
+  if (!e.data || e.data.type !== 'ELUME_SCAN_DONE') return;
+  receiveScanResult(e.data.descriptor);
+});
+
+// Fallback: poll the iframe's URL for a hash / query with encoded descriptor
+// (useful if head scanner doesn't postMessage yet — you can update it)
+function receiveScanResult(descriptor) {
+  const classification = classifyFromDescriptor(descriptor);
+  faceData = { ...classification, descriptor };
+
+  const label = classification.ambiguous
+    ? `${classification.shape} · ${classification.secondShape}`
+    : classification.shape;
+
+  document.getElementById('result-shape-label').textContent = label + ' Face Shape';
+  document.getElementById('scanner-result-bar').style.display = 'flex';
+  document.getElementById('scanner-result-bar').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ── MANUAL TRIGGER (for testing without scanner) ──────────────
+// Remove this after real scanner integration. Pressing 'T' triggers a test.
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'T' || e.key === 't') {
+    receiveScanResult({ rx:0.46, ry:0.60, rz_front:0.50, rz_back:0.38, ear_l_x:-0.44, ear_r_x:0.44, jaw_depth:0.22, crown_y:0.10, nape_y:0.72, samples:120 });
+  }
+});
+
+// ─────────────────────────────────────────────────────────────
+//  GENDER SELECTION
+// ─────────────────────────────────────────────────────────────
+function selectGender(g) {
+  selectedGender = g;
+  ['F','M','A'].forEach(x => {
+    const map = { F:'gender-female', M:'gender-male', A:'gender-all' };
+    document.getElementById(map[x]).classList.toggle('selected', x === g);
+  });
+  document.getElementById('gender-confirm-btn').classList.add('ready');
+}
+
+// ─────────────────────────────────────────────────────────────
+//  BUILD RECOMMENDATIONS
+// ─────────────────────────────────────────────────────────────
+function showRecommendations() {
+  if (!selectedGender) return;
+
+  // Use face data if available; fallback to Oval if scanned without result
+  const shape  = faceData ? faceData.shape : 'Oval';
+  const second = faceData ? faceData.secondShape : null;
+  const ambig  = faceData ? faceData.ambiguous : false;
+  const gender = selectedGender;
+
+  // Filter by gender
+  const gPool = STYLE_DB.filter(s => s.gender.includes(gender));
+
+  // Primary: styles matching main shape
+  const primary   = gPool.filter(s => s.shapes.includes(shape));
+  // Secondary: also flatter the runner-up shape but not already in primary
+  const secondary = ambig && second
+    ? gPool.filter(s => s.shapes.includes(second) && !s.shapes.includes(shape))
+    : [];
+
+  // Badge
+  const badgeText = ambig ? `${shape} · ${second} Face` : `${shape} Face Shape`;
+  document.getElementById('face-shape-badge').textContent = badgeText;
+
+  const total = primary.length + secondary.length;
+  document.getElementById('results-title').innerHTML =
+    `Your <em>${total} Curated Style${total !== 1 ? 's' : ''}</em>`;
+
+  // Render primary
+  document.getElementById('track-primary-label').textContent = `${shape} Face — Top Picks`;
+  document.getElementById('track-primary-desc').textContent  =
+    `${primary.length} style${primary.length !== 1 ? 's' : ''} matched to your face shape`;
+  renderGrid('grid-primary', primary, true);
+
+  // Render secondary
+  if (secondary.length > 0) {
+    document.getElementById('track-secondary').style.display = '';
+    document.getElementById('track-secondary-label').textContent = `Also Flattering`;
+    document.getElementById('track-secondary-desc').textContent  =
+      `${secondary.length} style${secondary.length !== 1 ? 's' : ''} for your secondary shape (${second})`;
+    renderGrid('grid-secondary', secondary, false);
+  } else {
+    document.getElementById('track-secondary').style.display = 'none';
+  }
+
+  showOnly('results-section');
+}
+
+function renderGrid(gridId, styles, showBest) {
+  const grid = document.getElementById(gridId);
+  grid.innerHTML = '';
+  styles.forEach((style, i) => {
+    grid.appendChild(buildCard(style, showBest && i === 0));
+  });
+}
+
+function buildCard(style, isBest) {
+  const card = document.createElement('div');
+  card.className = 'style-card fade-in';
+  card.dataset.styleId = style.id;
+
+  const imgUrl = `${GITHUB_BASE}/images/recommend/${style.imageFile}`;
+
+  card.innerHTML = `
+    ${isBest ? '<div class="style-card-badge best">Best Match</div>' : ''}
+    <img
+      class="style-card-img"
+      src="${imgUrl}"
+      alt="${style.name}"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+      loading="lazy"
+    >
+    <div class="style-card-placeholder" style="display:none">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.4">
+        <ellipse cx="24" cy="20" rx="9" ry="10"/>
+        <path d="M12 42c0-8 5-13 12-13s12 5 12 13"/>
+      </svg>
+      <span>${style.name}</span>
+    </div>
+    <div class="card-select-dot">
+      <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5l2 2 4-4"/></svg>
+    </div>
+    <button class="card-try-btn" onclick="openTryOn('${style.id}', event)">
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="4" r="2.5"/><path d="M2 11c0-2.8 1.8-4.5 4-4.5s4 1.7 4 4.5"/></svg>
+      Try On
+    </button>
+    <div class="style-card-info">
+      <div class="style-card-name">${style.name}</div>
+      <div class="style-card-tags">
+        ${style.tags.map(t => `<span class="style-tag">${t}</span>`).join('')}
+      </div>
+    </div>
+  `;
+
+  card.addEventListener('click', () => {
+    card.classList.toggle('selected');
+  });
+
+  return card;
+}
+
+// ─────────────────────────────────────────────────────────────
+//  TRY-ON MODAL
+// ─────────────────────────────────────────────────────────────
+function openTryOn(styleId, e) {
+  if (e) e.stopPropagation();
+  const style = STYLE_DB.find(s => s.id === styleId);
+  if (!style) return;
+
+  tryOnStyleId = styleId;
+  document.getElementById('tryon-style-name').textContent = style.name;
+  document.getElementById('tryon-overlay').classList.add('open');
+
+  // Reset controls
+  document.getElementById('hair-opacity').value = 82;
+  document.getElementById('hair-offset').value  = 0;
+  document.getElementById('hair-scale').value   = 100;
+  hairOpacity = 0.82; hairOffsetY = 0; hairScale = 1.0;
+  capturedDataURL = null;
+  document.getElementById('tryon-download-btn').classList.remove('show');
+
+  // Load hair overlay image
+  const tryonUrl = `${GITHUB_BASE}/images/tryon/${style.tryonFile}`;
+  hairImg = new Image();
+  hairImg.crossOrigin = 'anonymous';
+  hairImg.src = tryonUrl;
+  hairImg.onload  = () => { /* ready */ };
+  hairImg.onerror = () => { hairImg = null; };
+
+  setTryOnMode(tryOnMode);
+}
+
+function closeTryOn() {
+  document.getElementById('tryon-overlay').classList.remove('open');
+  stopTryOnStream();
+  cancelAnimationFrame(animFrameId);
+}
+
+// ── MODE SWITCHING ──────────────────────────────────────────
+function setTryOnMode(mode) {
+  tryOnMode = mode;
+  document.getElementById('mode-live-btn').classList.toggle('active', mode === 'live');
+  document.getElementById('mode-photo-btn').classList.toggle('active', mode === 'photo');
+  document.getElementById('tryon-upload-zone').style.display = mode === 'photo' ? '' : 'none';
+  document.getElementById('tryon-video').style.display = mode === 'live' ? '' : 'none';
+  document.getElementById('tryon-preview-img').style.display = 'none';
+  document.getElementById('tryon-capture-btn').style.display = mode === 'live' ? 'flex' : 'none';
+  cancelAnimationFrame(animFrameId);
+
+  if (mode === 'live') {
+    startTryOnCamera();
+  } else {
+    stopTryOnStream();
+    setTryOnStatus(false, 'Upload a photo to try on');
+  }
+}
+
+// ── CAMERA ─────────────────────────────────────────────────
+async function startTryOnCamera() {
+  setTryOnLoading(true, 'Requesting camera…');
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } },
+      audio: false
+    });
+    tryOnStream = stream;
+    const video = document.getElementById('tryon-video');
+    video.srcObject = stream;
+    video.onloadedmetadata = () => {
+      video.play();
+      setTryOnLoading(false);
+      setTryOnStatus(true, 'Live · Hair overlay active');
+      startLiveRender();
+    };
+  } catch (err) {
+    setTryOnLoading(false);
+    setTryOnStatus(false, 'Camera unavailable — use Photo mode');
+  }
+}
+
+function stopTryOnStream() {
+  if (tryOnStream) {
+    tryOnStream.getTracks().forEach(t => t.stop());
+    tryOnStream = null;
+  }
+  const video = document.getElementById('tryon-video');
+  video.srcObject = null;
+}
+
+// ── LIVE RENDER LOOP ────────────────────────────────────────
+function startLiveRender() {
+  const video  = document.getElementById('tryon-video');
+  const canvas = document.getElementById('tryon-hair-canvas');
+  const pane   = canvas.closest('.tryon-cam-pane');
+
+  function frame() {
+    if (!document.getElementById('tryon-overlay').classList.contains('open')) return;
+    if (tryOnMode !== 'live') return;
+
+    canvas.width  = pane.offsetWidth;
+    canvas.height = pane.offsetHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (hairImg && hairImg.complete && hairImg.naturalWidth > 0) {
+      drawHairOverlay(ctx, canvas.width, canvas.height, null);
+    }
+
+    animFrameId = requestAnimationFrame(frame);
+  }
+  animFrameId = requestAnimationFrame(frame);
+}
+
+// ── PHOTO UPLOAD ────────────────────────────────────────────
+function handleTryOnUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    const img = new Image();
+    img.onload = () => {
+      const preview = document.getElementById('tryon-preview-img');
+      preview.src = ev.target.result;
+      preview.style.display = 'block';
+      renderStaticHairOverlay(img);
+      setTryOnStatus(true, 'Photo loaded · Hair overlay applied');
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function renderStaticHairOverlay(sourceImg) {
+  const canvas = document.getElementById('tryon-hair-canvas');
+  const pane   = canvas.closest('.tryon-cam-pane');
+  canvas.width  = pane.offsetWidth;
+  canvas.height = pane.offsetHeight;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  if (hairImg && hairImg.complete && hairImg.naturalWidth > 0) {
+    drawHairOverlay(ctx, canvas.width, canvas.height, sourceImg);
+  }
+}
+
+// ── HAIR OVERLAY DRAW ───────────────────────────────────────
+// Draws the transparent PNG hair on top of the video/image.
+// The hair image is positioned at top-center of the canvas,
+// scaled to cover roughly 60% of the width by default.
+function drawHairOverlay(ctx, w, h, sourceImg) {
+  if (!hairImg) return;
+
+  const imgAspect = hairImg.naturalWidth / hairImg.naturalHeight;
+  // Target: hair fills ~65% of canvas width
+  const targetW = w * 0.65 * hairScale;
+  const targetH = targetW / imgAspect;
+
+  // Centered horizontally, positioned near top
+  const x = (w - targetW) / 2;
+  const y = h * 0.02 + hairOffsetY;  // 2% from top + user offset
+
+  ctx.save();
+  ctx.globalAlpha = hairOpacity;
+  ctx.drawImage(hairImg, x, y, targetW, targetH);
+  ctx.restore();
+}
+
+// ── CONTROLS ────────────────────────────────────────────────
+function updateHairOpacity(v) {
+  hairOpacity = v / 100;
+  if (tryOnMode === 'photo') {
+    const preview = document.getElementById('tryon-preview-img');
+    if (preview.src && preview.src !== window.location.href) {
+      const img = new Image(); img.src = preview.src; renderStaticHairOverlay(img);
+    }
+  }
+}
+function updateHairOffset(v) {
+  hairOffsetY = parseInt(v);
+  if (tryOnMode === 'photo') {
+    const preview = document.getElementById('tryon-preview-img');
+    if (preview.src && preview.src !== window.location.href) {
+      const img = new Image(); img.src = preview.src; renderStaticHairOverlay(img);
+    }
+  }
+}
+function updateHairScale(v) {
+  hairScale = v / 100;
+  if (tryOnMode === 'photo') {
+    const preview = document.getElementById('tryon-preview-img');
+    if (preview.src && preview.src !== window.location.href) {
+      const img = new Image(); img.src = preview.src; renderStaticHairOverlay(img);
+    }
+  }
+}
+
+// ── CAPTURE ─────────────────────────────────────────────────
+function captureFrame() {
+  const pane = document.querySelector('.tryon-cam-pane');
+  const w = pane.offsetWidth, h = pane.offsetHeight;
+
+  const offscreen = document.createElement('canvas');
+  offscreen.width = w; offscreen.height = h;
+  const ctx = offscreen.getContext('2d');
+
+  const video = document.getElementById('tryon-video');
+  if (tryOnMode === 'live' && video.readyState >= 2) {
+    // Draw mirrored video
+    ctx.save(); ctx.scale(-1,1); ctx.translate(-w, 0);
+    ctx.drawImage(video, 0, 0, w, h);
+    ctx.restore();
+  }
+
+  // Draw hair overlay
+  if (hairImg && hairImg.complete) {
+    drawHairOverlay(ctx, w, h, null);
+  }
+
+  capturedDataURL = offscreen.toDataURL('image/jpeg', 0.9);
+  document.getElementById('tryon-download-btn').classList.add('show');
+}
+
+function downloadCapture() {
+  if (!capturedDataURL) return;
+  const a = document.createElement('a');
+  a.download = 'elume-tryon.jpg';
+  a.href = capturedDataURL;
+  a.click();
+}
+
+// ── STATUS / LOADING HELPERS ────────────────────────────────
+function setTryOnLoading(visible, msg) {
+  const overlay = document.getElementById('tryon-loading');
+  if (visible) {
+    overlay.classList.remove('hidden');
+    overlay.querySelector('.tryon-loading-text').textContent = msg || '';
+  } else {
+    overlay.classList.add('hidden');
+  }
+}
+
+function setTryOnStatus(live, msg) {
+  document.getElementById('tryon-dot').className = 'tryon-status-dot' + (live ? ' live' : '');
+  document.getElementById('tryon-status-text').textContent = msg;
+}
+
+// ─────────────────────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  showOnly('hero-section');
+
+  // Check if landing with scan params in URL (future scanner version may do this)
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('scan')) {
+    try {
+      const d = JSON.parse(atob(params.get('scan')));
+      receiveScanResult(d);
+      showOnly('scanner-section');
+    } catch(e) {}
+  }
+});
+</script>
+</body>
+</html>
