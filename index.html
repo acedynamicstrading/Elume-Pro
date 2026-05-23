@@ -830,6 +830,8 @@ const GITHUB_BASE = 'https://raw.githubusercontent.com/acedynamicstrading/Elume-
 //  PLACEHOLDER — replace with real filenames matching your
 //  Google Drive images once uploaded to GitHub.
 // ─────────────────────────────────────────────────────────────
+let STYLE_DESCRIPTORS = {};   // loaded from style_db_descriptors.json
+
 const STYLE_DB = [
   {id:'004',name:"002 Jane Rayment",gender:["M", "A"],shapes:["Oval", "Round", "Square"],tags:["classic"],imageFile:"002-jane-rayment-for-victoria-station-salon--vienna--va.jpg-2.jpg",tryonFile:"002-jane-rayment-for-victoria-station-salon--vienna--va.jpg-2-medium-wavy-male.png"},
   {id:'017',name:"168 Kenneth S Studio",gender:["F", "A"],shapes:["Oval", "Round", "Square"],tags:["classic"],imageFile:"168-kenneth-s-studio-for-hair--new-orleans--la.jpg-2.jpg",tryonFile:"168-kenneth-s-studio-for-hair--new-orleans--la.jpg-2-medium-wavy.png"},
@@ -910,59 +912,74 @@ const STYLE_DB = [
 
 // ─────────────────────────────────────────────────────────────
 //  FACE SHAPE FROM SKULL DESCRIPTOR
-//  The head scanner returns: rx, ry, rz_front, rz_back,
-//  ear_l_x, ear_r_x, jaw_depth, crown_y, nape_y
-//  We derive face shape from the geometric ratios.
+//  The scanner returns: aspect, jaw_ratio, temple_ratio,
+//  chin_taper, rx, ry, samples
+//  We derive face shape from the 6 geometric descriptors.
 // ─────────────────────────────────────────────────────────────
 function classifyFromDescriptor(d) {
-  // rx = half-width, ry = half-height (both normalised 0-1)
-  const width  = d.rx * 2;
-  const height = d.ry * 2;
-  const hRatio = height / (width || 0.0001);   // aspect ratio
-  const jawDepth = d.jaw_depth || 0.22;
-
-  // Estimate jaw width from ear positions
-  const earSpan = Math.abs((d.ear_r_x || 0.45) - (d.ear_l_x || -0.45));
-  // jaw is roughly 70-80% of ear span
-  const jawEst  = earSpan * 0.74;
-  const jawRatio = jawEst / (width || 0.0001);
+  const width    = (d.rx || 0.22) * 2;
+  const height   = (d.ry || 0.30) * 2;
+  const hRatio   = height / (width || 0.001);
+  const jawRatio = d.jaw_ratio    || 0.80;
+  const temRatio = d.temple_ratio || 1.05;
 
   const s = { Oval:5, Round:0, Square:0, Heart:0, Diamond:0, Oblong:0, Pear:0 };
 
-  // Oblong: tall
   if (hRatio > 1.55) { s.Oblong += 40; }
   if (hRatio > 1.70) { s.Oblong += 20; }
-
-  // Round: wide & short
-  if (hRatio < 1.20 && jawRatio > 0.78) { s.Round += 45; }
-  if (hRatio < 1.10) { s.Round += 20; }
-  if (jawRatio > 0.85) { s.Round += 15; }
-
-  // Square: wide jaw, moderate height
+  if (hRatio < 1.20 && jawRatio > 0.78) { s.Round  += 45; }
+  if (hRatio < 1.10)                    { s.Round  += 20; }
   if (jawRatio > 0.82 && hRatio >= 1.10 && hRatio <= 1.48) { s.Square += 40; }
-  if (jawRatio > 0.90) { s.Square += 20; }
-
-  // Heart / narrow jaw with width at top
-  if (jawRatio < 0.72 && hRatio > 1.15) { s.Heart += 35; }
-  if (jawRatio < 0.65) { s.Heart += 25; }
-
-  // Diamond: very wide cheeks relative to jaw
+  if (jawRatio > 0.90)                   { s.Square += 20; }
+  if (jawRatio < 0.72 && hRatio > 1.15) { s.Heart  += 35; }
+  if (jawRatio < 0.65)                   { s.Heart  += 25; }
   if (jawRatio < 0.78 && hRatio > 1.20 && hRatio < 1.55) { s.Diamond += 30; }
-  if (earSpan > width * 1.05) { s.Diamond += 25; }
-
-  // Oval: balanced
+  if (temRatio > 1.05)                   { s.Diamond += 25; }
   if (hRatio >= 1.28 && hRatio <= 1.52 && jawRatio >= 0.68 && jawRatio <= 0.84) { s.Oval += 40; }
+  if (jawRatio > 0.88 && hRatio > 1.15) { s.Pear   += 30; }
 
-  // Pear: wide jaw vs narrow top
-  if (jawRatio > 0.88 && hRatio > 1.15) { s.Pear += 30; }
-
-  const ranked = Object.entries(s).sort((a,b) => b[1]-a[1]);
-  const shape  = ranked[0][0];
-  const second = ranked[1][0];
-  const top    = ranked[0][1], sec = ranked[1][1];
+  const ranked  = Object.entries(s).sort((a, b) => b[1] - a[1]);
+  const shape   = ranked[0][0];
+  const second  = ranked[1][0];
+  const top = ranked[0][1], sec = ranked[1][1];
   const ambiguous = top > 0 && (top - sec) / top < 0.25;
 
   return { shape, secondShape: second, ambiguous };
+}
+
+// ─────────────────────────────────────────────────────────────
+//  LOAD REAL DESCRIPTORS FROM style_db_descriptors.json
+// ─────────────────────────────────────────────────────────────
+async function loadStyleDescriptors() {
+  try {
+    const res = await fetch('./style_db_descriptors.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    STYLE_DESCRIPTORS = await res.json();
+    let merged = 0;
+    for (const style of STYLE_DB) {
+      const desc = STYLE_DESCRIPTORS[style.imageFile];
+      if (desc) { style._desc = desc; merged++; }
+    }
+    console.log(`[ÉLUME] Loaded real descriptors — ${merged}/${STYLE_DB.length} styles matched`);
+  } catch (e) {
+    console.warn('[ÉLUME] style_db_descriptors.json not found, falling back to shape matching:', e.message);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+//  WEIGHTED EUCLIDEAN DESCRIPTOR SCORE  (0–100)
+// ─────────────────────────────────────────────────────────────
+const MATCH_WEIGHTS = { aspect:2.0, jaw_ratio:1.8, temple_ratio:1.2, chin_taper:1.5, rx:0.4, ry:0.4 };
+const TOTAL_WEIGHT  = Object.values(MATCH_WEIGHTS).reduce((a,b) => a+b, 0);
+
+function descriptorScore(userDesc, styleDesc) {
+  let wdist2 = 0;
+  for (const [k, w] of Object.entries(MATCH_WEIGHTS)) {
+    if (userDesc[k] == null || styleDesc[k] == null) continue;
+    wdist2 += w * Math.pow(userDesc[k] - styleDesc[k], 2);
+  }
+  const dist = Math.sqrt(wdist2 / TOTAL_WEIGHT);
+  return Math.max(0, Math.round((1 - dist / 0.55) * 100));
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -1046,7 +1063,7 @@ function receiveScanResult(descriptor) {
 // Remove this after real scanner integration. Pressing 'T' triggers a test.
 window.addEventListener('keydown', (e) => {
   if (e.key === 'T' || e.key === 't') {
-    receiveScanResult({ rx:0.46, ry:0.60, rz_front:0.50, rz_back:0.38, ear_l_x:-0.44, ear_r_x:0.44, jaw_depth:0.22, crown_y:0.10, nape_y:0.72, samples:120 });
+    receiveScanResult({ aspect:1.42, jaw_ratio:0.78, temple_ratio:1.09, chin_taper:0.88, rx:0.22, ry:0.30, samples:80 });
   }
 });
 
@@ -1068,45 +1085,76 @@ function selectGender(g) {
 function showRecommendations() {
   if (!selectedGender) return;
 
-  // Use face data if available; fallback to Oval if scanned without result
-  const shape  = faceData ? faceData.shape : 'Oval';
-  const second = faceData ? faceData.secondShape : null;
-  const ambig  = faceData ? faceData.ambiguous : false;
-  const gender = selectedGender;
+  const gender   = selectedGender;
+  const userDesc = faceData ? faceData.descriptor : null;
+  const gPool    = STYLE_DB.filter(s => s.gender.includes(gender));
 
-  // Filter by gender
-  const gPool = STYLE_DB.filter(s => s.gender.includes(gender));
+  // ── Geometric distance ranking (real descriptors) ──────────
+  const hasDescriptors = gPool.some(s => s._desc);
 
-  // Primary: styles matching main shape
-  const primary   = gPool.filter(s => s.shapes.includes(shape));
-  // Secondary: also flatter the runner-up shape but not already in primary
-  const secondary = ambig && second
-    ? gPool.filter(s => s.shapes.includes(second) && !s.shapes.includes(shape))
-    : [];
+  if (hasDescriptors && userDesc) {
+    const ranked = gPool
+      .filter(s => s._desc)
+      .map(s => ({ style: s, score: descriptorScore(userDesc, s._desc) }))
+      .sort((a, b) => b.score - a.score);
 
-  // Badge
-  const badgeText = ambig ? `${shape} · ${second} Face` : `${shape} Face Shape`;
-  document.getElementById('face-shape-badge').textContent = badgeText;
+    const primary   = ranked.filter(r => r.score >= 60).map(r => ({ ...r.style, _matchScore: r.score }));
+    const secondary = ranked.filter(r => r.score >= 40 && r.score < 60).map(r => ({ ...r.style, _matchScore: r.score }));
 
-  const total = primary.length + secondary.length;
-  document.getElementById('results-title').innerHTML =
-    `Your <em>${total} Curated Style${total !== 1 ? 's' : ''}</em>`;
+    const total = primary.length + secondary.length;
+    document.getElementById('results-title').innerHTML =
+      `Your <em>${total} Curated Style${total !== 1 ? 's' : ''}</em>`;
 
-  // Render primary
-  document.getElementById('track-primary-label').textContent = `${shape} Face — Top Picks`;
-  document.getElementById('track-primary-desc').textContent  =
-    `${primary.length} style${primary.length !== 1 ? 's' : ''} matched to your face shape`;
-  renderGrid('grid-primary', primary, true);
+    const shape = faceData ? faceData.shape : 'Matched';
+    document.getElementById('face-shape-badge').textContent = shape + ' Face Shape';
 
-  // Render secondary
-  if (secondary.length > 0) {
-    document.getElementById('track-secondary').style.display = '';
-    document.getElementById('track-secondary-label').textContent = `Also Flattering`;
-    document.getElementById('track-secondary-desc').textContent  =
-      `${secondary.length} style${secondary.length !== 1 ? 's' : ''} for your secondary shape (${second})`;
-    renderGrid('grid-secondary', secondary, false);
+    document.getElementById('track-primary-label').textContent = 'Top Matches';
+    document.getElementById('track-primary-desc').textContent  =
+      `${primary.length} styles ranked by geometric compatibility`;
+    renderGrid('grid-primary', primary, true);
+
+    if (secondary.length > 0) {
+      document.getElementById('track-secondary').style.display = '';
+      document.getElementById('track-secondary-label').textContent = 'Also Flattering';
+      document.getElementById('track-secondary-desc').textContent  =
+        `${secondary.length} styles within compatibility range`;
+      renderGrid('grid-secondary', secondary, false);
+    } else {
+      document.getElementById('track-secondary').style.display = 'none';
+    }
+
   } else {
-    document.getElementById('track-secondary').style.display = 'none';
+    // ── Fallback: shape-category matching ─────────────────────
+    const shape  = faceData ? faceData.shape : 'Oval';
+    const second = faceData ? faceData.secondShape : null;
+    const ambig  = faceData ? faceData.ambiguous : false;
+
+    const primary   = gPool.filter(s => s.shapes.includes(shape));
+    const secondary = ambig && second
+      ? gPool.filter(s => s.shapes.includes(second) && !s.shapes.includes(shape))
+      : [];
+
+    const badgeText = ambig ? `${shape} · ${second} Face` : `${shape} Face Shape`;
+    document.getElementById('face-shape-badge').textContent = badgeText;
+
+    const total = primary.length + secondary.length;
+    document.getElementById('results-title').innerHTML =
+      `Your <em>${total} Curated Style${total !== 1 ? 's' : ''}</em>`;
+
+    document.getElementById('track-primary-label').textContent = `${shape} Face — Top Picks`;
+    document.getElementById('track-primary-desc').textContent  =
+      `${primary.length} style${primary.length !== 1 ? 's' : ''} matched to your face shape`;
+    renderGrid('grid-primary', primary, true);
+
+    if (secondary.length > 0) {
+      document.getElementById('track-secondary').style.display = '';
+      document.getElementById('track-secondary-label').textContent = 'Also Flattering';
+      document.getElementById('track-secondary-desc').textContent  =
+        `${secondary.length} style${secondary.length !== 1 ? 's' : ''} for your secondary shape (${second})`;
+      renderGrid('grid-secondary', secondary, false);
+    } else {
+      document.getElementById('track-secondary').style.display = 'none';
+    }
   }
 
   showOnly('results-section');
@@ -1128,7 +1176,9 @@ function buildCard(style, isBest) {
   const imgUrl = `${GITHUB_BASE}/images/recommend/${style.imageFile}`;
 
   card.innerHTML = `
-    ${isBest ? '<div class="style-card-badge best">Best Match</div>' : ''}
+    ${style._matchScore != null
+      ? `<div class="style-card-badge match">${style._matchScore}% match</div>`
+      : isBest ? '<div class="style-card-badge best">Best Match</div>' : ''}
     <img
       class="style-card-img"
       src="${imgUrl}"
@@ -1415,6 +1465,7 @@ function setTryOnStatus(live, msg) {
 // ─────────────────────────────────────────────────────────────
 window.addEventListener('load', () => {
   showOnly('hero-section');
+  loadStyleDescriptors();
 
   // Check if landing with scan params in URL (future scanner version may do this)
   const params = new URLSearchParams(window.location.search);

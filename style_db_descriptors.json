@@ -1,0 +1,2362 @@
+{
+  "001-Cutting-Loose-Salons_-Sarasota_-FL.jpg.jpeg": {
+    "aspect": 1.6294,
+    "jaw_ratio": 0.799,
+    "temple_ratio": 1.6191,
+    "chin_taper": 0.8122,
+    "rx": 0.1525,
+    "ry": 0.2485,
+    "male": false,
+    "tryonFile": "001-Cutting-Loose-Salons_-Sarasota_-FL.jpg_medium_wavy.png"
+  },
+  "001_McDonald-for-Tangles-Salon_-Wichita-Falls_-TX.jpg.jpeg": {
+    "aspect": 1.4514,
+    "jaw_ratio": 0.7726,
+    "temple_ratio": 1.5087,
+    "chin_taper": 0.7909,
+    "rx": 0.1725,
+    "ry": 0.2503,
+    "male": false,
+    "tryonFile": "001_McDonald-for-Tangles-Salon_-Wichita-Falls_-TX.jpg_medium_wavy.png"
+  },
+  "002_Cook-for-Tangles-Salon_-Wichita-Falls_-TX.jpg.jpeg": {
+    "aspect": 1.473,
+    "jaw_ratio": 0.7685,
+    "temple_ratio": 1.4578,
+    "chin_taper": 0.7926,
+    "rx": 0.1711,
+    "ry": 0.252,
+    "male": false,
+    "tryonFile": "002_Cook-for-Tangles-Salon_-Wichita-Falls_-TX.jpg_medium_wavy.png"
+  },
+  "002_Jane-Rayment-for-Victoria-Station-Salon_-Vienna_-VA.jpg_2.jpeg": {
+    "aspect": 1.5596,
+    "jaw_ratio": 0.8097,
+    "temple_ratio": 1.5664,
+    "chin_taper": 0.8214,
+    "rx": 0.1438,
+    "ry": 0.2243,
+    "male": false,
+    "tryonFile": "002_Jane-Rayment-for-Victoria-Station-Salon_-Vienna_-VA.jpg_2_medium_wavy_male.png"
+  },
+  "002_Panchee-Herr-for-Kenneth-Shuler-Schools_-Columbia_-SC.jpg.jpeg": {
+    "aspect": 1.5371,
+    "jaw_ratio": 0.7786,
+    "temple_ratio": 1.5499,
+    "chin_taper": 0.7963,
+    "rx": 0.1427,
+    "ry": 0.2193,
+    "male": false,
+    "tryonFile": "002_Panchee-Herr-for-Kenneth-Shuler-Schools_-Columbia_-SC.jpg_medium_wavy.png"
+  },
+  "004_-Elon-Salon_-Marietta_-GA.jpg.jpeg": {
+    "aspect": 1.616,
+    "jaw_ratio": 0.7998,
+    "temple_ratio": 1.5288,
+    "chin_taper": 0.8108,
+    "rx": 0.1543,
+    "ry": 0.2494,
+    "male": false,
+    "tryonFile": "004_-Elon-Salon_-Marietta_-GA.jpg_medium_wavy.png"
+  },
+  "006_-Lavish-Color-Salon_-Orange-Village_-OH_006.jpg.jpeg": {
+    "aspect": 1.6066,
+    "jaw_ratio": 0.8005,
+    "temple_ratio": 1.5224,
+    "chin_taper": 0.8152,
+    "rx": 0.1454,
+    "ry": 0.2336,
+    "male": false,
+    "tryonFile": "006_-Lavish-Color-Salon_-Orange-Village_-OH_006.jpg_medium_wavy.png"
+  },
+  "007_Randy-Currie-Hair_-Skin-_-Nails_-Wilmington_-DE.jpg.jpeg": {
+    "aspect": 1.3755,
+    "jaw_ratio": 0.802,
+    "temple_ratio": 1.4963,
+    "chin_taper": 0.8211,
+    "rx": 0.1475,
+    "ry": 0.2029,
+    "male": false,
+    "tryonFile": "007_Randy-Currie-Hair_-Skin-_-Nails_-Wilmington_-DE.jpg_medium_wavy.png"
+  },
+  "011_Victory-for-Enzo_s-Salon-_-Spa_-North-Royalton_-OH.jpg.jpeg": {
+    "aspect": 1.5571,
+    "jaw_ratio": 0.7505,
+    "temple_ratio": 1.4734,
+    "chin_taper": 0.7675,
+    "rx": 0.1493,
+    "ry": 0.2325,
+    "male": false,
+    "tryonFile": "011_Victory-for-Enzo_s-Salon-_-Spa_-North-Royalton_-OH.jpg_medium_wavy.png"
+  },
+  "037_Elon-Salon_-Marietta_-GA.jpg.jpeg": {
+    "aspect": 1.5255,
+    "jaw_ratio": 0.7729,
+    "temple_ratio": 1.5165,
+    "chin_taper": 0.7879,
+    "rx": 0.1514,
+    "ry": 0.231,
+    "male": false,
+    "tryonFile": "037_Elon-Salon_-Marietta_-GA.jpg_medium_wavy.png"
+  },
+  "045-Cutting-Loose-Salons_-Sarasota_-FL.jpg.jpeg": {
+    "aspect": 1.4185,
+    "jaw_ratio": 0.775,
+    "temple_ratio": 1.4629,
+    "chin_taper": 0.7973,
+    "rx": 0.1567,
+    "ry": 0.2223,
+    "male": false,
+    "tryonFile": "045-Cutting-Loose-Salons_-Sarasota_-FL.jpg_medium_wavy.png"
+  },
+  "070_BA.jpg.jpeg": {
+    "aspect": 1.4179,
+    "jaw_ratio": 0.7678,
+    "temple_ratio": 1.5304,
+    "chin_taper": 0.7874,
+    "rx": 0.1387,
+    "ry": 0.1967,
+    "male": false,
+    "tryonFile": "070_BA.jpg_medium_wavy.png"
+  },
+  "100-Ohio-Academy.jpg.jpeg": {
+    "aspect": 1.45,
+    "jaw_ratio": 0.7991,
+    "temple_ratio": 1.5395,
+    "chin_taper": 0.816,
+    "rx": 0.1876,
+    "ry": 0.272,
+    "male": false,
+    "tryonFile": "100-Ohio-Academy.jpg_medium_wavy.png"
+  },
+  "110-Cutting-Loose-Salons_-Sarasota_-FL_110.jpg.jpeg": {
+    "aspect": 1.4333,
+    "jaw_ratio": 0.7397,
+    "temple_ratio": 1.521,
+    "chin_taper": 0.7651,
+    "rx": 0.1283,
+    "ry": 0.1839,
+    "male": false,
+    "tryonFile": "110-Cutting-Loose-Salons_-Sarasota_-FL_110.jpg_medium_wavy.png"
+  },
+  "132-Edie_s-Styling.jpg.jpeg": {
+    "aspect": 1.602,
+    "jaw_ratio": 0.7682,
+    "temple_ratio": 1.6644,
+    "chin_taper": 0.7855,
+    "rx": 0.1467,
+    "ry": 0.235,
+    "male": false,
+    "tryonFile": "132-Edie_s-Styling.jpg_medium_wavy.png"
+  },
+  "1625-BA.jpg.jpeg": {
+    "aspect": 1.5033,
+    "jaw_ratio": 0.7741,
+    "temple_ratio": 1.4775,
+    "chin_taper": 0.7918,
+    "rx": 0.1569,
+    "ry": 0.2359,
+    "male": false,
+    "tryonFile": "1625-BA.jpg_medium_wavy.png"
+  },
+  "168_Kenneth_s-Studio-For-Hair_-New-Orleans_-LA.jpg_2.jpeg": {
+    "aspect": 1.4654,
+    "jaw_ratio": 0.782,
+    "temple_ratio": 1.4806,
+    "chin_taper": 0.8034,
+    "rx": 0.1555,
+    "ry": 0.2279,
+    "male": false,
+    "tryonFile": "168_Kenneth_s-Studio-For-Hair_-New-Orleans_-LA.jpg_2_medium_wavy.png"
+  },
+  "178.jpg.jpeg": {
+    "aspect": 1.4301,
+    "jaw_ratio": 0.7808,
+    "temple_ratio": 1.4388,
+    "chin_taper": 0.7961,
+    "rx": 0.1805,
+    "ry": 0.2581,
+    "male": false,
+    "tryonFile": "178.jpg_medium_wavy.png"
+  },
+  "501.jpg.jpeg": {
+    "aspect": 1.5777,
+    "jaw_ratio": 0.7923,
+    "temple_ratio": 1.5742,
+    "chin_taper": 0.8091,
+    "rx": 0.1243,
+    "ry": 0.1962,
+    "male": false,
+    "tryonFile": "501.jpg_medium_wavy.png"
+  },
+  "9318-BROWN-AVEDA.jpg.jpeg": {
+    "aspect": 1.4691,
+    "jaw_ratio": 0.7923,
+    "temple_ratio": 1.5062,
+    "chin_taper": 0.8083,
+    "rx": 0.1831,
+    "ry": 0.2689,
+    "male": false,
+    "tryonFile": "9318-BROWN-AVEDA.jpg_medium_wavy.png"
+  },
+  "9799_straight-Short.jpg.jpeg": {
+    "aspect": 1.6838,
+    "jaw_ratio": 0.813,
+    "temple_ratio": 1.5717,
+    "chin_taper": 0.82,
+    "rx": 0.1533,
+    "ry": 0.2581,
+    "male": false,
+    "tryonFile": "9799_straight-Short.jpg_short_straight.png"
+  },
+  "9800_Straight-Short.jpg.jpeg": {
+    "aspect": 1.4938,
+    "jaw_ratio": 0.7722,
+    "temple_ratio": 1.5067,
+    "chin_taper": 0.7911,
+    "rx": 0.1892,
+    "ry": 0.2826,
+    "male": false,
+    "tryonFile": "9800_Straight-Short.jpg_short_straight.png"
+  },
+  "9806_Straight-Short.jpg.jpeg": {
+    "aspect": 1.5358,
+    "jaw_ratio": 0.807,
+    "temple_ratio": 1.4345,
+    "chin_taper": 0.8188,
+    "rx": 0.1561,
+    "ry": 0.2397,
+    "male": false,
+    "tryonFile": "9806_Straight-Short.jpg_short_straight.png"
+  },
+  "AV_060-AnVa-Salon.jpg_1.jpeg": {
+    "aspect": 1.5117,
+    "jaw_ratio": 0.811,
+    "temple_ratio": 1.6067,
+    "chin_taper": 0.8199,
+    "rx": 0.1666,
+    "ry": 0.2519,
+    "male": false,
+    "tryonFile": "AV_060-AnVa-Salon.jpg_1_medium_wavy.png"
+  },
+  "AV_063-AnVa-Salon-_-Spa.jpg.jpeg": {
+    "aspect": 1.5552,
+    "jaw_ratio": 0.7985,
+    "temple_ratio": 1.5514,
+    "chin_taper": 0.8063,
+    "rx": 0.154,
+    "ry": 0.2395,
+    "male": false,
+    "tryonFile": "AV_063-AnVa-Salon-_-Spa.jpg_1_medium_wavy.png"
+  },
+  "AV_063-AnVa-Salon-_-Spa.jpg_1.jpeg": {
+    "aspect": 1.464,
+    "jaw_ratio": 0.7968,
+    "temple_ratio": 1.5599,
+    "chin_taper": 0.8131,
+    "rx": 0.1346,
+    "ry": 0.197,
+    "male": false,
+    "tryonFile": "AV_063-AnVa-Salon-_-Spa.jpg_1_medium_wavy.png"
+  },
+  "Alicia-Silverstone-long-wavy-hairstyle.jpg.jpeg": {
+    "aspect": 1.637,
+    "jaw_ratio": 0.8308,
+    "temple_ratio": 1.6613,
+    "chin_taper": 0.8331,
+    "rx": 0.1068,
+    "ry": 0.1749,
+    "male": false,
+    "tryonFile": "Alicia-Silverstone-long-wavy-hairstyle.jpg_long_wavy.png"
+  },
+  "Anthony-Garubo_7498.jpg.jpeg": {
+    "aspect": 1.5445,
+    "jaw_ratio": 0.7722,
+    "temple_ratio": 1.5865,
+    "chin_taper": 0.7893,
+    "rx": 0.1663,
+    "ry": 0.2568,
+    "male": false,
+    "tryonFile": "Anthony-Garubo_7498.jpg_medium_wavy.png"
+  },
+  "BM_128-BA.jpg.jpeg": {
+    "aspect": 1.5868,
+    "jaw_ratio": 0.7855,
+    "temple_ratio": 1.5299,
+    "chin_taper": 0.8026,
+    "rx": 0.1532,
+    "ry": 0.2431,
+    "male": false,
+    "tryonFile": "BM_128-BA.jpg_medium_wavy.png"
+  },
+  "Beau-Garrett-medium-length-hairstyle.jpg.jpeg": {
+    "aspect": 1.4334,
+    "jaw_ratio": 0.8317,
+    "temple_ratio": 1.4848,
+    "chin_taper": 0.8321,
+    "rx": 0.1425,
+    "ry": 0.2043,
+    "male": false,
+    "tryonFile": "Beau-Garrett-medium-length-hairstyle.jpg_medium_wavy.png"
+  },
+  "CAS_010-Casal_s-Aveda.jpg.jpeg": {
+    "aspect": 1.4591,
+    "jaw_ratio": 0.7874,
+    "temple_ratio": 1.5674,
+    "chin_taper": 0.7979,
+    "rx": 0.1708,
+    "ry": 0.2493,
+    "male": false,
+    "tryonFile": "CAS_010-Casal_s-Aveda.jpg_medium_wavy.png"
+  },
+  "CL_069-Cutting-Loose.jpg.jpeg": {
+    "aspect": 1.6843,
+    "jaw_ratio": 0.7881,
+    "temple_ratio": 1.6332,
+    "chin_taper": 0.8028,
+    "rx": 0.1452,
+    "ry": 0.2445,
+    "male": false,
+    "tryonFile": "CL_069-Cutting-Loose.jpg_medium_wavy.png"
+  },
+  "CL_077-Cutting-Loose.jpg.jpeg": {
+    "aspect": 1.5779,
+    "jaw_ratio": 0.7797,
+    "temple_ratio": 1.5169,
+    "chin_taper": 0.7967,
+    "rx": 0.1669,
+    "ry": 0.2634,
+    "male": false,
+    "tryonFile": "CL_077-Cutting-Loose.jpg_medium_wavy.png"
+  },
+  "CL_077-Cutting-Loose.jpg_1.jpeg": {
+    "aspect": 1.6021,
+    "jaw_ratio": 0.7787,
+    "temple_ratio": 1.5479,
+    "chin_taper": 0.7963,
+    "rx": 0.1585,
+    "ry": 0.2538,
+    "male": false,
+    "tryonFile": "CL_077-Cutting-Loose.jpg_medium_wavy.png"
+  },
+  "Chase-Infiniti-hairstyle.jpg.jpeg": {
+    "aspect": 1.529,
+    "jaw_ratio": 0.7701,
+    "temple_ratio": 1.538,
+    "chin_taper": 0.795,
+    "rx": 0.159,
+    "ry": 0.2432,
+    "male": false,
+    "tryonFile": "Chase-Infiniti-hairstyle.jpg_medium_wavy.png"
+  },
+  "Ciara-short-hairstyle.jpg.jpeg": {
+    "aspect": 1.6013,
+    "jaw_ratio": 0.7738,
+    "temple_ratio": 1.5728,
+    "chin_taper": 0.7921,
+    "rx": 0.1518,
+    "ry": 0.2431,
+    "male": false,
+    "tryonFile": "Ciara-short-hairstyle.jpg_short_wavy.png"
+  },
+  "Elle-Chapman-long-hairstyle.jpg.jpeg": {
+    "aspect": 1.5525,
+    "jaw_ratio": 0.8043,
+    "temple_ratio": 1.5311,
+    "chin_taper": 0.81,
+    "rx": 0.1182,
+    "ry": 0.1835,
+    "male": false,
+    "tryonFile": "Elle-Chapman-long-hairstyle.jpg_long_wavy_male.png"
+  },
+  "Emma-Stone-short-hairstyle.jpg.jpeg": {
+    "aspect": 1.4448,
+    "jaw_ratio": 0.8005,
+    "temple_ratio": 1.5015,
+    "chin_taper": 0.8153,
+    "rx": 0.1515,
+    "ry": 0.2188,
+    "male": false,
+    "tryonFile": "Emma-Stone-short-hairstyle.jpg_short_wavy.png"
+  },
+  "Folicle-Salon-Model-E_001.jpg.jpeg": {
+    "aspect": 1.5206,
+    "jaw_ratio": 0.7851,
+    "temple_ratio": 1.5076,
+    "chin_taper": 0.8016,
+    "rx": 0.1958,
+    "ry": 0.2978,
+    "male": false,
+    "tryonFile": "Folicle-Salon-Model-E_006.jpg_medium_wavy.png"
+  },
+  "Folicle-Salon-Model-E_006.jpg.jpeg": {
+    "aspect": 1.4854,
+    "jaw_ratio": 0.76,
+    "temple_ratio": 1.5271,
+    "chin_taper": 0.7804,
+    "rx": 0.1717,
+    "ry": 0.255,
+    "male": false,
+    "tryonFile": "Folicle-Salon-Model-E_006.jpg_medium_wavy.png"
+  },
+  "Folicle-SalonModel-D_004.jpg.jpeg": {
+    "aspect": 1.4852,
+    "jaw_ratio": 0.7954,
+    "temple_ratio": 1.4362,
+    "chin_taper": 0.8125,
+    "rx": 0.1744,
+    "ry": 0.259,
+    "male": false,
+    "tryonFile": "Folicle-SalonModel-D_004.jpg_medium_wavy.png"
+  },
+  "Gabrielle-Meyer-For-The-Bro.jpg.jpeg": {
+    "aspect": 1.5572,
+    "jaw_ratio": 0.7815,
+    "temple_ratio": 1.5812,
+    "chin_taper": 0.8027,
+    "rx": 0.1481,
+    "ry": 0.2306,
+    "male": false,
+    "tryonFile": "Gabrielle-Meyer-For-The-Bro.jpg_medium_wavy.png"
+  },
+  "Hair-by-Joshua-McDonald.-Ma.jpg.jpeg": {
+    "aspect": 1.536,
+    "jaw_ratio": 0.7402,
+    "temple_ratio": 1.5246,
+    "chin_taper": 0.7652,
+    "rx": 0.1613,
+    "ry": 0.2478,
+    "male": false,
+    "tryonFile": "Hair-by-Joshua-McDonald.-Ma.jpg_medium_wavy.png"
+  },
+  "Iman-medium-length-hairstyle.jpg.jpeg": {
+    "aspect": 1.6607,
+    "jaw_ratio": 0.7741,
+    "temple_ratio": 1.5488,
+    "chin_taper": 0.7954,
+    "rx": 0.1443,
+    "ry": 0.2397,
+    "male": false,
+    "tryonFile": "Iman-medium-length-hairstyle.jpg_medium_wavy_male.png"
+  },
+  "Jean-Smart-short-hairstyle.jpg.jpeg": {
+    "aspect": 1.6272,
+    "jaw_ratio": 0.7761,
+    "temple_ratio": 1.5764,
+    "chin_taper": 0.7947,
+    "rx": 0.1483,
+    "ry": 0.2413,
+    "male": false,
+    "tryonFile": "Jean-Smart-short-hairstyle.jpg_short_wavy.png"
+  },
+  "Jennifer-Garner.jpg.jpeg": {
+    "aspect": 1.5702,
+    "jaw_ratio": 0.8248,
+    "temple_ratio": 1.5594,
+    "chin_taper": 0.8363,
+    "rx": 0.1163,
+    "ry": 0.1826,
+    "male": false,
+    "tryonFile": "Jennifer-Garner.jpg_medium_wavy.png"
+  },
+  "Jennifer-Lawrence-long-hairstyle.jpg.jpeg": {
+    "aspect": 1.59,
+    "jaw_ratio": 0.8219,
+    "temple_ratio": 1.616,
+    "chin_taper": 0.8357,
+    "rx": 0.0935,
+    "ry": 0.1487,
+    "male": false,
+    "tryonFile": "Jennifer-Lawrence-long-hairstyle.jpg_long_wavy.png"
+  },
+  "Julia-Roberts.jpg.jpeg": {
+    "aspect": 1.6597,
+    "jaw_ratio": 0.8088,
+    "temple_ratio": 1.5277,
+    "chin_taper": 0.8164,
+    "rx": 0.1249,
+    "ry": 0.2072,
+    "male": false,
+    "tryonFile": "Julia-Roberts.jpg_medium_wavy.png"
+  },
+  "Julia-Roberts.jpg_1.jpeg": {
+    "aspect": 1.6518,
+    "jaw_ratio": 0.8089,
+    "temple_ratio": 1.6108,
+    "chin_taper": 0.8165,
+    "rx": 0.1254,
+    "ry": 0.2072,
+    "male": false,
+    "tryonFile": "Julia-Roberts.jpg_1_medium_wavy.png"
+  },
+  "Julianne-Hough-short-bob-haircut.jpg.jpeg": {
+    "aspect": 1.529,
+    "jaw_ratio": 0.7902,
+    "temple_ratio": 1.5679,
+    "chin_taper": 0.8089,
+    "rx": 0.1518,
+    "ry": 0.232,
+    "male": false,
+    "tryonFile": "Julianne-Hough-short-bob-haircut.jpg_short_wavy.png"
+  },
+  "KA-017.jpg.jpeg": {
+    "aspect": 1.4957,
+    "jaw_ratio": 0.7807,
+    "temple_ratio": 1.525,
+    "chin_taper": 0.7954,
+    "rx": 0.1727,
+    "ry": 0.2582,
+    "male": false,
+    "tryonFile": "KA-017.jpg_medium_wavy.png"
+  },
+  "K_2999.jpg.jpeg": {
+    "aspect": 1.4561,
+    "jaw_ratio": 0.816,
+    "temple_ratio": 1.5027,
+    "chin_taper": 0.8258,
+    "rx": 0.1608,
+    "ry": 0.2341,
+    "male": false,
+    "tryonFile": "K_2999.jpg_medium_wavy.png"
+  },
+  "Karol-G-chin-length-hairstyle.jpg.jpeg": {
+    "aspect": 1.5402,
+    "jaw_ratio": 0.7841,
+    "temple_ratio": 1.5435,
+    "chin_taper": 0.8044,
+    "rx": 0.1541,
+    "ry": 0.2374,
+    "male": false,
+    "tryonFile": "Karol-G-chin-length-hairstyle.jpg_medium_wavy.png"
+  },
+  "Kim-Kardashian-medium-length-hairstyle.jpg.jpeg": {
+    "aspect": 1.4437,
+    "jaw_ratio": 0.8398,
+    "temple_ratio": 1.4944,
+    "chin_taper": 0.8377,
+    "rx": 0.1373,
+    "ry": 0.1982,
+    "male": false,
+    "tryonFile": "Kim-Kardashian-medium-length-hairstyle.jpg_medium_wavy.png"
+  },
+  "Kim-Kardashian.jpg.jpeg": {
+    "aspect": 2.4694,
+    "jaw_ratio": 0.8407,
+    "temple_ratio": 1.4484,
+    "chin_taper": 0.8376,
+    "rx": 0.142,
+    "ry": 0.3507,
+    "male": false,
+    "tryonFile": "Kim-Kardashian-medium-length-hairstyle.jpg_medium_wavy.png"
+  },
+  "Kylie-Jenner-long-hairstyle-with-curls.jpg.jpeg": {
+    "aspect": 1.4547,
+    "jaw_ratio": 0.8181,
+    "temple_ratio": 1.4761,
+    "chin_taper": 0.8302,
+    "rx": 0.0976,
+    "ry": 0.142,
+    "male": false,
+    "tryonFile": "Kylie-Jenner-long-hairstyle-with-curls.jpg_long_wavy.png"
+  },
+  "LG-018-L_G.jpg.jpeg": {
+    "aspect": 1.3656,
+    "jaw_ratio": 0.7952,
+    "temple_ratio": 1.4526,
+    "chin_taper": 0.812,
+    "rx": 0.1653,
+    "ry": 0.2258,
+    "male": false,
+    "tryonFile": "LG-018-L_G.jpg_medium_wavy.png"
+  },
+  "LG047-L_G.jpg_2.jpeg": {
+    "aspect": 1.4703,
+    "jaw_ratio": 0.7851,
+    "temple_ratio": 1.6078,
+    "chin_taper": 0.7965,
+    "rx": 0.1413,
+    "ry": 0.2078,
+    "male": false,
+    "tryonFile": "LG047-L_G.jpg_2_medium_wavy.png"
+  },
+  "Lisa-Rinna-short-hairstyle.jpg.jpeg": {
+    "aspect": 1.5194,
+    "jaw_ratio": 0.7826,
+    "temple_ratio": 1.5856,
+    "chin_taper": 0.8025,
+    "rx": 0.1374,
+    "ry": 0.2088,
+    "male": false,
+    "tryonFile": "Lisa-Rinna-short-hairstyle.jpg_short_wavy.png"
+  },
+  "Lisa-Rinna-short-voluminous-hairstyle.jpg.jpeg": {
+    "aspect": 1.5323,
+    "jaw_ratio": 0.7848,
+    "temple_ratio": 1.6072,
+    "chin_taper": 0.8068,
+    "rx": 0.1498,
+    "ry": 0.2296,
+    "male": false,
+    "tryonFile": "Lisa-Rinna-short-hairstyle.jpg_short_wavy.png"
+  },
+  "MG_0635-L_G.jpg.jpeg": {
+    "aspect": 1.4831,
+    "jaw_ratio": 0.7861,
+    "temple_ratio": 1.4724,
+    "chin_taper": 0.8029,
+    "rx": 0.1579,
+    "ry": 0.2342,
+    "male": false,
+    "tryonFile": "MG_0635-L_G.jpg_medium_wavy.png"
+  },
+  "MG_4651-Carmen.jpg.jpeg": {
+    "aspect": 1.5117,
+    "jaw_ratio": 0.7542,
+    "temple_ratio": 1.5277,
+    "chin_taper": 0.775,
+    "rx": 0.1599,
+    "ry": 0.2418,
+    "male": false,
+    "tryonFile": "MG_4651-Carmen.jpg_medium_wavy_male.png"
+  },
+  "MG_4818-VonKek.jpg_2.jpeg": {
+    "aspect": 1.5858,
+    "jaw_ratio": 0.8113,
+    "temple_ratio": 1.5845,
+    "chin_taper": 0.8156,
+    "rx": 0.1496,
+    "ry": 0.2373,
+    "male": false,
+    "tryonFile": "MG_4818-VonKek.jpg_2_medium_wavy.png"
+  },
+  "MG_4945-VonKek.jpg.jpeg": {
+    "aspect": 1.6169,
+    "jaw_ratio": 0.7913,
+    "temple_ratio": 1.5424,
+    "chin_taper": 0.806,
+    "rx": 0.1397,
+    "ry": 0.2259,
+    "male": false,
+    "tryonFile": "MG_4945-VonKek.jpg_2_medium_wavy.png"
+  },
+  "MG_4945-VonKek.jpg_1.jpeg": {
+    "aspect": 1.5323,
+    "jaw_ratio": 0.8149,
+    "temple_ratio": 1.5382,
+    "chin_taper": 0.8231,
+    "rx": 0.1455,
+    "ry": 0.2229,
+    "male": false,
+    "tryonFile": "MG_4945-VonKek.jpg_1_medium_wavy.png"
+  },
+  "MG_4945-VonKek.jpg_2.jpeg": {
+    "aspect": 1.5545,
+    "jaw_ratio": 0.798,
+    "temple_ratio": 1.5475,
+    "chin_taper": 0.8115,
+    "rx": 0.1518,
+    "ry": 0.2359,
+    "male": false,
+    "tryonFile": "MG_4945-VonKek.jpg_2_medium_wavy.png"
+  },
+  "MG_6418-BA.jpg.jpeg": {
+    "aspect": 1.5219,
+    "jaw_ratio": 0.7934,
+    "temple_ratio": 1.4938,
+    "chin_taper": 0.804,
+    "rx": 0.1558,
+    "ry": 0.2372,
+    "male": false,
+    "tryonFile": "MG_6418-BA.jpg_medium_wavy.png"
+  },
+  "Meagan-Good-long-curly-hairstyle.jpg.jpeg": {
+    "aspect": 1.6035,
+    "jaw_ratio": 0.7962,
+    "temple_ratio": 1.5244,
+    "chin_taper": 0.8028,
+    "rx": 0.0905,
+    "ry": 0.1452,
+    "male": false,
+    "tryonFile": "Meagan-Good-long-curly-hairstyle.jpg_long_curly.png"
+  },
+  "Medium-brown-wavy-hairstyle.jpg.jpeg": {
+    "aspect": 1.6145,
+    "jaw_ratio": 0.7939,
+    "temple_ratio": 1.584,
+    "chin_taper": 0.8109,
+    "rx": 0.1313,
+    "ry": 0.212,
+    "male": false,
+    "tryonFile": "Medium-brown-wavy-hairstyle.jpg_medium_wavy.png"
+  },
+  "Medium-jagged-cut-side-part.jpg.jpeg": {
+    "aspect": 1.4999,
+    "jaw_ratio": 0.7493,
+    "temple_ratio": 1.5172,
+    "chin_taper": 0.7664,
+    "rx": 0.156,
+    "ry": 0.2341,
+    "male": false,
+    "tryonFile": "Medium-jagged-cut-side-part.jpg_medium_wavy.png"
+  },
+  "Michelle-VanHouten-for-Shee.jpg.jpeg": {
+    "aspect": 1.4655,
+    "jaw_ratio": 0.7718,
+    "temple_ratio": 1.5248,
+    "chin_taper": 0.7905,
+    "rx": 0.1346,
+    "ry": 0.1972,
+    "male": false,
+    "tryonFile": "Michelle-VanHouten-for-Shee.jpg_medium_wavy.png"
+  },
+  "Michelle-Williams-short-hairstyle.jpg.jpeg": {
+    "aspect": 1.5181,
+    "jaw_ratio": 0.8026,
+    "temple_ratio": 1.5482,
+    "chin_taper": 0.8179,
+    "rx": 0.1462,
+    "ry": 0.222,
+    "male": false,
+    "tryonFile": "Michelle-Williams-short-hairstyle.jpg_short_wavy.png"
+  },
+  "Miley-Cyrus-long-hairstyle.jpg.jpeg": {
+    "aspect": 1.6752,
+    "jaw_ratio": 0.8044,
+    "temple_ratio": 1.6358,
+    "chin_taper": 0.8126,
+    "rx": 0.0982,
+    "ry": 0.1646,
+    "male": false,
+    "tryonFile": "Miley-Cyrus-long-hairstyle.jpg_long_wavy.png"
+  },
+  "Priyanka-Chopra-long-hairstyle-with-waves.jpg.jpeg": {
+    "aspect": 1.4537,
+    "jaw_ratio": 0.8179,
+    "temple_ratio": 1.4999,
+    "chin_taper": 0.8243,
+    "rx": 0.1006,
+    "ry": 0.1463,
+    "male": false,
+    "tryonFile": "Priyanka-Chopra-long-hairstyle-with-waves.jpg_long_curly.png"
+  },
+  "Rachel-McAdams-long-hairstyle.jpg.jpeg": {
+    "aspect": 1.4798,
+    "jaw_ratio": 0.8133,
+    "temple_ratio": 1.5271,
+    "chin_taper": 0.8221,
+    "rx": 0.102,
+    "ry": 0.1509,
+    "male": false,
+    "tryonFile": "Rachel-McAdams-long-hairstyle.jpg_long_wavy.png"
+  },
+  "Rhea-Seehorn-medium-length-hairstyle.jpg.jpeg": {
+    "aspect": 1.5463,
+    "jaw_ratio": 0.7726,
+    "temple_ratio": 1.5222,
+    "chin_taper": 0.793,
+    "rx": 0.1489,
+    "ry": 0.2302,
+    "male": false,
+    "tryonFile": "Rhea-Seehorn-medium-length-hairstyle.jpg_medium_wavy.png"
+  },
+  "Rose-Byrne-shoulder-length-hairstyle.jpg.jpeg": {
+    "aspect": 1.5885,
+    "jaw_ratio": 0.7734,
+    "temple_ratio": 1.6122,
+    "chin_taper": 0.7903,
+    "rx": 0.1413,
+    "ry": 0.2245,
+    "male": false,
+    "tryonFile": "Rose-Byrne-shoulder-length-hairstyle.jpg_long_wavy.png"
+  },
+  "SWA_007-Simply-Swank.jpg_1.jpeg": {
+    "aspect": 1.6238,
+    "jaw_ratio": 0.8085,
+    "temple_ratio": 1.4925,
+    "chin_taper": 0.8207,
+    "rx": 0.1164,
+    "ry": 0.1891,
+    "male": false,
+    "tryonFile": "SWA_007-Simply-Swank.jpg_2_medium_wavy.png"
+  },
+  "SWA_007-Simply-Swank.jpg_2.jpeg": {
+    "aspect": 1.4086,
+    "jaw_ratio": 0.7858,
+    "temple_ratio": 1.4878,
+    "chin_taper": 0.8039,
+    "rx": 0.1511,
+    "ry": 0.2129,
+    "male": false,
+    "tryonFile": "SWA_007-Simply-Swank.jpg_2_medium_wavy.png"
+  },
+  "SWA_032-Simply-Swank.jpg.jpeg": {
+    "aspect": 1.6721,
+    "jaw_ratio": 0.8179,
+    "temple_ratio": 1.6292,
+    "chin_taper": 0.8234,
+    "rx": 0.1475,
+    "ry": 0.2466,
+    "male": false,
+    "tryonFile": "SWA_032-Simply-Swank.jpg_medium_wavy.png"
+  },
+  "SWA_032-Simply-Swank.jpg_1.jpeg": {
+    "aspect": 1.7329,
+    "jaw_ratio": 0.8385,
+    "temple_ratio": 1.5868,
+    "chin_taper": 0.8434,
+    "rx": 0.131,
+    "ry": 0.227,
+    "male": false,
+    "tryonFile": "SWA_032-Simply-Swank.jpg_medium_wavy.png"
+  },
+  "Samantha-Pohl-For-The-Brown.jpg.jpeg": {
+    "aspect": 1.538,
+    "jaw_ratio": 0.7748,
+    "temple_ratio": 1.5982,
+    "chin_taper": 0.7906,
+    "rx": 0.1532,
+    "ry": 0.2356,
+    "male": false,
+    "tryonFile": "Samantha-Pohl-For-The-Brown.jpg_medium_wavy_male.png"
+  },
+  "Sarah-Jessica-Parker-hairstyle.jpg.jpeg": {
+    "aspect": 1.664,
+    "jaw_ratio": 0.8379,
+    "temple_ratio": 1.588,
+    "chin_taper": 0.8386,
+    "rx": 0.0974,
+    "ry": 0.162,
+    "male": false,
+    "tryonFile": "Sarah-Jessica-Parker-hairstyle.jpg_medium_wavy.png"
+  },
+  "Sarah-Pidgeon-long-hairstyle.jpg.jpeg": {
+    "aspect": 1.6352,
+    "jaw_ratio": 0.7861,
+    "temple_ratio": 1.485,
+    "chin_taper": 0.7965,
+    "rx": 0.1124,
+    "ry": 0.1838,
+    "male": false,
+    "tryonFile": "Sarah-Pidgeon-long-hairstyle.jpg_long_wavy.png"
+  },
+  "Shaggy-Bob-Hairstyle.png": {
+    "aspect": 2.9678,
+    "jaw_ratio": 0.8021,
+    "temple_ratio": 1.5313,
+    "chin_taper": 0.8127,
+    "rx": 0.0997,
+    "ry": 0.2959,
+    "male": false,
+    "tryonFile": "Shaggy-Bob-Hairstyle.png_short_wavy.png"
+  },
+  "Tessa-Zukowski-For-The-Brow.jpg_2.jpeg": {
+    "aspect": 1.5319,
+    "jaw_ratio": 0.7997,
+    "temple_ratio": 1.4595,
+    "chin_taper": 0.8054,
+    "rx": 0.1392,
+    "ry": 0.2133,
+    "male": false,
+    "tryonFile": "Tessa-Zukowski-For-The-Brow.jpg_2_medium_wavy.png"
+  },
+  "The-Brown-Aveda-Institute_-Mentor_-OH_005.jpg.jpeg": {
+    "aspect": 1.5188,
+    "jaw_ratio": 0.772,
+    "temple_ratio": 1.5587,
+    "chin_taper": 0.7954,
+    "rx": 0.1449,
+    "ry": 0.22,
+    "male": false,
+    "tryonFile": "The-Brown-Aveda-Institute_-Mentor_-OH_005.jpg_medium_wavy_male.png"
+  },
+  "The-Ohio-Academy-Lea-Meyer_004.jpg_2.jpeg": {
+    "aspect": 1.5897,
+    "jaw_ratio": 0.7959,
+    "temple_ratio": 1.5279,
+    "chin_taper": 0.8091,
+    "rx": 0.1418,
+    "ry": 0.2254,
+    "male": false,
+    "tryonFile": "The-Ohio-Academy-Lea-Meyer_004.jpg_2_medium_wavy.png"
+  },
+  "Timothee-Chalamet-short-hairstyle.jpg.jpeg": {
+    "aspect": 1.6253,
+    "jaw_ratio": 0.7926,
+    "temple_ratio": 1.6785,
+    "chin_taper": 0.8047,
+    "rx": 0.1464,
+    "ry": 0.2379,
+    "male": false,
+    "tryonFile": "Timothee-Chalamet-short-hairstyle.jpg_short_wavy.png"
+  },
+  "VN-123.jpg.jpeg": {
+    "aspect": 2.4749,
+    "jaw_ratio": 0.8038,
+    "temple_ratio": 1.6674,
+    "chin_taper": 0.8149,
+    "rx": 0.0918,
+    "ry": 0.2271,
+    "male": false,
+    "tryonFile": "VN-123.jpg_1_medium_wavy.png"
+  },
+  "VN-123.jpg_1.jpeg": {
+    "aspect": 2.2204,
+    "jaw_ratio": 0.8122,
+    "temple_ratio": 1.6001,
+    "chin_taper": 0.8265,
+    "rx": 0.1036,
+    "ry": 0.23,
+    "male": false,
+    "tryonFile": "VN-123.jpg_1_medium_wavy.png"
+  },
+  "VN-123.jpg_2.jpeg": {
+    "aspect": 1.542,
+    "jaw_ratio": 0.7998,
+    "temple_ratio": 1.6102,
+    "chin_taper": 0.8141,
+    "rx": 0.1439,
+    "ry": 0.2219,
+    "male": false,
+    "tryonFile": "VN-123.jpg_2_medium_wavy.png"
+  },
+  "VN_033.jpg.jpeg": {
+    "aspect": 1.5359,
+    "jaw_ratio": 0.7892,
+    "temple_ratio": 1.4721,
+    "chin_taper": 0.8038,
+    "rx": 0.1609,
+    "ry": 0.2472,
+    "male": false,
+    "tryonFile": "VN_033.jpg_medium_wavy.png"
+  },
+  "Y_048-Yellow-Strawberry.jpg.jpeg": {
+    "aspect": 1.678,
+    "jaw_ratio": 0.7936,
+    "temple_ratio": 1.6703,
+    "chin_taper": 0.8073,
+    "rx": 0.1405,
+    "ry": 0.2358,
+    "male": false,
+    "tryonFile": "Y_048-Yellow-Strawberry.jpg_medium_wavy.png"
+  },
+  "Y_048-Yellow-Strawberry.jpg_1.jpeg": {
+    "aspect": 1.5738,
+    "jaw_ratio": 0.7893,
+    "temple_ratio": 1.5949,
+    "chin_taper": 0.8067,
+    "rx": 0.1468,
+    "ry": 0.2311,
+    "male": false,
+    "tryonFile": "Y_048-Yellow-Strawberry.jpg_medium_wavy.png"
+  },
+  "Y_051-Yellow-Strawberry.jpg.jpeg": {
+    "aspect": 1.7419,
+    "jaw_ratio": 0.7976,
+    "temple_ratio": 1.5476,
+    "chin_taper": 0.8119,
+    "rx": 0.1339,
+    "ry": 0.2333,
+    "male": false,
+    "tryonFile": "Y_051-Yellow-Strawberry.jpg_medium_wavy.png"
+  },
+  "Y_051-Yellow-Strawberry.jpg_1.jpeg": {
+    "aspect": 1.631,
+    "jaw_ratio": 0.7885,
+    "temple_ratio": 1.6288,
+    "chin_taper": 0.8051,
+    "rx": 0.1448,
+    "ry": 0.2362,
+    "male": false,
+    "tryonFile": "Y_051-Yellow-Strawberry.jpg_medium_wavy.png"
+  },
+  "Zendaya-short-hairstyle.jpg.jpeg": {
+    "aspect": 1.4851,
+    "jaw_ratio": 0.7969,
+    "temple_ratio": 1.5986,
+    "chin_taper": 0.8143,
+    "rx": 0.158,
+    "ry": 0.2346,
+    "male": false,
+    "tryonFile": "Zendaya-short-hairstyle.jpg_short_wavy.png"
+  },
+  "asymmetric-blonde-hairstyle.jpg.jpeg": {
+    "aspect": 1.4457,
+    "jaw_ratio": 0.7757,
+    "temple_ratio": 1.4845,
+    "chin_taper": 0.7937,
+    "rx": 0.15,
+    "ry": 0.2168,
+    "male": false,
+    "tryonFile": "asymmetric-blonde-hairstyle.jpg_medium_wavy.png"
+  },
+  "blonde-curly-medium-hairstyle.jpg_2.jpeg": {
+    "aspect": 1.578,
+    "jaw_ratio": 0.8065,
+    "temple_ratio": 1.5631,
+    "chin_taper": 0.8203,
+    "rx": 0.1322,
+    "ry": 0.2086,
+    "male": false,
+    "tryonFile": "blonde-curly-medium-hairstyle.jpg_2_medium_curly.png"
+  },
+  "blonde-pixie-hair-cut.jpg.jpeg": {
+    "aspect": 1.4473,
+    "jaw_ratio": 0.8271,
+    "temple_ratio": 1.5441,
+    "chin_taper": 0.8421,
+    "rx": 0.1497,
+    "ry": 0.2167,
+    "male": false,
+    "tryonFile": "blonde-pixie-hair-cut.jpg_short_wavy.png"
+  },
+  "bob-haircut.jpg.jpeg": {
+    "aspect": 1.4734,
+    "jaw_ratio": 0.8035,
+    "temple_ratio": 1.5737,
+    "chin_taper": 0.8184,
+    "rx": 0.1514,
+    "ry": 0.2231,
+    "male": false,
+    "tryonFile": "bob-haircut.jpg_short_wavy.png"
+  },
+  "casual-clipper-cut-hiarstyle.jpg_2.jpeg": {
+    "aspect": 1.7426,
+    "jaw_ratio": 0.7948,
+    "temple_ratio": 1.6664,
+    "chin_taper": 0.8053,
+    "rx": 0.129,
+    "ry": 0.2249,
+    "male": false,
+    "tryonFile": "casual-clipper-cut-hiarstyle.jpg_2_medium_wavy.png"
+  },
+  "chin-length-bob-haircut.jpg.jpeg": {
+    "aspect": 1.5401,
+    "jaw_ratio": 0.7943,
+    "temple_ratio": 1.4947,
+    "chin_taper": 0.8066,
+    "rx": 0.1633,
+    "ry": 0.2516,
+    "male": false,
+    "tryonFile": "chin-length-bob-haircut.jpg_short_wavy.png"
+  },
+  "close-up-studio-portrait-bearded-male-with-long-hair-look-wild_613910-9697.jpg.jpeg": {
+    "aspect": 1.1625,
+    "jaw_ratio": 0.7915,
+    "temple_ratio": 1.457,
+    "chin_taper": 0.8076,
+    "rx": 0.1665,
+    "ry": 0.1935,
+    "male": true,
+    "tryonFile": "close-up-studio-portrait-bearded-male-with-long-hair-look-wild_613910-9697.jpg_long_wavy_male.png"
+  },
+  "corey-mylchreest-short-hairstyle.jpg.jpeg": {
+    "aspect": 1.639,
+    "jaw_ratio": 0.8087,
+    "temple_ratio": 1.608,
+    "chin_taper": 0.8191,
+    "rx": 0.1577,
+    "ry": 0.2585,
+    "male": false,
+    "tryonFile": "corey-mylchreest-short-hairstyle.jpg_short_wavy.png"
+  },
+  "dark-brown-layered-curly-hairstyle.jpg.jpeg": {
+    "aspect": 1.7272,
+    "jaw_ratio": 0.8021,
+    "temple_ratio": 1.565,
+    "chin_taper": 0.8087,
+    "rx": 0.1125,
+    "ry": 0.1944,
+    "male": false,
+    "tryonFile": "dark-brown-layered-curly-hairstyle.jpg_medium_curly.png"
+  },
+  "dark-purple-wavy-hairstyle-with-bangs.jpg.jpeg": {
+    "aspect": 1.5115,
+    "jaw_ratio": 0.8236,
+    "temple_ratio": 1.6099,
+    "chin_taper": 0.827,
+    "rx": 0.1191,
+    "ry": 0.18,
+    "male": false,
+    "tryonFile": "dark-purple-wavy-hairstyle-with-bangs.jpg_1_medium_wavy_bangs.png"
+  },
+  "dark-purple-wavy-hairstyle-with-bangs.jpg_1.jpeg": {
+    "aspect": 1.4921,
+    "jaw_ratio": 0.829,
+    "temple_ratio": 1.5795,
+    "chin_taper": 0.8349,
+    "rx": 0.1205,
+    "ry": 0.1798,
+    "male": false,
+    "tryonFile": "dark-purple-wavy-hairstyle-with-bangs.jpg_1_medium_wavy_bangs.png"
+  },
+  "dark-purple-wavy-hairstyle-with-bangs.jpg_2.jpeg": {
+    "aspect": 1.5538,
+    "jaw_ratio": 0.7734,
+    "temple_ratio": 1.5959,
+    "chin_taper": 0.7905,
+    "rx": 0.1259,
+    "ry": 0.1957,
+    "male": false,
+    "tryonFile": "dark-purple-wavy-hairstyle-with-bangs.jpg_1_medium_wavy_bangs.png"
+  },
+  "elegant-young-handsome-man_1301-5869.jpg.jpeg": {
+    "aspect": 1.3502,
+    "jaw_ratio": 0.8308,
+    "temple_ratio": 1.5755,
+    "chin_taper": 0.8357,
+    "rx": 0.1606,
+    "ry": 0.2169,
+    "male": true,
+    "tryonFile": "elegant-young-handsome-man_1301-5869.jpg_1_medium_wavy_male.png"
+  },
+  "elegant-young-handsome-man_1301-5869.jpg_1.jpeg": {
+    "aspect": 1.3533,
+    "jaw_ratio": 0.8333,
+    "temple_ratio": 1.5766,
+    "chin_taper": 0.8381,
+    "rx": 0.1604,
+    "ry": 0.217,
+    "male": true,
+    "tryonFile": "elegant-young-handsome-man_1301-5869.jpg_1_medium_wavy_male.png"
+  },
+  "fashionable-handsome-guy-look-camera-fashion-man-sexy-male-model-dressed-elegant-mans-vogue_265223-15997.jpg.jpeg": {
+    "aspect": 1.4649,
+    "jaw_ratio": 0.8163,
+    "temple_ratio": 1.6739,
+    "chin_taper": 0.8252,
+    "rx": 0.084,
+    "ry": 0.123,
+    "male": true,
+    "tryonFile": null
+  },
+  "formal-honey-blonde-curly-hairstyle.jpg.jpeg": {
+    "aspect": 1.4023,
+    "jaw_ratio": 0.7379,
+    "temple_ratio": 1.4583,
+    "chin_taper": 0.7646,
+    "rx": 0.1314,
+    "ry": 0.1843,
+    "male": false,
+    "tryonFile": "formal-honey-blonde-curly-hairstyle.jpg_medium_curly.png"
+  },
+  "long-blonde-wavy-hairstyle.jpg.jpeg": {
+    "aspect": 1.4551,
+    "jaw_ratio": 0.7989,
+    "temple_ratio": 1.4725,
+    "chin_taper": 0.8051,
+    "rx": 0.1034,
+    "ry": 0.1505,
+    "male": false,
+    "tryonFile": "long-blonde-wavy-hairstyle.jpg_long_wavy.png"
+  },
+  "long-formal-hairstyle-with-curls.jpg.jpeg": {
+    "aspect": 1.5184,
+    "jaw_ratio": 0.8328,
+    "temple_ratio": 1.5181,
+    "chin_taper": 0.8378,
+    "rx": 0.1164,
+    "ry": 0.1767,
+    "male": false,
+    "tryonFile": "long-formal-hairstyle-with-curls.jpg_long_wavy.png"
+  },
+  "long-hairstyle-with-curls.jpg.jpeg": {
+    "aspect": 1.5045,
+    "jaw_ratio": 0.7976,
+    "temple_ratio": 1.493,
+    "chin_taper": 0.8188,
+    "rx": 0.0972,
+    "ry": 0.1463,
+    "male": false,
+    "tryonFile": "long-hairstyle-with-waves.jpg_long_curly.png"
+  },
+  "long-hairstyle-with-curls.jpg_1.jpeg": {
+    "aspect": 1.4931,
+    "jaw_ratio": 0.7601,
+    "temple_ratio": 1.5363,
+    "chin_taper": 0.7853,
+    "rx": 0.1001,
+    "ry": 0.1494,
+    "male": false,
+    "tryonFile": "long-hairstyle-with-waves.jpg_long_curly.png"
+  },
+  "long-hairstyle-with-waves.jpg.jpeg": {
+    "aspect": 1.5322,
+    "jaw_ratio": 0.8139,
+    "temple_ratio": 1.5085,
+    "chin_taper": 0.824,
+    "rx": 0.1116,
+    "ry": 0.1709,
+    "male": false,
+    "tryonFile": "long-hairstyle-with-waves.jpg_long_curly.png"
+  },
+  "long-shaggy-hairstyle.jpg.jpeg": {
+    "aspect": 1.3543,
+    "jaw_ratio": 0.8149,
+    "temple_ratio": 1.4368,
+    "chin_taper": 0.8265,
+    "rx": 0.1121,
+    "ry": 0.1518,
+    "male": false,
+    "tryonFile": "long-shaggy-hairstyle.jpg_long_wavy.png"
+  },
+  "long-sleek-hairstyle.jpg.jpeg": {
+    "aspect": 1.4456,
+    "jaw_ratio": 0.7805,
+    "temple_ratio": 1.4518,
+    "chin_taper": 0.7988,
+    "rx": 0.0996,
+    "ry": 0.144,
+    "male": false,
+    "tryonFile": "long-sleek-hairstyle.jpg_long_straight.png"
+  },
+  "long-sleek-hairstyle.jpg_1.jpeg": {
+    "aspect": 1.4464,
+    "jaw_ratio": 0.7666,
+    "temple_ratio": 1.4004,
+    "chin_taper": 0.7826,
+    "rx": 0.1122,
+    "ry": 0.1623,
+    "male": false,
+    "tryonFile": "long-sleek-hairstyle.jpg_long_straight.png"
+  },
+  "long-wavy-blonde-hairstyle.jpg.jpeg": {
+    "aspect": 1.4466,
+    "jaw_ratio": 0.7884,
+    "temple_ratio": 1.4717,
+    "chin_taper": 0.8041,
+    "rx": 0.1036,
+    "ry": 0.1499,
+    "male": false,
+    "tryonFile": "long-wavy-blonde-hairstyle.jpg_long_wavy.png"
+  },
+  "long-wavy-hairstyle.jpg.jpeg": {
+    "aspect": 1.4644,
+    "jaw_ratio": 0.7667,
+    "temple_ratio": 1.5233,
+    "chin_taper": 0.7871,
+    "rx": 0.1191,
+    "ry": 0.1745,
+    "male": false,
+    "tryonFile": "long-wavy-hairstyle.jpg_long_wavy.png"
+  },
+  "long-wavy-hairstyle.jpg_1.jpeg": {
+    "aspect": 1.4934,
+    "jaw_ratio": 0.7823,
+    "temple_ratio": 1.5404,
+    "chin_taper": 0.7979,
+    "rx": 0.121,
+    "ry": 0.1806,
+    "male": false,
+    "tryonFile": "long-wavy-hairstyle.jpg_long_wavy.png"
+  },
+  "male-medium-length-hairstyle.jpg.jpeg": {
+    "aspect": 1.5415,
+    "jaw_ratio": 0.8189,
+    "temple_ratio": 1.6033,
+    "chin_taper": 0.8283,
+    "rx": 0.1511,
+    "ry": 0.2328,
+    "male": true,
+    "tryonFile": "male-medium-length-hairstyle.jpg_medium_wavy_male.png"
+  },
+  "medium-asymmetrical-bob.jpg.jpeg": {
+    "aspect": 1.4265,
+    "jaw_ratio": 0.8185,
+    "temple_ratio": 1.5397,
+    "chin_taper": 0.8333,
+    "rx": 0.1262,
+    "ry": 0.1799,
+    "male": false,
+    "tryonFile": "medium-asymmetrical-bob.jpg_short_wavy.png"
+  },
+  "medium-black-wavy-hairstyle.jpg.jpeg": {
+    "aspect": 1.4598,
+    "jaw_ratio": 0.7599,
+    "temple_ratio": 1.3648,
+    "chin_taper": 0.7684,
+    "rx": 0.1449,
+    "ry": 0.2115,
+    "male": false,
+    "tryonFile": "medium-black-wavy-hairstyle.jpg_2_medium_wavy.png"
+  },
+  "medium-black-wavy-hairstyle.jpg_2.jpeg": {
+    "aspect": 1.4429,
+    "jaw_ratio": 0.7646,
+    "temple_ratio": 1.3803,
+    "chin_taper": 0.7758,
+    "rx": 0.1338,
+    "ry": 0.193,
+    "male": false,
+    "tryonFile": "medium-black-wavy-hairstyle.jpg_2_medium_wavy.png"
+  },
+  "medium-blonde-bob.jpg.jpeg": {
+    "aspect": 1.5027,
+    "jaw_ratio": 0.772,
+    "temple_ratio": 1.5332,
+    "chin_taper": 0.7863,
+    "rx": 0.1524,
+    "ry": 0.229,
+    "male": false,
+    "tryonFile": "medium-blonde-bob.jpg_short_wavy.png"
+  },
+  "medium-blonde-curly-glossy-.jpg.jpeg": {
+    "aspect": 1.5268,
+    "jaw_ratio": 0.7884,
+    "temple_ratio": 1.4586,
+    "chin_taper": 0.8029,
+    "rx": 0.139,
+    "ry": 0.2123,
+    "male": false,
+    "tryonFile": "medium-blonde-curly-glossy-.jpg_medium_curly.png"
+  },
+  "medium-blonde-hairstyle.jpg.jpeg": {
+    "aspect": 1.5787,
+    "jaw_ratio": 0.8113,
+    "temple_ratio": 1.6153,
+    "chin_taper": 0.8179,
+    "rx": 0.1255,
+    "ry": 0.1981,
+    "male": false,
+    "tryonFile": "medium-blonde-hairstyle.jpg_medium_wavy.png"
+  },
+  "medium-curly-hairstyle.jpg.jpeg": {
+    "aspect": 1.433,
+    "jaw_ratio": 0.8018,
+    "temple_ratio": 1.4929,
+    "chin_taper": 0.8203,
+    "rx": 0.1427,
+    "ry": 0.2045,
+    "male": false,
+    "tryonFile": "medium-curly-hairstyle.jpg_medium_curly.png"
+  },
+  "medium-curly-red.jpg.jpeg": {
+    "aspect": 1.4236,
+    "jaw_ratio": 0.7866,
+    "temple_ratio": 1.4597,
+    "chin_taper": 0.8043,
+    "rx": 0.1173,
+    "ry": 0.167,
+    "male": false,
+    "tryonFile": "medium-curly-red.jpg_medium_curly.png"
+  },
+  "medium-curly.jpg.jpeg": {
+    "aspect": 1.4834,
+    "jaw_ratio": 0.8066,
+    "temple_ratio": 1.4727,
+    "chin_taper": 0.8212,
+    "rx": 0.1243,
+    "ry": 0.1844,
+    "male": false,
+    "tryonFile": "medium-curly.jpg_medium_curly.png"
+  },
+  "medium-face-framing-blonde-hairstyle.jpg.jpeg": {
+    "aspect": 1.4708,
+    "jaw_ratio": 0.774,
+    "temple_ratio": 1.5439,
+    "chin_taper": 0.7938,
+    "rx": 0.1476,
+    "ry": 0.2171,
+    "male": false,
+    "tryonFile": "medium-face-framing-blonde-hairstyle.jpg_medium_wavy.png"
+  },
+  "medium-hairstyle-with-curls.jpg.jpeg": {
+    "aspect": 1.4837,
+    "jaw_ratio": 0.7982,
+    "temple_ratio": 1.5261,
+    "chin_taper": 0.8094,
+    "rx": 0.1413,
+    "ry": 0.2097,
+    "male": false,
+    "tryonFile": "medium-hairstyle-with-curls.jpg_medium_wavy.png"
+  },
+  "medium-length-beach-hairstyle.jpg.jpeg": {
+    "aspect": 1.5253,
+    "jaw_ratio": 0.7983,
+    "temple_ratio": 1.4798,
+    "chin_taper": 0.8023,
+    "rx": 0.1365,
+    "ry": 0.2082,
+    "male": false,
+    "tryonFile": "medium-length-beach-hairstyle.jpg_medium_wavy.png"
+  },
+  "medium-length-blonde-hairstyle-with-curls.jpg.jpeg": {
+    "aspect": 1.4308,
+    "jaw_ratio": 0.7727,
+    "temple_ratio": 1.4557,
+    "chin_taper": 0.7874,
+    "rx": 0.1296,
+    "ry": 0.1854,
+    "male": false,
+    "tryonFile": "medium-length-blonde-hairstyle-with-curls.jpg_medium_wavy.png"
+  },
+  "medium-length-blowout-hairstyle.jpg.jpeg": {
+    "aspect": 1.4459,
+    "jaw_ratio": 0.7786,
+    "temple_ratio": 1.5231,
+    "chin_taper": 0.7989,
+    "rx": 0.1347,
+    "ry": 0.1948,
+    "male": false,
+    "tryonFile": "medium-length-blowout-hairstyle.jpg_medium_wavy.png"
+  },
+  "medium-length-bob-hair-cut.jpg.jpeg": {
+    "aspect": 1.3247,
+    "jaw_ratio": 0.8093,
+    "temple_ratio": 1.4827,
+    "chin_taper": 0.8281,
+    "rx": 0.165,
+    "ry": 0.2186,
+    "male": false,
+    "tryonFile": "medium-length-bob-haircut.jpg_short_wavy.png"
+  },
+  "medium-length-bob-haircut.jpg.jpeg": {
+    "aspect": 1.5318,
+    "jaw_ratio": 0.7815,
+    "temple_ratio": 1.5693,
+    "chin_taper": 0.7994,
+    "rx": 0.1525,
+    "ry": 0.2337,
+    "male": false,
+    "tryonFile": "medium-length-bob-haircut.jpg_short_wavy.png"
+  },
+  "medium-length-bob-haircut.jpg_1.jpeg": {
+    "aspect": 1.4758,
+    "jaw_ratio": 0.7987,
+    "temple_ratio": 1.5201,
+    "chin_taper": 0.8146,
+    "rx": 0.153,
+    "ry": 0.2258,
+    "male": false,
+    "tryonFile": "medium-length-bob-haircut.jpg_short_wavy.png"
+  },
+  "medium-length-curly-hairstyle.jpg.jpeg": {
+    "aspect": 1.4924,
+    "jaw_ratio": 0.8378,
+    "temple_ratio": 1.5722,
+    "chin_taper": 0.8425,
+    "rx": 0.1259,
+    "ry": 0.188,
+    "male": false,
+    "tryonFile": "medium-length-curly-hairstyle.jpg_medium_curly.png"
+  },
+  "medium-length-hairstyle-with-curls.jpg.jpeg": {
+    "aspect": 1.45,
+    "jaw_ratio": 0.7821,
+    "temple_ratio": 1.5101,
+    "chin_taper": 0.7968,
+    "rx": 0.1228,
+    "ry": 0.1781,
+    "male": false,
+    "tryonFile": "medium-length-hairstyle-with-curls.jpg_medium_wavy.png"
+  },
+  "medium-length-hairstyle-with-curls.jpg_1.jpeg": {
+    "aspect": 1.4782,
+    "jaw_ratio": 0.8042,
+    "temple_ratio": 1.5368,
+    "chin_taper": 0.8221,
+    "rx": 0.1353,
+    "ry": 0.1999,
+    "male": false,
+    "tryonFile": "medium-length-hairstyle-with-curls.jpg_medium_wavy.png"
+  },
+  "medium-length-hairstyle-with-curls.jpg_2.jpeg": {
+    "aspect": 1.5487,
+    "jaw_ratio": 0.7894,
+    "temple_ratio": 1.4944,
+    "chin_taper": 0.8005,
+    "rx": 0.1426,
+    "ry": 0.2208,
+    "male": false,
+    "tryonFile": "medium-length-hairstyle-with-curls.jpg_medium_wavy.png"
+  },
+  "medium-length-hairstyle-with-curls.jpg_3.jpeg": {
+    "aspect": 1.4987,
+    "jaw_ratio": 0.7729,
+    "temple_ratio": 1.605,
+    "chin_taper": 0.7918,
+    "rx": 0.1099,
+    "ry": 0.1646,
+    "male": false,
+    "tryonFile": "medium-length-hairstyle-with-curls.jpg_medium_wavy.png"
+  },
+  "medium-length-hairstyle-with-curls.jpg_4.jpeg": {
+    "aspect": 1.423,
+    "jaw_ratio": 0.8308,
+    "temple_ratio": 1.4716,
+    "chin_taper": 0.8422,
+    "rx": 0.132,
+    "ry": 0.1878,
+    "male": false,
+    "tryonFile": "medium-length-hairstyle-with-curls.jpg_medium_wavy.png"
+  },
+  "medium-length-hairstyle-with-curls.jpg_5.jpeg": {
+    "aspect": 1.5293,
+    "jaw_ratio": 0.7663,
+    "temple_ratio": 1.5353,
+    "chin_taper": 0.782,
+    "rx": 0.145,
+    "ry": 0.2218,
+    "male": false,
+    "tryonFile": "medium-length-hairstyle-with-curls.jpg_medium_wavy.png"
+  },
+  "medium-length-hairstyle.jpg.jpeg": {
+    "aspect": 1.4772,
+    "jaw_ratio": 0.768,
+    "temple_ratio": 1.5561,
+    "chin_taper": 0.7916,
+    "rx": 0.1275,
+    "ry": 0.1883,
+    "male": false,
+    "tryonFile": "medium-length-hairstyle-with-curls.jpg_medium_wavy.png"
+  },
+  "medium-length-sleek-hairstyle.jpg.jpeg": {
+    "aspect": 1.6817,
+    "jaw_ratio": 0.8025,
+    "temple_ratio": 1.5577,
+    "chin_taper": 0.8082,
+    "rx": 0.1062,
+    "ry": 0.1786,
+    "male": false,
+    "tryonFile": "medium-length-sleek-hairstyle.jpg_medium_straight.png"
+  },
+  "medium-ombre-hairstyle.jpg.jpeg": {
+    "aspect": 1.5093,
+    "jaw_ratio": 0.7896,
+    "temple_ratio": 1.5419,
+    "chin_taper": 0.8071,
+    "rx": 0.1127,
+    "ry": 0.1701,
+    "male": false,
+    "tryonFile": "medium-ombre-hairstyle.jpg_medium_wavy.png"
+  },
+  "medium-red-jagged-cut-layer.jpg.jpeg": {
+    "aspect": 1.4829,
+    "jaw_ratio": 0.7792,
+    "temple_ratio": 1.4871,
+    "chin_taper": 0.7919,
+    "rx": 0.1426,
+    "ry": 0.2114,
+    "male": false,
+    "tryonFile": "medium-red-jagged-cut-layer.jpg_medium_wavy.png"
+  },
+  "medium-straight-bob-haircut.jpg.jpeg": {
+    "aspect": 1.4619,
+    "jaw_ratio": 0.8132,
+    "temple_ratio": 1.4908,
+    "chin_taper": 0.822,
+    "rx": 0.1496,
+    "ry": 0.2188,
+    "male": false,
+    "tryonFile": "medium-straight-bob-haircut.jpg_short_straight.png"
+  },
+  "medium-straight-concave-hai.jpg.jpeg": {
+    "aspect": 1.5058,
+    "jaw_ratio": 0.7961,
+    "temple_ratio": 1.5452,
+    "chin_taper": 0.8052,
+    "rx": 0.1285,
+    "ry": 0.1935,
+    "male": false,
+    "tryonFile": "medium-straight-concave-hai.jpg_medium_straight.png"
+  },
+  "medium-straight-hairstyle.jpg.jpeg": {
+    "aspect": 1.5251,
+    "jaw_ratio": 0.7918,
+    "temple_ratio": 1.5063,
+    "chin_taper": 0.802,
+    "rx": 0.1505,
+    "ry": 0.2295,
+    "male": false,
+    "tryonFile": "medium-straight-hairstyle.jpg_medium_straight.png"
+  },
+  "medium-straight-highlighted-hairstyle.jpg.jpeg": {
+    "aspect": 1.4952,
+    "jaw_ratio": 0.7865,
+    "temple_ratio": 1.5339,
+    "chin_taper": 0.7972,
+    "rx": 0.1342,
+    "ry": 0.2007,
+    "male": false,
+    "tryonFile": "medium-straight-highlighted-hairstyle.jpg_medium_straight.png"
+  },
+  "medium-wavy-hairdo.jpg.jpeg": {
+    "aspect": 1.4907,
+    "jaw_ratio": 0.7783,
+    "temple_ratio": 1.4772,
+    "chin_taper": 0.7932,
+    "rx": 0.1171,
+    "ry": 0.1746,
+    "male": false,
+    "tryonFile": "medium-wavy-hairdo.jpg_medium_wavy.png"
+  },
+  "medium-wavy-hairstyle.jpg.jpeg": {
+    "aspect": 1.4886,
+    "jaw_ratio": 0.774,
+    "temple_ratio": 1.5205,
+    "chin_taper": 0.7952,
+    "rx": 0.1487,
+    "ry": 0.2213,
+    "male": false,
+    "tryonFile": "medium-wavy-hairstyle.jpg_medium_wavy.png"
+  },
+  "medium-wavy-hairstyle.jpg_1.jpeg": {
+    "aspect": 1.4731,
+    "jaw_ratio": 0.766,
+    "temple_ratio": 1.5343,
+    "chin_taper": 0.7881,
+    "rx": 0.1248,
+    "ry": 0.1838,
+    "male": false,
+    "tryonFile": "medium-wavy-hairstyle.jpg_medium_wavy.png"
+  },
+  "medium-wavy-multi-tone.jpg.jpeg": {
+    "aspect": 1.449,
+    "jaw_ratio": 0.8137,
+    "temple_ratio": 1.4453,
+    "chin_taper": 0.828,
+    "rx": 0.1626,
+    "ry": 0.2356,
+    "male": false,
+    "tryonFile": "medium-wavy-multi-tone.jpg_medium_wavy.png"
+  },
+  "medium-wavy-side-parted-hai.jpg.jpeg": {
+    "aspect": 2.14,
+    "jaw_ratio": 0.8039,
+    "temple_ratio": 1.7299,
+    "chin_taper": 0.8074,
+    "rx": 0.1116,
+    "ry": 0.2389,
+    "male": false,
+    "tryonFile": "medium-wavy-side-parted-hai.jpg_1_medium_wavy.png"
+  },
+  "medium-wavy-side-parted-hai.jpg_1.jpeg": {
+    "aspect": 1.514,
+    "jaw_ratio": 0.776,
+    "temple_ratio": 1.5303,
+    "chin_taper": 0.7877,
+    "rx": 0.1569,
+    "ry": 0.2375,
+    "male": false,
+    "tryonFile": "medium-wavy-side-parted-hai.jpg_1_medium_wavy.png"
+  },
+  "medium-wavy-with-curls.jpg.jpeg": {
+    "aspect": 1.4921,
+    "jaw_ratio": 0.7815,
+    "temple_ratio": 1.475,
+    "chin_taper": 0.8018,
+    "rx": 0.1536,
+    "ry": 0.2292,
+    "male": false,
+    "tryonFile": "medium-wavy-with-curls.jpg_medium_wavy.png"
+  },
+  "mocha-curly-hairstyle-with-.jpg_1.jpeg": {
+    "aspect": 1.677,
+    "jaw_ratio": 0.8341,
+    "temple_ratio": 1.6693,
+    "chin_taper": 0.8333,
+    "rx": 0.1097,
+    "ry": 0.184,
+    "male": false,
+    "tryonFile": "mocha-curly-hairstyle-with-.jpg_1_medium_curly.png"
+  },
+  "mocha-curly-hairstyle-with-bangs.jpg.jpeg": {
+    "aspect": 1.4644,
+    "jaw_ratio": 0.8106,
+    "temple_ratio": 1.6404,
+    "chin_taper": 0.8189,
+    "rx": 0.1241,
+    "ry": 0.1817,
+    "male": false,
+    "tryonFile": "mocha-curly-hairstyle-with-.jpg_1_medium_curly.png"
+  },
+  "pixie-hair-cut-with-texture.jpg.jpeg": {
+    "aspect": 1.5047,
+    "jaw_ratio": 0.7498,
+    "temple_ratio": 1.559,
+    "chin_taper": 0.7792,
+    "rx": 0.1643,
+    "ry": 0.2472,
+    "male": false,
+    "tryonFile": "pixie-hair-cut-with-texture.jpg_short_wavy.png"
+  },
+  "pixie-hair-cut-with-volume.jpg.jpeg": {
+    "aspect": 1.5654,
+    "jaw_ratio": 0.7613,
+    "temple_ratio": 1.4533,
+    "chin_taper": 0.7812,
+    "rx": 0.16,
+    "ry": 0.2505,
+    "male": false,
+    "tryonFile": "pixie-hair-cut-with-texture.jpg_short_wavy.png"
+  },
+  "pixie-hair-cut.jpg.jpeg": {
+    "aspect": 1.5027,
+    "jaw_ratio": 0.7708,
+    "temple_ratio": 1.5945,
+    "chin_taper": 0.7932,
+    "rx": 0.1512,
+    "ry": 0.2271,
+    "male": false,
+    "tryonFile": "pixie-hair-cut.jpg_short_wavy.png"
+  },
+  "platinum-blonde-flicked-out-hairstyle.jpg.jpeg": {
+    "aspect": 1.4437,
+    "jaw_ratio": 0.7586,
+    "temple_ratio": 1.4902,
+    "chin_taper": 0.7829,
+    "rx": 0.1483,
+    "ry": 0.2141,
+    "male": false,
+    "tryonFile": "platinum-blonde-flicked-out-hairstyle.jpg_medium_wavy.png"
+  },
+  "platinum-blone-short-hairst.jpg.jpeg": {
+    "aspect": 1.5407,
+    "jaw_ratio": 0.763,
+    "temple_ratio": 1.5275,
+    "chin_taper": 0.7856,
+    "rx": 0.1615,
+    "ry": 0.2489,
+    "male": false,
+    "tryonFile": "platinum-blone-short-hairst.jpg_short_wavy.png"
+  },
+  "portrait-masculinity-portrait-handsome-young-bearded-man-while-standing-against-grey-wall_231208-7844.jpg_1.jpeg": {
+    "aspect": 1.2785,
+    "jaw_ratio": 0.8105,
+    "temple_ratio": 1.699,
+    "chin_taper": 0.8187,
+    "rx": 0.1693,
+    "ry": 0.2164,
+    "male": true,
+    "tryonFile": "portrait-masculinity-portrait-handsome-young-bearded-man-while-standing-against-grey-wall_231208-7844.jpg_1_medium_wavy_male.png"
+  },
+  "short-asymmetrical-hairstyle.jpg.jpeg": {
+    "aspect": 1.5058,
+    "jaw_ratio": 0.7798,
+    "temple_ratio": 1.5314,
+    "chin_taper": 0.7998,
+    "rx": 0.1633,
+    "ry": 0.2458,
+    "male": false,
+    "tryonFile": "short-asymmetrical-hairstyle.jpg_short_wavy.png"
+  },
+  "short-blonde-asymmetrical-hairstyle.jpg.jpeg": {
+    "aspect": 1.4728,
+    "jaw_ratio": 0.7845,
+    "temple_ratio": 1.5261,
+    "chin_taper": 0.8015,
+    "rx": 0.1609,
+    "ry": 0.2369,
+    "male": false,
+    "tryonFile": "short-blonde-asymmetrical-hairstyle.jpg_short_wavy.png"
+  },
+  "short-blonde-hairstyle.jpg.jpeg": {
+    "aspect": 1.5971,
+    "jaw_ratio": 0.7861,
+    "temple_ratio": 1.5676,
+    "chin_taper": 0.8031,
+    "rx": 0.161,
+    "ry": 0.2571,
+    "male": false,
+    "tryonFile": "short-blonde-hairstyle.jpg_short_wavy.png"
+  },
+  "short-blonde-hairstyle.jpg_1.jpeg": {
+    "aspect": 1.5749,
+    "jaw_ratio": 0.7808,
+    "temple_ratio": 1.5404,
+    "chin_taper": 0.7989,
+    "rx": 0.1691,
+    "ry": 0.2662,
+    "male": false,
+    "tryonFile": "short-blonde-hairstyle.jpg_short_wavy.png"
+  },
+  "short-bob-haircut.jpg.jpeg": {
+    "aspect": 1.4832,
+    "jaw_ratio": 0.7762,
+    "temple_ratio": 1.4819,
+    "chin_taper": 0.793,
+    "rx": 0.1642,
+    "ry": 0.2436,
+    "male": false,
+    "tryonFile": "short-bob-haircut.jpg_1_short_wavy.png"
+  },
+  "short-bob-haircut.jpg_1.jpeg": {
+    "aspect": 1.4563,
+    "jaw_ratio": 0.7935,
+    "temple_ratio": 1.5476,
+    "chin_taper": 0.8074,
+    "rx": 0.1565,
+    "ry": 0.2279,
+    "male": false,
+    "tryonFile": "short-bob-haircut.jpg_1_short_wavy.png"
+  },
+  "short-bob-hairstyle.jpg.jpeg": {
+    "aspect": 1.4428,
+    "jaw_ratio": 0.7881,
+    "temple_ratio": 1.5361,
+    "chin_taper": 0.801,
+    "rx": 0.1484,
+    "ry": 0.2141,
+    "male": false,
+    "tryonFile": "short-bob-hairstyle.jpg_short_wavy.png"
+  },
+  "short-dark-bob.jpg.jpeg": {
+    "aspect": 1.4655,
+    "jaw_ratio": 0.7768,
+    "temple_ratio": 1.5301,
+    "chin_taper": 0.7976,
+    "rx": 0.153,
+    "ry": 0.2243,
+    "male": false,
+    "tryonFile": "short-dark-bob.jpg_short_wavy.png"
+  },
+  "short-female-hairstyle.jpg.jpeg": {
+    "aspect": 1.625,
+    "jaw_ratio": 0.7983,
+    "temple_ratio": 1.5814,
+    "chin_taper": 0.8111,
+    "rx": 0.1488,
+    "ry": 0.2418,
+    "male": false,
+    "tryonFile": "short-female-hairstyle.jpg_short_wavy_male.png"
+  },
+  "short-hairstyle-black.jpg.jpeg": {
+    "aspect": 1.4546,
+    "jaw_ratio": 0.7612,
+    "temple_ratio": 1.4772,
+    "chin_taper": 0.7797,
+    "rx": 0.1732,
+    "ry": 0.252,
+    "male": false,
+    "tryonFile": "short-hairstyle-black.jpg_short_wavy.png"
+  },
+  "short-hairstyle-curly-blonde.jpg.jpeg": {
+    "aspect": 1.5093,
+    "jaw_ratio": 0.7738,
+    "temple_ratio": 1.4899,
+    "chin_taper": 0.7934,
+    "rx": 0.1468,
+    "ry": 0.2216,
+    "male": false,
+    "tryonFile": "short-hairstyle-curly-blonde.jpg_short_curly.png"
+  },
+  "short-hairstyle-curly.jpg.jpeg": {
+    "aspect": 1.4484,
+    "jaw_ratio": 0.8082,
+    "temple_ratio": 1.5091,
+    "chin_taper": 0.83,
+    "rx": 0.1365,
+    "ry": 0.1978,
+    "male": false,
+    "tryonFile": "short-hairstyle-curly-blonde.jpg_short_curly.png"
+  },
+  "short-hairstyle-for-men.jpg.jpeg": {
+    "aspect": 1.6097,
+    "jaw_ratio": 0.8142,
+    "temple_ratio": 1.6072,
+    "chin_taper": 0.8256,
+    "rx": 0.1447,
+    "ry": 0.2329,
+    "male": true,
+    "tryonFile": null
+  },
+  "short-hairstyle-straight-asymmetric-jagged-cut-with-bangs.jpg.jpeg": {
+    "aspect": 1.4969,
+    "jaw_ratio": 0.7952,
+    "temple_ratio": 1.4833,
+    "chin_taper": 0.8102,
+    "rx": 0.1526,
+    "ry": 0.2285,
+    "male": false,
+    "tryonFile": "short-hairstyle-straight-clipper-cut.jpg_short_straight.png"
+  },
+  "short-hairstyle-straight-black-with-red-highlights.jpg.jpeg": {
+    "aspect": 1.6394,
+    "jaw_ratio": 0.7954,
+    "temple_ratio": 1.5819,
+    "chin_taper": 0.8073,
+    "rx": 0.1415,
+    "ry": 0.232,
+    "male": false,
+    "tryonFile": "short-hairstyle-straight-clipper-cut.jpg_short_straight.png"
+  },
+  "short-hairstyle-straight-blonde-with-side-swept-bangs-and-highlights.jpg.jpeg": {
+    "aspect": 1.5814,
+    "jaw_ratio": 0.763,
+    "temple_ratio": 1.5603,
+    "chin_taper": 0.7814,
+    "rx": 0.1474,
+    "ry": 0.2331,
+    "male": false,
+    "tryonFile": "short-hairstyle-straight-clipper-cut.jpg_short_straight.png"
+  },
+  "short-hairstyle-straight-clipper-cut.jpg.jpeg": {
+    "aspect": 1.4849,
+    "jaw_ratio": 0.7455,
+    "temple_ratio": 1.5262,
+    "chin_taper": 0.7692,
+    "rx": 0.1552,
+    "ry": 0.2305,
+    "male": false,
+    "tryonFile": "short-hairstyle-straight-clipper-cut.jpg_short_straight.png"
+  },
+  "short-hairstyle-straight-red-with-layered-bangs-and-blonde-highlights.jpg.jpeg": {
+    "aspect": 1.5212,
+    "jaw_ratio": 0.7585,
+    "temple_ratio": 1.5828,
+    "chin_taper": 0.7749,
+    "rx": 0.1536,
+    "ry": 0.2337,
+    "male": false,
+    "tryonFile": "short-hairstyle-straight-clipper-cut.jpg_short_straight.png"
+  },
+  "short-hairstyle-with-fringe.jpg.jpeg": {
+    "aspect": 1.4484,
+    "jaw_ratio": 0.7647,
+    "temple_ratio": 1.4739,
+    "chin_taper": 0.788,
+    "rx": 0.1674,
+    "ry": 0.2425,
+    "male": false,
+    "tryonFile": "short-hairstyle-with-fringe.jpg_short_wavy_bangs.png"
+  },
+  "short-hairstyle.jpg.jpeg": {
+    "aspect": 1.4004,
+    "jaw_ratio": 0.7946,
+    "temple_ratio": 1.5047,
+    "chin_taper": 0.8127,
+    "rx": 0.1747,
+    "ry": 0.2446,
+    "male": false,
+    "tryonFile": "short-hairstyle.jpg_1_short_wavy.png"
+  },
+  "short-hairstyle.jpg_1.jpeg": {
+    "aspect": 1.4537,
+    "jaw_ratio": 0.759,
+    "temple_ratio": 1.4745,
+    "chin_taper": 0.7802,
+    "rx": 0.1529,
+    "ry": 0.2222,
+    "male": false,
+    "tryonFile": "short-hairstyle.jpg_1_short_wavy.png"
+  },
+  "short-male-hairstyle-with-c.jpg.jpeg": {
+    "aspect": 1.4822,
+    "jaw_ratio": 0.8106,
+    "temple_ratio": 1.5461,
+    "chin_taper": 0.826,
+    "rx": 0.1549,
+    "ry": 0.2295,
+    "male": true,
+    "tryonFile": "short-male-hairstyle-with-long-fringe.jpg_long_wavy_male_bangs.png"
+  },
+  "short-male-hairstyle-with-height.jpg.jpeg": {
+    "aspect": 1.5731,
+    "jaw_ratio": 0.8141,
+    "temple_ratio": 1.6382,
+    "chin_taper": 0.8172,
+    "rx": 0.1523,
+    "ry": 0.2396,
+    "male": true,
+    "tryonFile": "short-male-hairstyle-with-long-fringe.jpg_long_wavy_male_bangs.png"
+  },
+  "short-male-hairstyle-with-long-fringe.jpg.jpeg": {
+    "aspect": 1.6656,
+    "jaw_ratio": 0.8029,
+    "temple_ratio": 1.5914,
+    "chin_taper": 0.8128,
+    "rx": 0.1525,
+    "ry": 0.254,
+    "male": true,
+    "tryonFile": "short-male-hairstyle-with-long-fringe.jpg_long_wavy_male_bangs.png"
+  },
+  "short-male-hairstyle.jpg.jpeg": {
+    "aspect": 1.6627,
+    "jaw_ratio": 0.7913,
+    "temple_ratio": 1.5905,
+    "chin_taper": 0.8078,
+    "rx": 0.1386,
+    "ry": 0.2305,
+    "male": true,
+    "tryonFile": "short-male-hairstyle-with-height.jpg_short_wavy_male.png"
+  },
+  "short-male-hairstyle.jpg_1.jpeg": {
+    "aspect": 1.5201,
+    "jaw_ratio": 0.846,
+    "temple_ratio": 1.5974,
+    "chin_taper": 0.8472,
+    "rx": 0.1581,
+    "ry": 0.2403,
+    "male": true,
+    "tryonFile": "short-male-hairstyle-with-height.jpg_short_wavy_male.png"
+  },
+  "short-mens-quiff-hairstyle.jpg.jpeg": {
+    "aspect": 1.5217,
+    "jaw_ratio": 0.7968,
+    "temple_ratio": 1.5504,
+    "chin_taper": 0.8152,
+    "rx": 0.1425,
+    "ry": 0.2169,
+    "male": false,
+    "tryonFile": "short-mens-quiff-hairstyle.jpg_short_wavy_male.png"
+  },
+  "short-mens-tidy-hairstyle.jpg.jpeg": {
+    "aspect": 2.3813,
+    "jaw_ratio": 0.7603,
+    "temple_ratio": 2.0027,
+    "chin_taper": 0.7702,
+    "rx": 0.091,
+    "ry": 0.2167,
+    "male": false,
+    "tryonFile": "short-mens-tidy-hairstyle.jpg_2_short_wavy_male.png"
+  },
+  "short-mens-tidy-hairstyle.jpg_1.jpeg": {
+    "aspect": 2.658,
+    "jaw_ratio": 0.7805,
+    "temple_ratio": 2.0462,
+    "chin_taper": 0.7822,
+    "rx": 0.0851,
+    "ry": 0.2262,
+    "male": false,
+    "tryonFile": "short-mens-tidy-hairstyle.jpg_2_short_wavy_male.png"
+  },
+  "short-mens-tidy-hairstyle.jpg_2.jpeg": {
+    "aspect": 1.775,
+    "jaw_ratio": 0.7899,
+    "temple_ratio": 1.6456,
+    "chin_taper": 0.8024,
+    "rx": 0.1352,
+    "ry": 0.2399,
+    "male": false,
+    "tryonFile": "short-mens-tidy-hairstyle.jpg_2_short_wavy_male.png"
+  },
+  "short-modern-hairstyle-for-men.jpg.jpeg": {
+    "aspect": 1.6159,
+    "jaw_ratio": 0.804,
+    "temple_ratio": 1.648,
+    "chin_taper": 0.8176,
+    "rx": 0.1452,
+    "ry": 0.2345,
+    "male": true,
+    "tryonFile": "short-modern-hairstyle-for-men.jpg_short_wavy_male.png"
+  },
+  "short-modern-hairstyle.jpg.jpeg": {
+    "aspect": 1.4928,
+    "jaw_ratio": 0.8243,
+    "temple_ratio": 1.4735,
+    "chin_taper": 0.8364,
+    "rx": 0.1677,
+    "ry": 0.2503,
+    "male": false,
+    "tryonFile": "short-modern-hairstyle-for-men.jpg_short_wavy_male.png"
+  },
+  "short-sleek-hairstyle-for-men.jpg.jpeg": {
+    "aspect": 1.6568,
+    "jaw_ratio": 0.7724,
+    "temple_ratio": 1.6355,
+    "chin_taper": 0.7929,
+    "rx": 0.1483,
+    "ry": 0.2457,
+    "male": true,
+    "tryonFile": "short-sleek-hairstyle-for-men.jpg_short_straight_male.png"
+  },
+  "short-sleek-hairstyle.jpg.jpeg": {
+    "aspect": 1.5875,
+    "jaw_ratio": 0.7974,
+    "temple_ratio": 1.5772,
+    "chin_taper": 0.813,
+    "rx": 0.1525,
+    "ry": 0.2421,
+    "male": false,
+    "tryonFile": "short-sleek-hairstyle-for-men.jpg_short_straight_male.png"
+  },
+  "short-sleek-male-hairstyle.jpg.jpeg": {
+    "aspect": 1.6715,
+    "jaw_ratio": 0.8217,
+    "temple_ratio": 1.549,
+    "chin_taper": 0.8278,
+    "rx": 0.1574,
+    "ry": 0.2631,
+    "male": true,
+    "tryonFile": "short-sleek-male-hairstyle.jpg_short_straight_male.png"
+  },
+  "short-sleek-male-hairstyle.jpg_1.jpeg": {
+    "aspect": 1.6151,
+    "jaw_ratio": 0.7892,
+    "temple_ratio": 1.5866,
+    "chin_taper": 0.805,
+    "rx": 0.144,
+    "ry": 0.2325,
+    "male": true,
+    "tryonFile": "short-sleek-male-hairstyle.jpg_short_straight_male.png"
+  },
+  "short-sleek-mens-hairstyle.jpg.jpeg": {
+    "aspect": 1.5596,
+    "jaw_ratio": 0.7736,
+    "temple_ratio": 1.6465,
+    "chin_taper": 0.7986,
+    "rx": 0.1506,
+    "ry": 0.2348,
+    "male": false,
+    "tryonFile": null
+  },
+  "short-straight-blonde-bob-hairstyle.jpg.jpeg": {
+    "aspect": 1.4911,
+    "jaw_ratio": 0.779,
+    "temple_ratio": 1.5252,
+    "chin_taper": 0.7973,
+    "rx": 0.1617,
+    "ry": 0.2412,
+    "male": false,
+    "tryonFile": "short-straight-blonde-bob-hairstyle.jpg_short_straight.png"
+  },
+  "short-straight-blonde-formal-hairtyle.jpg.jpeg": {
+    "aspect": 1.5143,
+    "jaw_ratio": 0.7986,
+    "temple_ratio": 1.5454,
+    "chin_taper": 0.8081,
+    "rx": 0.159,
+    "ry": 0.2407,
+    "male": false,
+    "tryonFile": "short-straight-blonde-bob-hairstyle.jpg_short_straight.png"
+  },
+  "short-straight-hairstyle.jpg.jpeg": {
+    "aspect": 1.519,
+    "jaw_ratio": 0.7491,
+    "temple_ratio": 1.5442,
+    "chin_taper": 0.7763,
+    "rx": 0.1552,
+    "ry": 0.2358,
+    "male": false,
+    "tryonFile": "short-straight-hairstyle.jpg_short_straight.png"
+  },
+  "short-straight-mens-haircut.jpg.jpeg": {
+    "aspect": 1.6208,
+    "jaw_ratio": 0.8158,
+    "temple_ratio": 1.5797,
+    "chin_taper": 0.8219,
+    "rx": 0.1392,
+    "ry": 0.2256,
+    "male": false,
+    "tryonFile": "short-straight-mens-haircut.jpg_short_straight_male.png"
+  },
+  "short-straight-mens-haircut.jpg_2.jpeg": {
+    "aspect": 1.5854,
+    "jaw_ratio": 0.7854,
+    "temple_ratio": 1.6208,
+    "chin_taper": 0.799,
+    "rx": 0.1444,
+    "ry": 0.2289,
+    "male": false,
+    "tryonFile": "short-straight-mens-haircut.jpg_short_straight_male.png"
+  },
+  "short-wavy-dual-tone-bob.jpg.jpeg": {
+    "aspect": 1.4447,
+    "jaw_ratio": 0.8224,
+    "temple_ratio": 1.5817,
+    "chin_taper": 0.8396,
+    "rx": 0.1565,
+    "ry": 0.2261,
+    "male": false,
+    "tryonFile": "short-wavy-dual-tone-bob.jpg_short_wavy.png"
+  },
+  "short-wavy-hairstyle.jpg.jpeg": {
+    "aspect": 1.4386,
+    "jaw_ratio": 0.7753,
+    "temple_ratio": 1.5596,
+    "chin_taper": 0.7942,
+    "rx": 0.1566,
+    "ry": 0.2253,
+    "male": false,
+    "tryonFile": "short-wavy-hairstyle.jpg_short_wavy.png"
+  },
+  "short-wavy-hairstyle.jpg_1.jpeg": {
+    "aspect": 1.4519,
+    "jaw_ratio": 0.7875,
+    "temple_ratio": 1.4727,
+    "chin_taper": 0.8004,
+    "rx": 0.1586,
+    "ry": 0.2303,
+    "male": false,
+    "tryonFile": "short-wavy-hairstyle.jpg_short_wavy.png"
+  },
+  "short-wavy-male-haircut.jpg.jpeg": {
+    "aspect": 1.5358,
+    "jaw_ratio": 0.8147,
+    "temple_ratio": 1.5404,
+    "chin_taper": 0.8266,
+    "rx": 0.159,
+    "ry": 0.2443,
+    "male": true,
+    "tryonFile": "short-wavy-male-haircut.jpg_short_wavy_male.png"
+  },
+  "shoulder-length-bob-haircut.jpg.jpeg": {
+    "aspect": 1.5393,
+    "jaw_ratio": 0.7991,
+    "temple_ratio": 1.5596,
+    "chin_taper": 0.8117,
+    "rx": 0.1307,
+    "ry": 0.2012,
+    "male": false,
+    "tryonFile": "shoulder-length-bob-haircut.jpg_long_wavy.png"
+  },
+  "shoulder-length-hairstyle-with-curls.jpg.jpeg": {
+    "aspect": 1.4436,
+    "jaw_ratio": 0.7923,
+    "temple_ratio": 1.5098,
+    "chin_taper": 0.8007,
+    "rx": 0.1325,
+    "ry": 0.1913,
+    "male": false,
+    "tryonFile": "shoulder-length-hairstyle.jpg_long_wavy.png"
+  },
+  "shoulder-length-hairstyle.jpg.jpeg": {
+    "aspect": 1.5082,
+    "jaw_ratio": 0.801,
+    "temple_ratio": 1.4691,
+    "chin_taper": 0.8108,
+    "rx": 0.1266,
+    "ry": 0.191,
+    "male": false,
+    "tryonFile": "shoulder-length-hairstyle.jpg_long_wavy.png"
+  },
+  "shoulder-length-straight-blonde-bob.jpg.jpeg": {
+    "aspect": 1.5128,
+    "jaw_ratio": 0.8033,
+    "temple_ratio": 1.5366,
+    "chin_taper": 0.8146,
+    "rx": 0.1563,
+    "ry": 0.2365,
+    "male": false,
+    "tryonFile": "shoulder-length-straight-blonde-bob.jpg_long_straight.png"
+  },
+  "sleek-medium-length-hairstyle.jpg.jpeg": {
+    "aspect": 1.5121,
+    "jaw_ratio": 0.8072,
+    "temple_ratio": 1.4353,
+    "chin_taper": 0.8122,
+    "rx": 0.1212,
+    "ry": 0.1833,
+    "male": false,
+    "tryonFile": "sleek-medium-length-hairstyle.jpg_medium_straight.png"
+  },
+  "sleek-medium-length-hairstyle.jpg_2.jpeg": {
+    "aspect": 1.5121,
+    "jaw_ratio": 0.8072,
+    "temple_ratio": 1.4353,
+    "chin_taper": 0.8122,
+    "rx": 0.1212,
+    "ry": 0.1833,
+    "male": false,
+    "tryonFile": "sleek-medium-length-hairstyle.jpg_medium_straight.png"
+  },
+  "sleek-medium-length-hairstyle.jpg_3.jpeg": {
+    "aspect": 1.501,
+    "jaw_ratio": 0.7815,
+    "temple_ratio": 1.469,
+    "chin_taper": 0.7993,
+    "rx": 0.1431,
+    "ry": 0.2148,
+    "male": false,
+    "tryonFile": "sleek-medium-length-hairstyle.jpg_medium_straight.png"
+  },
+  "straight-black-hairstyle.jpg.jpeg": {
+    "aspect": 1.5046,
+    "jaw_ratio": 0.7567,
+    "temple_ratio": 1.4738,
+    "chin_taper": 0.7763,
+    "rx": 0.1511,
+    "ry": 0.2273,
+    "male": false,
+    "tryonFile": "straight-black-hairstyle.jpg_medium_straight.png"
+  },
+  "two-toned-spikey-hairstyle.jpg.jpeg": {
+    "aspect": 1.5362,
+    "jaw_ratio": 0.7724,
+    "temple_ratio": 1.4369,
+    "chin_taper": 0.7888,
+    "rx": 0.1393,
+    "ry": 0.2141,
+    "male": false,
+    "tryonFile": "two-toned-spikey-hairstyle.jpg_medium_wavy.png"
+  },
+  "updo-hairstyle-with-curls.jpg.jpeg": {
+    "aspect": 1.4496,
+    "jaw_ratio": 0.7692,
+    "temple_ratio": 1.5397,
+    "chin_taper": 0.786,
+    "rx": 0.1278,
+    "ry": 0.1853,
+    "male": false,
+    "tryonFile": "updo-hairstyle-with-curls.jpg_medium_wavy.png"
+  },
+  "very-long-sleek-hairstyle.jpg.jpeg": {
+    "aspect": 1.4872,
+    "jaw_ratio": 0.7907,
+    "temple_ratio": 1.5263,
+    "chin_taper": 0.8028,
+    "rx": 0.0813,
+    "ry": 0.1209,
+    "male": false,
+    "tryonFile": "very-long-sleek-hairstyle.jpg_long_straight.png"
+  },
+  "wavy-blonde-hairstyle.jpg.jpeg": {
+    "aspect": 1.4755,
+    "jaw_ratio": 0.7622,
+    "temple_ratio": 1.5224,
+    "chin_taper": 0.7798,
+    "rx": 0.154,
+    "ry": 0.2272,
+    "male": false,
+    "tryonFile": "wavy-blonde-hairstyle.jpg_medium_wavy.png"
+  },
+  "wavy-shoulder-length-hairstyle-with-side-swept-bangs.jpg.jpeg": {
+    "aspect": 1.5828,
+    "jaw_ratio": 0.7741,
+    "temple_ratio": 1.5561,
+    "chin_taper": 0.7897,
+    "rx": 0.1227,
+    "ry": 0.1942,
+    "male": false,
+    "tryonFile": "wavy-shoulder-length-hairstyle-with-side-swept-bangs.jpg_long_wavy_bangs.png"
+  },
+  "wavy-shoulder-length-hairstyle.jpg.jpeg": {
+    "aspect": 1.4712,
+    "jaw_ratio": 0.7886,
+    "temple_ratio": 1.452,
+    "chin_taper": 0.8017,
+    "rx": 0.1463,
+    "ry": 0.2152,
+    "male": false,
+    "tryonFile": "wavy-shoulder-length-hairstyle-with-side-swept-bangs.jpg_long_wavy_bangs.png"
+  },
+  "xA_002-Before-Peles.jpg.jpeg": {
+    "aspect": 1.5999,
+    "jaw_ratio": 0.7932,
+    "temple_ratio": 1.5811,
+    "chin_taper": 0.806,
+    "rx": 0.1412,
+    "ry": 0.226,
+    "male": false,
+    "tryonFile": "xA_002-Before-Peles.jpg_medium_wavy.png"
+  },
+  "xa_005-Before-Peles.jpg.jpeg": {
+    "aspect": 1.5614,
+    "jaw_ratio": 0.7767,
+    "temple_ratio": 1.5521,
+    "chin_taper": 0.791,
+    "rx": 0.1609,
+    "ry": 0.2512,
+    "male": false,
+    "tryonFile": "xa_005-Before-Peles.jpg_medium_wavy.png"
+  },
+  "young-successful-businessman-posing-with-hand-chin_176420-1147.jpg.jpeg": {
+    "aspect": 1.2598,
+    "jaw_ratio": 0.8177,
+    "temple_ratio": 1.5286,
+    "chin_taper": 0.8332,
+    "rx": 0.1544,
+    "ry": 0.1945,
+    "male": true,
+    "tryonFile": "young-successful-businessman-posing-with-hand-chin_176420-1147.jpg_medium_wavy_male.png"
+  }
+}

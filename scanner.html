@@ -253,37 +253,37 @@ function lowestCoverageYaw() {
 // ═══════════════════════════════════════════════════════════════════════
 //  SKULL DESCRIPTOR — accumulated measurements per angular zone
 // ═══════════════════════════════════════════════════════════════════════
+// ── Accumulation buffers ──────────────────────────────────────────────
 const desc = {
-  faceW:[], faceH:[],
-  earL_x:[], earL_z:[], earR_x:[], earR_z:[],
-  jawDepth:[], occipitZ:[],
-  crownY:[], napeY:[],
-  noseTipZ:[]
+  aspect:       [],   // face_height / eye_span
+  jaw_ratio:    [],   // lower_jaw   / temple_span
+  temple_ratio: [],   // temple_span / eye_span
+  chin_taper:   [],   // lower_jaw   / upper_jaw  (how jaw tapers)
+  rx:           [],   // eye_span    / 2           (normalised half-width)
+  ry:           [],   // face_height / 2           (normalised half-height)
 };
 
+// ── Accumulate one frame ──────────────────────────────────────────────
 function accumulateDescriptor(lm, pose) {
-  const abs = v => Math.abs(v);
-  desc.faceW.push(abs(lm[454].x - lm[234].x));
-  desc.faceH.push(abs(lm[152].y - lm[10].y));
-  desc.noseTipZ.push(lm[4].z);
-  desc.crownY.push(lm[10].y);
-  desc.napeY.push(lm[152].y);
+  // Only trust measurements when face is roughly forward-facing
+  if (Math.abs(pose.yaw) > 30) return;
 
-  // Side profile gives us ear depth
-  if (Math.abs(pose.yaw) > 55) {
-    if (pose.yaw > 0) {
-      // Turned right → right ear is now toward camera → true right ear x/z
-      desc.earR_x.push(lm[454].x);
-      desc.earR_z.push(lm[454].z);
-      desc.jawDepth.push(lm[172].z);
-      desc.occipitZ.push(lm[234].z);
-    } else {
-      desc.earL_x.push(lm[234].x);
-      desc.earL_z.push(lm[234].z);
-      desc.jawDepth.push(lm[397].z);
-      desc.occipitZ.push(lm[454].z);
-    }
-  }
+  const faceHeight   = Math.abs(lm[152].y - lm[10].y);
+  const eyeSpan      = Math.abs(lm[263].x - lm[33].x);
+  const templeSpan   = Math.abs(lm[454].x - lm[234].x);
+  const jawSpan      = Math.abs(lm[397].x - lm[172].x);
+  let   upperJawSpan = Math.abs(lm[323].x - lm[93].x);
+
+  // Guard against degenerate frames
+  if (eyeSpan < 0.05 || faceHeight < 0.05 || templeSpan < 0.05) return;
+  if (upperJawSpan < 0.02) upperJawSpan = jawSpan * 0.95;
+
+  desc.aspect.push(      faceHeight  / eyeSpan);
+  desc.jaw_ratio.push(   jawSpan     / templeSpan);
+  desc.temple_ratio.push(templeSpan  / eyeSpan);
+  desc.chin_taper.push(  jawSpan     / upperJawSpan);
+  desc.rx.push(          eyeSpan     / 2);
+  desc.ry.push(          faceHeight  / 2);
 }
 
 function med(arr) {
@@ -292,21 +292,27 @@ function med(arr) {
   return s[Math.floor(s.length/2)];
 }
 
+// ── Build final descriptor from accumulated medians ───────────────────
 function buildDescriptor() {
-  return {
-    rx:        +((med(desc.faceW)||0.9) * 0.52).toFixed(4),
-    ry:        +((med(desc.faceH)||1.1) * 0.58).toFixed(4),
-    rz_front:  +((med(desc.noseTipZ)||0) !== null ? Math.abs(med(desc.noseTipZ)||0.15) + 0.35 : 0.50).toFixed(4),
-    rz_back:   +(Math.abs(med(desc.occipitZ)||0.12) + 0.28).toFixed(4),
-    ear_l_x:   +(med(desc.earL_x)    || -(med(desc.faceW)||0.9)*0.5).toFixed(4),
-    ear_l_z:   +(med(desc.earL_z)    || -0.28).toFixed(4),
-    ear_r_x:   +(med(desc.earR_x)    ||  (med(desc.faceW)||0.9)*0.5).toFixed(4),
-    ear_r_z:   +(med(desc.earR_z)    || -0.28).toFixed(4),
-    jaw_depth: +(Math.abs(med(desc.jawDepth)||0.22) + 0.18).toFixed(4),
-    crown_y:   +(med(desc.crownY)    || 0.10).toFixed(4),
-    nape_y:    +(med(desc.napeY)     || 0.72).toFixed(4),
-    samples:   desc.faceW.length,
+  const d = {
+    aspect:       +(med(desc.aspect)       ?? 1.40).toFixed(4),
+    jaw_ratio:    +(med(desc.jaw_ratio)    ?? 0.80).toFixed(4),
+    temple_ratio: +(med(desc.temple_ratio) ?? 1.05).toFixed(4),
+    chin_taper:   +(med(desc.chin_taper)   ?? 0.90).toFixed(4),
+    rx:           +(med(desc.rx)           ?? 0.22).toFixed(4),
+    ry:           +(med(desc.ry)           ?? 0.30).toFixed(4),
+    samples:      desc.aspect.length,
   };
+
+  // Clamp to valid ranges
+  d.aspect       = Math.max(1.0,  Math.min(2.5,  d.aspect));
+  d.jaw_ratio    = Math.max(0.4,  Math.min(1.5,  d.jaw_ratio));
+  d.temple_ratio = Math.max(0.6,  Math.min(1.5,  d.temple_ratio));
+  d.chin_taper   = Math.max(0.3,  Math.min(1.6,  d.chin_taper));
+  d.rx           = Math.max(0.05, Math.min(0.5,  d.rx));
+  d.ry           = Math.max(0.1,  Math.min(0.6,  d.ry));
+
+  return d;
 }
 
 // ═══════════════════════════════════════════════════════════════════════
