@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Head Scanner</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Syne:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080806;--gold:#c9a96e;--gold-dim:rgba(201,169,110,0.22);
+  --gold-hi:rgba(201,169,110,0.85);--cream:#ede8dc;
+  --green:#4ecb71;--red:#e05555;--scan:#c9a96e;
+}
+html,body{width:100%;min-height:100vh;overflow-x:hidden}
+body{background:var(--bg);color:var(--cream);font-family:'Syne',sans-serif;
+  display:flex;flex-direction:column;align-items:center;
+  gap:10px;padding:12px 14px 28px;}
+
+/* grain overlay */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:100;
+  opacity:0.032;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* header */
+.hdr{display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:4px;}
+.hdr-title{font-family:'DM Mono',monospace;font-weight:400;font-size:0.62rem;
+  letter-spacing:0.52em;text-transform:uppercase;color:var(--gold);}
+.hdr-sub{font-family:'DM Mono',monospace;font-weight:300;font-size:0.36rem;
+  letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,169,110,0.28);}
+
+/* dual view */
+.dual{display:flex;gap:8px;width:100%;max-width:700px;}
+.view{position:relative;flex:1;aspect-ratio:3/4;background:#050402;overflow:hidden;
+  border:1px solid rgba(201,169,110,0.09);}
+.view-label{position:absolute;top:8px;left:10px;z-index:20;
+  font-family:'DM Mono',monospace;font-size:0.32rem;letter-spacing:0.28em;
+  text-transform:uppercase;color:rgba(201,169,110,0.38);}
+
+/* corner brackets */
+.view::before,.view::after,.vbr::before,.vbr::after{
+  content:'';position:absolute;width:14px;height:14px;z-index:20;
+  border-color:rgba(201,169,110,0.28);border-style:solid;}
+.view::before{top:0;left:0;border-width:1px 0 0 1px;}
+.view::after{top:0;right:0;border-width:1px 1px 0 0;}
+.vbr::before{bottom:0;left:0;border-width:0 0 1px 1px;}
+.vbr::after{bottom:0;right:0;border-width:0 1px 1px 0;}
+
+#video{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;transform:scaleX(-1);opacity:0.22;z-index:1;}
+#face-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;}
+#skull-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:2;}
+
+/* coverage ring overlay on skull view */
+#cov-label{position:absolute;bottom:8px;left:0;right:0;text-align:center;z-index:20;
+  font-family:'DM Mono',monospace;font-size:0.32rem;letter-spacing:0.22em;
+  text-transform:uppercase;color:rgba(201,169,110,0.35);}
+
+/* guide bar */
+.guide{width:100%;max-width:700px;padding:10px 14px;
+  background:rgba(201,169,110,0.04);border:1px solid rgba(201,169,110,0.09);
+  display:flex;align-items:center;gap:12px;}
+.guide-icon{font-size:1.1rem;flex-shrink:0;min-width:28px;text-align:center;}
+.guide-text{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--cream);line-height:1.6;flex:1;}
+.guide-check{width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(201,169,110,0.25);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:0.55rem;transition:all 0.4s;}
+.guide-check.done{border-color:var(--green);background:rgba(78,203,113,0.12);color:var(--green);}
+
+/* steps */
+.steps{display:flex;gap:6px;width:100%;max-width:700px;}
+.step{flex:1;padding:7px 6px;border:1px solid rgba(201,169,110,0.08);text-align:center;
+  font-family:'DM Mono',monospace;font-size:0.3rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:rgba(201,169,110,0.25);transition:all 0.4s;position:relative;}
+.step.active{border-color:rgba(201,169,110,0.4);color:var(--gold);}
+.step.done{border-color:rgba(78,203,113,0.35);color:var(--green);}
+.step-num{display:block;font-size:0.65rem;font-weight:400;margin-bottom:2px;}
+.step-name{display:block;}
+
+/* coverage bar */
+.cov-wrap{width:100%;max-width:700px;}
+.cov-label-row{display:flex;justify-content:space-between;margin-bottom:4px;
+  font-family:'DM Mono',monospace;font-size:0.32rem;letter-spacing:0.22em;
+  text-transform:uppercase;color:rgba(201,169,110,0.3);}
+.cov-bar{width:100%;height:3px;background:rgba(201,169,110,0.08);position:relative;overflow:hidden;}
+.cov-fill{height:100%;background:var(--gold);width:0%;transition:width 0.3s;}
+
+/* status */
+.status{display:flex;align-items:center;gap:8px;
+  font-family:'DM Mono',monospace;font-size:0.38rem;letter-spacing:0.22em;
+  text-transform:uppercase;color:rgba(201,169,110,0.3);}
+.dot{width:5px;height:5px;border-radius:50%;background:rgba(201,169,110,0.2);}
+.live .dot{background:var(--gold);box-shadow:0 0 7px rgba(201,169,110,0.6);
+  animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* done screen */
+#done-screen{display:none;position:fixed;inset:0;background:var(--bg);z-index:200;
+  flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;}
+#done-screen.show{display:flex;}
+.done-check{width:64px;height:64px;border-radius:50%;border:2px solid var(--green);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:var(--green);
+  box-shadow:0 0 30px rgba(78,203,113,0.25);animation:checkpop 0.5s cubic-bezier(0.34,1.56,0.64,1);}
+@keyframes checkpop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.done-title{font-family:'Syne',sans-serif;font-weight:600;font-size:1.1rem;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);}
+.done-sub{font-family:'DM Mono',monospace;font-size:0.38rem;letter-spacing:0.28em;
+  text-transform:uppercase;color:rgba(201,169,110,0.45);}
+#descriptor-out{font-family:'DM Mono',monospace;font-size:0.34rem;line-height:1.8;
+  color:rgba(201,169,110,0.6);background:rgba(201,169,110,0.04);
+  border:1px solid rgba(201,169,110,0.12);padding:14px 16px;
+  width:100%;max-width:420px;white-space:pre;}
+.btn{padding:10px 28px;border:1px solid rgba(201,169,110,0.35);background:transparent;
+  color:var(--gold);font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.25em;
+  text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.btn:hover{background:rgba(201,169,110,0.08);}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-title">Head Scanner</div>
+  <div class="hdr-sub">dual-view · angular coverage map · skull descriptor</div>
+</div>
+
+<!-- Steps -->
+<div class="steps">
+  <div class="step active" id="step-0"><span class="step-num">01</span><span class="step-name">Front</span></div>
+  <div class="step" id="step-1"><span class="step-num">02</span><span class="step-name">Right</span></div>
+  <div class="step" id="step-2"><span class="step-num">03</span><span class="step-name">Left</span></div>
+  <div class="step" id="step-3"><span class="step-num">04</span><span class="step-name">Up</span></div>
+  <div class="step" id="step-4"><span class="step-num">05</span><span class="step-name">Done</span></div>
+</div>
+
+<!-- Dual view -->
+<div class="dual">
+  <!-- Live feed -->
+  <div class="view" id="live-view">
+    <div class="vbr"></div>
+    <div class="view-label">Live · Landmarks</div>
+    <video id="video" playsinline autoplay muted></video>
+    <canvas id="face-canvas"></canvas>
+  </div>
+  <!-- Skull map -->
+  <div class="view" id="skull-view">
+    <div class="vbr"></div>
+    <div class="view-label">Skull · Coverage</div>
+    <canvas id="skull-canvas"></canvas>
+    <div id="cov-label">0% mapped</div>
+  </div>
+</div>
+
+<!-- Guide -->
+<div class="guide">
+  <div class="guide-icon" id="guide-icon">👤</div>
+  <div class="guide-text" id="guide-text">Face the camera — hold still</div>
+  <div class="guide-check" id="guide-check"></div>
+</div>
+
+<!-- Coverage bar -->
+<div class="cov-wrap">
+  <div class="cov-label-row"><span>Coverage</span><span id="cov-pct">0%</span></div>
+  <div class="cov-bar"><div class="cov-fill" id="cov-fill"></div></div>
+</div>
+
+<!-- Status -->
+<div class="status" id="status"><div class="dot"></div><span id="stxt">Initialising…</span></div>
+
+<!-- Done screen -->
+<div id="done-screen">
+  <div class="done-check">✓</div>
+  <div class="done-title">Scan Complete</div>
+  <div class="done-sub">Skull descriptor extracted</div>
+  <pre id="descriptor-out"></pre>
+  <button class="btn" onclick="rescan()">Rescan</button>
+  <button class="btn" id="elume-btn" style="display:none;border-color:rgba(201,169,110,0.8);color:#c9a96e;margin-top:8px;width:100%;" onclick="sendToElume()">Get My Styles →</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous">
+function sendToElume() {
+  if (!window._elumeDescriptor) return;
+  var encoded = btoa(JSON.stringify(window._elumeDescriptor));
+  window.location.href = './index.html?scan=' + encoded;
+}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+<script>
+'use strict';
+
+// ═══════════════════════════════════════════════════════════════════════
+//  ANGULAR COVERAGE GRID
+//  Yaw: -100° → +100° in 20° bins = 10 bins
+//  Pitch: -50° → +50° in 25° bins = 4 bins
+//  Total: 40 cells
+// ═══════════════════════════════════════════════════════════════════════
+const YAW_BINS   = 10;
+const PITCH_BINS = 4;
+const YAW_MIN    = -100, YAW_MAX   = 100;
+const PITCH_MIN  = -50,  PITCH_MAX = 50;
+const TOTAL_CELLS = YAW_BINS * PITCH_BINS;
+const CONFIRM_THRESH = 7;   // frames of direct coverage to confirm a cell
+const FALLOFF_DEG    = 18;  // half-angle falloff for neighbouring cells
+
+// coverage[pitch][yaw] = 0..CONFIRM_THRESH
+const coverage = Array.from({length:PITCH_BINS},()=>new Array(YAW_BINS).fill(0));
+
+function yawBin(yaw) {
+  const t = (yaw - YAW_MIN) / (YAW_MAX - YAW_MIN);
+  return Math.max(0, Math.min(YAW_BINS-1, Math.floor(t * YAW_BINS)));
+}
+function pitchBin(pitch) {
+  const t = (pitch - PITCH_MIN) / (PITCH_MAX - PITCH_MIN);
+  return Math.max(0, Math.min(PITCH_BINS-1, Math.floor(t * PITCH_BINS)));
+}
+function yawCenter(bi)   { return YAW_MIN   + (bi + 0.5) * (YAW_MAX-YAW_MIN)   / YAW_BINS; }
+function pitchCenter(bi) { return PITCH_MIN + (bi + 0.5) * (PITCH_MAX-PITCH_MIN)/ PITCH_BINS; }
+
+function voteCoverage(yaw, pitch) {
+  for (let pi=0; pi<PITCH_BINS; pi++) {
+    for (let yi=0; yi<YAW_BINS; yi++) {
+      const dy = Math.abs(yaw   - yawCenter(yi));
+      const dp = Math.abs(pitch - pitchCenter(pi));
+      const dist = Math.sqrt(dy*dy + dp*dp);
+      const weight = Math.max(0, 1 - dist / FALLOFF_DEG);
+      if (weight > 0.05 && coverage[pi][yi] < CONFIRM_THRESH) {
+        coverage[pi][yi] = Math.min(CONFIRM_THRESH, coverage[pi][yi] + weight * 0.55);
+      }
+    }
+  }
+}
+
+function totalCoverage() {
+  let sum = 0;
+  for (let pi=0; pi<PITCH_BINS; pi++)
+    for (let yi=0; yi<YAW_BINS; yi++)
+      sum += Math.min(1, coverage[pi][yi] / CONFIRM_THRESH);
+  return sum / TOTAL_CELLS;
+}
+
+function lowestCoverageYaw() {
+  // Find the yaw bin column with lowest total coverage → where to point user
+  let minScore = Infinity, minYi = 0;
+  for (let yi=0; yi<YAW_BINS; yi++) {
+    let col = 0;
+    for (let pi=0; pi<PITCH_BINS; pi++) col += coverage[pi][yi] / CONFIRM_THRESH;
+    col /= PITCH_BINS;
+    if (col < minScore) { minScore=col; minYi=yi; }
+  }
+  return yawCenter(minYi);
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  SKULL DESCRIPTOR — accumulated measurements per angular zone
+// ═══════════════════════════════════════════════════════════════════════
+const desc = {
+  faceW:[], faceH:[],
+  earL_x:[], earL_z:[], earR_x:[], earR_z:[],
+  jawDepth:[], occipitZ:[],
+  crownY:[], napeY:[],
+  noseTipZ:[]
+};
+
+function accumulateDescriptor(lm, pose) {
+  const abs = v => Math.abs(v);
+  desc.faceW.push(abs(lm[454].x - lm[234].x));
+  desc.faceH.push(abs(lm[152].y - lm[10].y));
+  desc.noseTipZ.push(lm[4].z);
+  desc.crownY.push(lm[10].y);
+  desc.napeY.push(lm[152].y);
+
+  // Side profile gives us ear depth
+  if (Math.abs(pose.yaw) > 55) {
+    if (pose.yaw > 0) {
+      // Turned right → right ear is now toward camera → true right ear x/z
+      desc.earR_x.push(lm[454].x);
+      desc.earR_z.push(lm[454].z);
+      desc.jawDepth.push(lm[172].z);
+      desc.occipitZ.push(lm[234].z);
+    } else {
+      desc.earL_x.push(lm[234].x);
+      desc.earL_z.push(lm[234].z);
+      desc.jawDepth.push(lm[397].z);
+      desc.occipitZ.push(lm[454].z);
+    }
+  }
+}
+
+function med(arr) {
+  if (!arr.length) return null;
+  const s = [...arr].sort((a,b)=>a-b);
+  return s[Math.floor(s.length/2)];
+}
+
+function buildDescriptor() {
+  return {
+    rx:        +((med(desc.faceW)||0.9) * 0.52).toFixed(4),
+    ry:        +((med(desc.faceH)||1.1) * 0.58).toFixed(4),
+    rz_front:  +((med(desc.noseTipZ)||0) !== null ? Math.abs(med(desc.noseTipZ)||0.15) + 0.35 : 0.50).toFixed(4),
+    rz_back:   +(Math.abs(med(desc.occipitZ)||0.12) + 0.28).toFixed(4),
+    ear_l_x:   +(med(desc.earL_x)    || -(med(desc.faceW)||0.9)*0.5).toFixed(4),
+    ear_l_z:   +(med(desc.earL_z)    || -0.28).toFixed(4),
+    ear_r_x:   +(med(desc.earR_x)    ||  (med(desc.faceW)||0.9)*0.5).toFixed(4),
+    ear_r_z:   +(med(desc.earR_z)    || -0.28).toFixed(4),
+    jaw_depth: +(Math.abs(med(desc.jawDepth)||0.22) + 0.18).toFixed(4),
+    crown_y:   +(med(desc.crownY)    || 0.10).toFixed(4),
+    nape_y:    +(med(desc.napeY)     || 0.72).toFixed(4),
+    samples:   desc.faceW.length,
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  SCAN STAGE MACHINE
+// ═══════════════════════════════════════════════════════════════════════
+// stages: front → right → left → up → done
+const STAGES = [
+  { id:'front', label:'Face the camera — hold still',    icon:'👤', yawTarget:0,   yawTol:18, pitchTarget:0,  pitchTol:22 },
+  { id:'right', label:'Slowly turn your head RIGHT →',   icon:'→',  yawTarget:72,  yawTol:18, pitchTarget:0,  pitchTol:25 },
+  { id:'left',  label:'← Slowly turn your head LEFT',    icon:'←',  yawTarget:-72, yawTol:18, pitchTarget:0,  pitchTol:25 },
+  { id:'up',    label:'Tilt your chin slightly DOWN',     icon:'↓',  yawTarget:0,   yawTol:25, pitchTarget:25, pitchTol:18 },
+];
+let stageIdx       = 0;
+let stageHoldCount = 0;
+const HOLD_FRAMES  = 22;   // frames to hold a pose before confirming stage
+let scanDone       = false;
+
+function checkStageProgress(pose) {
+  if (stageIdx >= STAGES.length) return;
+  const s = STAGES[stageIdx];
+  const yawOk   = Math.abs(pose.yaw   - s.yawTarget)   < s.yawTol;
+  const pitchOk = Math.abs(pose.pitch - s.pitchTarget) < s.pitchTol;
+
+  if (yawOk && pitchOk) {
+    stageHoldCount++;
+    if (stageHoldCount >= HOLD_FRAMES) {
+      advanceStage();
+    }
+  } else {
+    stageHoldCount = Math.max(0, stageHoldCount - 1);
+  }
+}
+
+function advanceStage() {
+  stageHoldCount = 0;
+  const stepEl = document.getElementById('step-'+stageIdx);
+  if (stepEl) stepEl.className = 'step done';
+  stageIdx++;
+  if (stageIdx >= STAGES.length) {
+    scanDone = true;
+    showDone();
+    return;
+  }
+  updateStepUI();
+}
+
+function updateStepUI() {
+  for (let i=0; i<STAGES.length; i++) {
+    const el = document.getElementById('step-'+i);
+    if (!el) continue;
+    if (i < stageIdx)      el.className = 'step done';
+    else if (i === stageIdx) el.className = 'step active';
+    else                   el.className = 'step';
+  }
+  const s = STAGES[stageIdx] || {};
+  document.getElementById('guide-icon').textContent = s.icon || '✓';
+  document.getElementById('guide-text').textContent = s.label || 'Complete';
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  SKULL CANVAS RENDERER
+// ═══════════════════════════════════════════════════════════════════════
+const skullCanvas = document.getElementById('skull-canvas');
+const skullCtx    = skullCanvas.getContext('2d');
+let skullAutoRot  = 0;   // auto-rotation angle for skull map display
+
+function drawSkullMap(currentYaw) {
+  const W = skullCanvas.width, H = skullCanvas.height;
+  skullCtx.clearRect(0,0,W,H);
+
+  // Slowly rotate the skull map toward the least-covered region
+  const leastYaw = lowestCoverageYaw();
+  // Convert leastYaw (-100..+100) to a display rotation (positive = rotate right in display)
+  const targetRot = leastYaw * 0.6 * (Math.PI/180); // subtle tilt
+  skullAutoRot += (targetRot - skullAutoRot) * 0.018;
+
+  const cx = W*0.5, cy = H*0.42;
+  const ry = H * 0.30, rx = W * 0.28;  // skull ellipse display size
+
+  const RINGS = 8, SEGS = 20;
+
+  // Each surface quad colored by coverage
+  for (let pi=0; pi<PITCH_BINS; pi++) {
+    for (let yi=0; yi<YAW_BINS; yi++) {
+      const conf = Math.min(1, coverage[pi][yi] / CONFIRM_THRESH);
+
+      // Get 4 corner points of this cell on the skull surface
+      // Map cell bounds to sphere angles
+      const phi0 = (pi     / PITCH_BINS) * Math.PI * 0.82;
+      const phi1 = ((pi+1) / PITCH_BINS) * Math.PI * 0.82;
+      const th0  = (yi     / YAW_BINS)   * Math.PI * 2 - Math.PI;
+      const th1  = ((yi+1) / YAW_BINS)   * Math.PI * 2 - Math.PI;
+
+      // 4 corners in 3D skull-space (unit sphere scaled by rx/ry)
+      const corners3D = [
+        [phi0,th0],[phi0,th1],[phi1,th0],[phi1,th1]
+      ].map(([ph,th]) => {
+        // Apply auto-rotation around Y
+        const sx = Math.sin(ph)*Math.sin(th);
+        const sy = -Math.cos(ph);
+        const sz = Math.sin(ph)*Math.cos(th);
+        // rotate Y by skullAutoRot
+        const rx2 = sx*Math.cos(skullAutoRot) + sz*Math.sin(skullAutoRot);
+        const rz2 = -sx*Math.sin(skullAutoRot) + sz*Math.cos(skullAutoRot);
+        return { x:rx2, y:sy, z:rz2 };
+      });
+
+      // Backface cull: skip if average z < 0 (facing away)
+      const avgZ = corners3D.reduce((s,p)=>s+p.z,0)/4;
+      if (avgZ < -0.05) continue;
+
+      // Project to 2D
+      const pts2D = corners3D.map(p => ({
+        x: cx + p.x * rx,
+        y: cy + p.y * ry,
+      }));
+
+      // Color: unscanned=dark grey, partial=dim gold, full=bright gold
+      const alpha = 0.15 + conf * 0.72;
+      const r = Math.round(60  + conf * 141);
+      const g = Math.round(45  + conf * 124);
+      const b = Math.round(20  + conf * 90);
+
+      skullCtx.beginPath();
+      skullCtx.moveTo(pts2D[0].x, pts2D[0].y);
+      skullCtx.lineTo(pts2D[1].x, pts2D[1].y);
+      skullCtx.lineTo(pts2D[3].x, pts2D[3].y);
+      skullCtx.lineTo(pts2D[2].x, pts2D[2].y);
+      skullCtx.closePath();
+      skullCtx.fillStyle = `rgba(${r},${g},${b},${alpha.toFixed(2)})`;
+      skullCtx.fill();
+
+      // Edge
+      skullCtx.strokeStyle = `rgba(201,169,110,${(conf*0.3+0.06).toFixed(2)})`;
+      skullCtx.lineWidth = 0.5;
+      skullCtx.stroke();
+    }
+  }
+
+  // Draw current pose indicator dot on skull map
+  if (!scanDone) {
+    // Convert currentYaw to an angle on the equator ring
+    const th = currentYaw * (Math.PI/180) + skullAutoRot;
+    const dotX = cx + Math.sin(th) * rx;
+    const dotY = cy;
+    skullCtx.beginPath();
+    skullCtx.arc(dotX, dotY, 4, 0, Math.PI*2);
+    skullCtx.fillStyle = 'rgba(201,169,110,0.9)';
+    skullCtx.shadowColor = '#c9a96e';
+    skullCtx.shadowBlur  = 8;
+    skullCtx.fill();
+    skullCtx.shadowBlur = 0;
+  }
+
+  // "Turn toward grey" arrow if coverage < 80%
+  const cov = totalCoverage();
+  if (cov < 0.80 && !scanDone) {
+    const leastYawDeg = lowestCoverageYaw();
+    const arrowDir = leastYawDeg > 5 ? 1 : leastYawDeg < -5 ? -1 : 0;
+    if (arrowDir !== 0) {
+      skullCtx.fillStyle = 'rgba(201,169,110,0.45)';
+      skullCtx.font = `${W*0.08}px sans-serif`;
+      skullCtx.textAlign = 'center';
+      skullCtx.fillText(arrowDir > 0 ? '→' : '←', cx + arrowDir*(rx+18), cy+6);
+    }
+  }
+
+  // Coverage label
+  const pct = Math.round(totalCoverage()*100);
+  document.getElementById('cov-label').textContent = pct + '% mapped';
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  SMOOTHING
+// ═══════════════════════════════════════════════════════════════════════
+const SMOOTH_N = 14;
+const lmBuf    = [];
+const ANCHORS  = [4,152,234,454,1];
+
+function motionScore(a,b) {
+  let s=0; for(const i of ANCHORS){const dx=b[i].x-a[i].x,dy=b[i].y-a[i].y;s+=Math.hypot(dx,dy);}
+  return s/ANCHORS.length;
+}
+function smoothLm(raw) {
+  if(lmBuf.length>0&&motionScore(lmBuf[lmBuf.length-1],raw)>0.015)lmBuf.length=0;
+  lmBuf.push(raw);
+  if(lmBuf.length>SMOOTH_N)lmBuf.shift();
+  const n=lmBuf.length;
+  return raw.map((_,i)=>({
+    x:lmBuf.reduce((s,f)=>s+f[i].x,0)/n,
+    y:lmBuf.reduce((s,f)=>s+f[i].y,0)/n,
+    z:lmBuf.reduce((s,f)=>s+f[i].z,0)/n,
+  }));
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  POSE
+// ═══════════════════════════════════════════════════════════════════════
+function estimatePose(lm) {
+  const nose=lm[4],lEar=lm[234],rEar=lm[454],chin=lm[152],fore=lm[10];
+  const lEye=lm[33],rEye=lm[263];
+  const earMidX=(lEar.x+rEar.x)/2;
+  const faceW=Math.abs(rEar.x-lEar.x),faceH=Math.abs(chin.y-fore.y);
+  const yaw=-Math.asin(Math.max(-0.99,Math.min(0.99,(nose.x-earMidX)/(faceW*0.32+0.001))))*(180/Math.PI);
+  const eyeMidY=(lEye.y+rEye.y)/2;
+  const expNy=eyeMidY+faceH*0.25;
+  const pitch=-Math.asin(Math.max(-0.99,Math.min(0.99,(nose.y-expNy)/(faceH*0.22+0.001))))*(180/Math.PI);
+  const roll=Math.atan2(rEye.y-lEye.y,rEye.x-lEye.x)*(180/Math.PI);
+  return {yaw,pitch,roll,faceW,faceH};
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  FACE CANVAS DRAW
+// ═══════════════════════════════════════════════════════════════════════
+const faceCanvas = document.getElementById('face-canvas');
+const faceCtx    = faceCanvas.getContext('2d');
+
+const C_OVAL=[[10,338],[338,297],[297,332],[332,284],[284,251],[251,389],[389,356],[356,454],[454,323],[323,361],[361,288],[288,397],[397,365],[365,379],[379,378],[378,400],[400,377],[377,152],[152,148],[148,176],[176,149],[149,150],[150,136],[136,172],[172,58],[58,132],[132,93],[93,234],[234,127],[127,162],[162,21],[21,54],[54,103],[103,67],[67,109],[109,10]];
+const C_L_EYE=[[263,249],[249,390],[390,373],[373,374],[374,380],[380,381],[381,382],[382,362],[362,398],[398,384],[384,385],[385,386],[386,387],[387,388],[388,466],[466,263]];
+const C_R_EYE=[[33,7],[7,163],[163,144],[144,145],[145,153],[153,154],[154,155],[155,133],[133,173],[173,157],[157,158],[158,159],[159,160],[160,161],[161,246],[246,33]];
+const C_LIPS=[[61,185],[185,40],[40,39],[39,37],[37,0],[0,267],[267,269],[269,270],[270,409],[409,291],[291,375],[375,321],[321,405],[405,314],[314,17],[17,84],[84,181],[181,91],[91,146],[146,61]];
+const C_NOSE=[[168,6],[6,197],[197,195],[195,5],[5,4],[4,1],[1,19],[19,94],[94,2]];
+const C_L_BROW=[[276,283],[283,282],[282,295],[295,285],[300,293],[293,334],[334,296],[296,336]];
+const C_R_BROW=[[46,53],[53,52],[52,65],[65,55],[70,63],[63,105],[105,66],[66,107]];
+const C_L_IRIS=[[473,474],[474,475],[475,476],[476,477],[477,473]];
+const C_R_IRIS=[[468,469],[469,470],[470,471],[471,472],[472,468]];
+
+let _scanY=0, _scanDir=1;
+
+function drawFaceLandmarks(lm) {
+  const W=faceCanvas.width, H=faceCanvas.height;
+  faceCtx.clearRect(0,0,W,H);
+  const sx=i=>(1-lm[i].x)*W, sy=i=>lm[i].y*H;
+  const Z_NEAR=-0.18,Z_FAR=0.20,ZR=Z_FAR-Z_NEAR;
+  const d01=i=>Math.max(0,Math.min(1,(lm[i].z-Z_NEAR)/ZR));
+  const ed=(a,b)=>(d01(a)+d01(b))*0.5;
+
+  const drawE=(pairs,baseA,lw,blur)=>{
+    faceCtx.shadowColor='#c9a96e'; faceCtx.shadowBlur=blur;
+    for(const[a,b]of pairs){
+      if(!lm[a]||!lm[b])continue;
+      const dv=ed(a,b); if(dv>0.78)continue;
+      faceCtx.strokeStyle=`rgba(201,169,110,${(baseA*(1-dv*0.44)).toFixed(3)})`;
+      faceCtx.lineWidth=lw*(1-dv*0.28);
+      faceCtx.beginPath();faceCtx.moveTo(sx(a),sy(a));faceCtx.lineTo(sx(b),sy(b));faceCtx.stroke();
+    }
+  };
+
+  // Hold-progress ring around nose tip
+  if (!scanDone && stageIdx < STAGES.length) {
+    const pct = stageHoldCount / HOLD_FRAMES;
+    if (pct > 0) {
+      const nx=sx(4), ny=sy(4);
+      faceCtx.shadowBlur=0;
+      faceCtx.strokeStyle=`rgba(78,203,113,${0.3+pct*0.55})`;
+      faceCtx.lineWidth=2.5;
+      faceCtx.beginPath();
+      faceCtx.arc(nx,ny,14,- Math.PI/2,-Math.PI/2+pct*Math.PI*2);
+      faceCtx.stroke();
+    }
+  }
+
+  if(typeof FACEMESH_TESSELATION!=='undefined'){
+    faceCtx.shadowBlur=0;
+    faceCtx.strokeStyle='rgba(201,169,110,0.10)';faceCtx.lineWidth=0.45;
+    faceCtx.beginPath();
+    for(const[a,b]of FACEMESH_TESSELATION){if(!lm[a]||!lm[b])continue;faceCtx.moveTo(sx(a),sy(a));faceCtx.lineTo(sx(b),sy(b));}
+    faceCtx.stroke();
+  }
+  drawE(C_OVAL,0.88,1.7,9);
+  drawE(C_L_EYE,0.78,1.1,6);drawE(C_R_EYE,0.78,1.1,6);
+  drawE(C_L_BROW,0.60,0.9,4);drawE(C_R_BROW,0.60,0.9,4);
+  drawE(C_NOSE,0.48,0.7,3);
+  drawE(C_LIPS,0.72,0.9,5);
+
+  if(lm.length>468&&lm[468]&&lm[473]){
+    drawE(C_R_IRIS,0.68,1.1,7);drawE(C_L_IRIS,0.68,1.1,7);
+    faceCtx.shadowBlur=10;
+    for(const i of[468,473]){const dv=d01(i);faceCtx.fillStyle=`rgba(201,169,110,${(0.9*(1-dv*0.36)).toFixed(3)})`;faceCtx.beginPath();faceCtx.arc(sx(i),sy(i),2.5,0,Math.PI*2);faceCtx.fill();}
+  }
+
+  // Scan line
+  const top=sy(10)-20, bot=sy(152)+20;
+  _scanY+=_scanDir*1.4; if(_scanY>bot)_scanDir=-1; if(_scanY<top)_scanDir=1;
+  const sg=faceCtx.createLinearGradient(0,_scanY-14,0,_scanY+14);
+  sg.addColorStop(0,'transparent');sg.addColorStop(0.45,'rgba(201,169,110,0.05)');
+  sg.addColorStop(0.5,'rgba(201,169,110,0.11)');sg.addColorStop(0.55,'rgba(201,169,110,0.05)');
+  sg.addColorStop(1,'transparent');
+  faceCtx.fillStyle=sg;faceCtx.shadowBlur=0;faceCtx.fillRect(0,_scanY-14,W,28);
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  DONE
+// ═══════════════════════════════════════════════════════════════════════
+function showDone() {
+  const d = buildDescriptor();
+  document.getElementById('step-4').className='step done';
+  document.getElementById('descriptor-out').textContent =
+    JSON.stringify(d, null, 2);
+  document.getElementById('done-screen').className='done-screen show';
+  document.getElementById('guide-icon').textContent='✓';
+  document.getElementById('guide-text').textContent='Scan complete — skull descriptor ready';
+  document.getElementById('guide-check').className='guide-check done';
+  document.getElementById('guide-check').textContent='✓';
+
+  // ── ÉLUME integration ──
+  window._elumeDescriptor = d;
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'ELUME_SCAN_DONE', descriptor: d }, '*');
+  }
+  var btn = document.getElementById('elume-btn');
+  if (btn) btn.style.display = '';
+}
+
+function rescan() {
+  document.getElementById('done-screen').className='done-screen';
+  stageIdx=0; stageHoldCount=0; scanDone=false;
+  for(let pi=0;pi<PITCH_BINS;pi++) coverage[pi].fill(0);
+  Object.keys(desc).forEach(k=>{ if(Array.isArray(desc[k]))desc[k].length=0; });
+  for(let i=0;i<5;i++){
+    const el=document.getElementById('step-'+i);
+    if(el)el.className=i===0?'step active':'step';
+  }
+  document.getElementById('guide-check').className='guide-check';
+  document.getElementById('guide-check').textContent='';
+  updateStepUI();
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  MAIN RESULTS CALLBACK
+// ═══════════════════════════════════════════════════════════════════════
+function onResults(results) {
+  // Sync canvas sizes
+  const lv = document.getElementById('live-view');
+  const sv = document.getElementById('skull-view');
+  faceCanvas.width  = lv.offsetWidth;  faceCanvas.height  = lv.offsetHeight;
+  skullCanvas.width = sv.offsetWidth;  skullCanvas.height = sv.offsetHeight;
+
+  if (!results.multiFaceLandmarks||!results.multiFaceLandmarks.length) {
+    lmBuf.length=0;
+    faceCtx.clearRect(0,0,faceCanvas.width,faceCanvas.height);
+    drawSkullMap(0);
+    document.getElementById('stxt').textContent='No face — move closer';
+    document.getElementById('status').className='status';
+    return;
+  }
+  document.getElementById('status').className='status live';
+
+  const rawLm = results.multiFaceLandmarks[0];
+  const lm    = smoothLm(rawLm);
+  const pose  = estimatePose(lm);
+
+  if (!scanDone) {
+    voteCoverage(pose.yaw, pose.pitch);
+    accumulateDescriptor(lm, pose);
+    checkStageProgress(pose);
+  }
+
+  drawFaceLandmarks(lm);
+  drawSkullMap(pose.yaw);
+
+  const pct = Math.round(totalCoverage()*100);
+  document.getElementById('cov-fill').style.width = pct+'%';
+  document.getElementById('cov-pct').textContent  = pct+'%';
+  document.getElementById('stxt').textContent =
+    `yaw ${Math.round(pose.yaw)}° · pitch ${Math.round(pose.pitch)}° · ${lm.length}pts · σ${lmBuf.length}f`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  MEDIAPIPE INIT
+// ═══════════════════════════════════════════════════════════════════════
+const video = document.getElementById('video');
+let faceMesh;
+
+window.addEventListener('load', () => {
+  updateStepUI();
+  faceMesh = new FaceMesh({
+    locateFile: f => `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${f}`
+  });
+  faceMesh.setOptions({
+    maxNumFaces:1, refineLandmarks:true,
+    minDetectionConfidence:0.6, minTrackingConfidence:0.5,
+  });
+  faceMesh.onResults(onResults);
+  const cam = new Camera(video, {
+    onFrame: async () => { if(faceMesh) await faceMesh.send({image:video}); },
+    width:640, height:480,
+  });
+  cam.start()
+    .then(()=>document.getElementById('stxt').textContent='Camera active — follow the guide')
+    .catch(e =>document.getElementById('stxt').textContent='Camera error: '+e.message);
+});
+</script>
+</body>
+</html>
