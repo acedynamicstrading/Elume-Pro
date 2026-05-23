@@ -955,9 +955,23 @@ async function loadStyleDescriptors() {
     const res = await fetch('./style_db_descriptors.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     STYLE_DESCRIPTORS = await res.json();
+
+    // Normalize descriptor keys to match STYLE_DB imageFile slugs
+    // e.g. "Boyish-crop-haircut.png" → "boyish-crop-haircut.jpg"
+    //      "CL_077-Cutting-Loose.jpg_1.jpeg" → "cl-077-cutting-loose.jpg-1.jpg"
+    function normalizeKey(f) {
+      let s = f.toLowerCase().replace(/_/g, '-');
+      const d = s.lastIndexOf('.');
+      if (d > 0) s = s.slice(0, d);
+      if (!s.match(/\.(jpg|jpeg|png|webp)$/)) s += '.jpg';
+      return s;
+    }
+    const normDesc = {};
+    for (const [k, v] of Object.entries(STYLE_DESCRIPTORS)) normDesc[normalizeKey(k)] = v;
+
     let merged = 0;
     for (const style of STYLE_DB) {
-      const desc = STYLE_DESCRIPTORS[style.imageFile];
+      const desc = normDesc[style.imageFile];
       if (desc) { style._desc = desc; merged++; }
     }
     console.log(`[ÉLUME] Loaded real descriptors — ${merged}/${STYLE_DB.length} styles matched`);
@@ -1173,7 +1187,7 @@ function buildCard(style, isBest) {
   card.className = 'style-card fade-in';
   card.dataset.styleId = style.id;
 
-  const imgUrl = `${GITHUB_BASE}/images/recommend/${style.imageFile}`;
+  const imgUrl = `${GITHUB_BASE}/recommend/${style.imageFile}`;
 
   card.innerHTML = `
     ${style._matchScore != null
@@ -1236,7 +1250,7 @@ function openTryOn(styleId, e) {
   document.getElementById('tryon-download-btn').classList.remove('show');
 
   // Load hair overlay image
-  const tryonUrl = `${GITHUB_BASE}/images/tryon/${style.tryonFile}`;
+  const tryonUrl = `${GITHUB_BASE}/tryon/${style.tryonFile}`;
   hairImg = new Image();
   hairImg.crossOrigin = 'anonymous';
   hairImg.src = tryonUrl;
